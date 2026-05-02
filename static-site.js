@@ -167,6 +167,16 @@ function cssImageUrl(src) {
   return `url("${String(src).replaceAll("\\", "\\\\").replaceAll('"', '\\"')}")`;
 }
 
+const contentObjectId = "content.json";
+
+function sbField(path) {
+  return hasText(path) ? ` data-sb-field-path="${escapeHtml(path)}"` : "";
+}
+
+function sbObject(path = "") {
+  return ` data-sb-object-id="${contentObjectId}"${sbField(path)}`;
+}
+
 function videoMarkup(url, poster = "", title = "Video") {
   if (!hasText(url)) return "";
   const cleanUrl = String(url).trim();
@@ -269,9 +279,9 @@ function applyTypography(content) {
 function sectionHeading(section) {
   return `
     <div class="section-heading">
-      ${hasText(section.eyebrow) ? `<p class="eyebrow">${escapeHtml(section.eyebrow)}</p>` : ""}
-      ${hasText(section.title) ? `<h2>${escapeHtml(section.title)}</h2>` : ""}
-      ${hasText(section.copy) ? `<p>${escapeHtml(section.copy)}</p>` : ""}
+      ${hasText(section.eyebrow) ? `<p class="eyebrow"${sbField(".eyebrow")}>${escapeHtml(section.eyebrow)}</p>` : ""}
+      ${hasText(section.title) ? `<h2${sbField(".title")}>${escapeHtml(section.title)}</h2>` : ""}
+      ${hasText(section.copy) ? `<p${sbField(".copy")}>${escapeHtml(section.copy)}</p>` : ""}
     </div>
   `;
 }
@@ -282,13 +292,13 @@ function renderTop(content) {
   const page = currentPage();
   const navigation = normalizedNavigation(content);
   return `
-    <div class="top-strip">
-      <p>${escapeHtml(topStrip.text)}</p>
-      <a href="${escapeHtml(topStrip.linkHref || "#contact")}">${escapeHtml(topStrip.linkText)}</a>
+    <div class="top-strip"${sbObject("topStrip")}>
+      <p${sbField(".text")}>${escapeHtml(topStrip.text)}</p>
+      <a href="${escapeHtml(topStrip.linkHref || "#contact")}"${sbField(".linkText")}>${escapeHtml(topStrip.linkText)}</a>
     </div>
 
     <header class="site-header" data-header>
-      <a class="brand" href="#home" aria-label="AimAze Tech Solutions home">
+      <a class="brand" href="#home" aria-label="AimAze Tech Solutions home"${sbObject("site.logo")}>
         ${imageMarkup(site.logo, "AimAze Tech Solutions logo")}
       </a>
       <button class="nav-toggle" type="button" aria-label="Open navigation" data-nav-toggle>
@@ -333,7 +343,7 @@ function renderPageHero(content, key) {
   const meta = pageMeta[key] || pageMeta.home;
   const hero = content.hero || {};
   return `
-    <section class="page-hero reveal">
+    <section class="page-hero reveal"${sbObject(key === "home" ? "hero" : "")}>
       <div>
         <p class="eyebrow">${escapeHtml(meta.eyebrow)}</p>
         <h1>${escapeHtml(meta.title)}</h1>
@@ -359,28 +369,28 @@ function renderHero(content) {
   const hero = content.hero || {};
   const heroBackground = hero.backgroundImage || hero.image || content.site?.ogImage || "";
   return `
-    <section class="hero hero-with-background reveal" id="home" style="--hero-bg-image: ${escapeHtml(cssImageUrl(heroBackground))};">
+    <section class="hero hero-with-background reveal" id="home" style="--hero-bg-image: ${escapeHtml(cssImageUrl(heroBackground))};"${sbObject("hero")}>
       <div class="hero-shape hero-shape-one"></div>
       <div class="hero-shape hero-shape-two"></div>
       <div class="hero-inner">
         <div class="hero-content">
-          <p class="eyebrow">${escapeHtml(hero.eyebrow)}</p>
-          <h1>${escapeHtml(hero.title)}</h1>
-          <p class="hero-copy">${escapeHtml(hero.copy)}</p>
-          <div class="hero-points" aria-label="Key strengths">
-            ${(hero.points || []).map((point) => `<span>${escapeHtml(point)}</span>`).join("")}
+          <p class="eyebrow"${sbField(".eyebrow")}>${escapeHtml(hero.eyebrow)}</p>
+          <h1${sbField(".title")}>${escapeHtml(hero.title)}</h1>
+          <p class="hero-copy"${sbField(".copy")}>${escapeHtml(hero.copy)}</p>
+          <div class="hero-points" aria-label="Key strengths"${sbField(".points")}>
+            ${(hero.points || []).map((point, index) => `<span${sbField(`.${index}`)}>${escapeHtml(point)}</span>`).join("")}
           </div>
           <div class="hero-actions">
-            <a class="button button-primary" href="${escapeHtml(hero.primaryButton?.href || "#contact")}">${escapeHtml(hero.primaryButton?.label || "Contact Us")}</a>
-            <a class="button button-secondary" href="${escapeHtml(hero.secondaryButton?.href || "#services")}">${escapeHtml(hero.secondaryButton?.label || "View Services")}</a>
+            <a class="button button-primary" href="${escapeHtml(hero.primaryButton?.href || "#contact")}"${sbField(".primaryButton.label")}>${escapeHtml(hero.primaryButton?.label || "Contact Us")}</a>
+            <a class="button button-secondary" href="${escapeHtml(hero.secondaryButton?.href || "#services")}"${sbField(".secondaryButton.label")}>${escapeHtml(hero.secondaryButton?.label || "View Services")}</a>
           </div>
         </div>
         <div class="hero-showcase" aria-label="AimAze ERP capabilities">
           <div class="hero-card">
-            ${imageMarkup(hero.image, hero.imageAlt)}
+            <div${sbField(".image")}>${imageMarkup(hero.image, hero.imageAlt)}</div>
             <div class="hero-card-panel">
-              <strong>${escapeHtml(hero.cardTitle)}</strong>
-              <span>${escapeHtml(hero.cardText)}</span>
+              <strong${sbField(".cardTitle")}>${escapeHtml(hero.cardTitle)}</strong>
+              <span${sbField(".cardText")}>${escapeHtml(hero.cardText)}</span>
             </div>
           </div>
           <div class="hero-float-card float-card-one">
@@ -411,13 +421,13 @@ function renderAbout(content) {
   if (!isEnabled(content, "about")) return "";
   const about = content.about || {};
   return `
-    <section class="about-section reveal" id="about">
+    <section class="about-section reveal" id="about"${sbObject("about")}>
       <div class="section-heading align-left">
-        <p class="eyebrow">${escapeHtml(about.eyebrow)}</p>
-        <h2>${escapeHtml(about.title)}</h2>
+        <p class="eyebrow"${sbField(".eyebrow")}>${escapeHtml(about.eyebrow)}</p>
+        <h2${sbField(".title")}>${escapeHtml(about.title)}</h2>
       </div>
-      <div class="about-copy">
-        ${(about.paragraphs || []).map((paragraph) => `<p>${escapeHtml(paragraph)}</p>`).join("")}
+      <div class="about-copy"${sbField(".paragraphs")}>
+        ${(about.paragraphs || []).map((paragraph, index) => `<p${sbField(`.${index}`)}>${escapeHtml(paragraph)}</p>`).join("")}
       </div>
     </section>
   `;
@@ -427,15 +437,15 @@ function renderProblems(content) {
   if (!isEnabled(content, "problems")) return "";
   const problems = content.problems || {};
   return `
-    <section class="section problem-section reveal">
+    <section class="section problem-section reveal"${sbObject("problems")}>
       ${sectionHeading(problems)}
-      <div class="problem-grid">
+      <div class="problem-grid"${sbField(".items")}>
         ${(problems.items || [])
-          .map((problem) => `
-            <article>
-              <span>${escapeHtml(problem.number)}</span>
-              <h3>${escapeHtml(problem.title)}</h3>
-              <p>${escapeHtml(problem.text)}</p>
+          .map((problem, index) => `
+            <article${sbField(`.${index}`)}>
+              <span${sbField(".number")}>${escapeHtml(problem.number)}</span>
+              <h3${sbField(".title")}>${escapeHtml(problem.title)}</h3>
+              <p${sbField(".text")}>${escapeHtml(problem.text)}</p>
             </article>
           `)
           .join("")}
@@ -448,24 +458,24 @@ function renderPlatform(content) {
   if (!isEnabled(content, "platform")) return "";
   const platform = content.platform || {};
   return `
-    <section class="platform-section reveal" id="odoo">
+    <section class="platform-section reveal" id="odoo"${sbObject("platform")}>
       <div class="platform-copy">
-        <p class="eyebrow">${escapeHtml(platform.eyebrow)}</p>
-        <h2>${escapeHtml(platform.title)}</h2>
-        <p>${escapeHtml(platform.copy)}</p>
-        <ul class="check-list">
-          ${(platform.bullets || []).map((bullet) => `<li>${escapeHtml(bullet)}</li>`).join("")}
+        <p class="eyebrow"${sbField(".eyebrow")}>${escapeHtml(platform.eyebrow)}</p>
+        <h2${sbField(".title")}>${escapeHtml(platform.title)}</h2>
+        <p${sbField(".copy")}>${escapeHtml(platform.copy)}</p>
+        <ul class="check-list"${sbField(".bullets")}>
+          ${(platform.bullets || []).map((bullet, index) => `<li${sbField(`.${index}`)}>${escapeHtml(bullet)}</li>`).join("")}
         </ul>
       </div>
       <div class="guide-panel">
-        <p class="eyebrow">${escapeHtml(platform.guideEyebrow)}</p>
-        <h3>${escapeHtml(platform.guideTitle)}</h3>
-        <div class="guide-grid">
+        <p class="eyebrow"${sbField(".guideEyebrow")}>${escapeHtml(platform.guideEyebrow)}</p>
+        <h3${sbField(".guideTitle")}>${escapeHtml(platform.guideTitle)}</h3>
+        <div class="guide-grid"${sbField(".guideItems")}>
           ${(platform.guideItems || [])
-            .map((item) => `
-              <div>
-                <strong>${escapeHtml(item.title)}</strong>
-                <span>${escapeHtml(item.text)}</span>
+            .map((item, index) => `
+              <div${sbField(`.${index}`)}>
+                <strong${sbField(".title")}>${escapeHtml(item.title)}</strong>
+                <span${sbField(".text")}>${escapeHtml(item.text)}</span>
               </div>
             `)
             .join("")}
@@ -478,12 +488,12 @@ function renderPlatform(content) {
 function renderStats(content) {
   if (!isEnabled(content, "stats")) return "";
   return `
-    <section class="stats-section reveal" aria-label="AimAze service highlights">
+    <section class="stats-section reveal" aria-label="AimAze service highlights"${sbObject("stats")}>
       ${(content.stats || [])
-        .map((stat) => `
-          <div>
-            <strong>${escapeHtml(stat.value)}</strong>
-            <span>${escapeHtml(stat.label)}</span>
+        .map((stat, index) => `
+          <div${sbField(`.${index}`)}>
+            <strong${sbField(".value")}>${escapeHtml(stat.value)}</strong>
+            <span${sbField(".label")}>${escapeHtml(stat.label)}</span>
           </div>
         `)
         .join("")}
@@ -495,16 +505,16 @@ function renderServices(content) {
   if (!isEnabled(content, "services")) return "";
   const services = content.services || {};
   return `
-    <section class="section services-section reveal" id="services">
+    <section class="section services-section reveal" id="services"${sbObject("services")}>
       ${sectionHeading(services)}
-      <div class="service-grid">
+      <div class="service-grid"${sbField(".items")}>
         ${(services.items || [])
-          .map((service) => `
-            <article class="service-card">
-              ${hasText(service.image) ? imageMarkup(service.image, service.title, "service-card-image") : visualTileMarkup(service.short, service.title, "service-card-image")}
-              <span class="service-icon">${escapeHtml(service.short)}</span>
-              <h3>${escapeHtml(service.title)}</h3>
-              <p>${escapeHtml(service.text)}</p>
+          .map((service, index) => `
+            <article class="service-card"${sbField(`.${index}`)}>
+              <div${sbField(".image")}>${hasText(service.image) ? imageMarkup(service.image, service.title, "service-card-image") : visualTileMarkup(service.short, service.title, "service-card-image")}</div>
+              <span class="service-icon"${sbField(".short")}>${escapeHtml(service.short)}</span>
+              <h3${sbField(".title")}>${escapeHtml(service.title)}</h3>
+              <p${sbField(".text")}>${escapeHtml(service.text)}</p>
               ${hasText(service.videoUrl) ? `<div class="mini-video">${videoMarkup(service.videoUrl, service.image, service.title)}</div>` : ""}
             </article>
           `)
@@ -518,10 +528,10 @@ function renderIndustries(content) {
   if (!isEnabled(content, "industries")) return "";
   const industries = content.industries || {};
   return `
-    <section class="section industries-section reveal" id="industries">
+    <section class="section industries-section reveal" id="industries"${sbObject("industries")}>
       ${sectionHeading(industries)}
-      <div class="industry-grid">
-        ${(industries.items || []).map((industry) => `<span>${escapeHtml(industry)}</span>`).join("")}
+      <div class="industry-grid"${sbField(".items")}>
+        ${(industries.items || []).map((industry, index) => `<span${sbField(`.${index}`)}>${escapeHtml(industry)}</span>`).join("")}
       </div>
     </section>
   `;
@@ -531,17 +541,17 @@ function renderProcess(content) {
   if (!isEnabled(content, "process")) return "";
   const process = content.process || {};
   return `
-    <section class="section process-section reveal">
+    <section class="section process-section reveal"${sbObject("process")}>
       <div class="section-heading align-left">
-        <p class="eyebrow">${escapeHtml(process.eyebrow)}</p>
-        <h2>${escapeHtml(process.title)}</h2>
+        <p class="eyebrow"${sbField(".eyebrow")}>${escapeHtml(process.eyebrow)}</p>
+        <h2${sbField(".title")}>${escapeHtml(process.title)}</h2>
       </div>
-      <div class="timeline">
+      <div class="timeline"${sbField(".items")}>
         ${(process.items || [])
-          .map((step) => `
-            <article>
-              <span>${escapeHtml(step.title)}</span>
-              <p>${escapeHtml(step.text)}</p>
+          .map((step, index) => `
+            <article${sbField(`.${index}`)}>
+              <span${sbField(".title")}>${escapeHtml(step.title)}</span>
+              <p${sbField(".text")}>${escapeHtml(step.text)}</p>
             </article>
           `)
           .join("")}
@@ -566,16 +576,16 @@ function renderGallery(content) {
   if (!isEnabled(content, "gallery")) return "";
   const gallery = content.gallery || {};
   return `
-    <section class="section gallery-section reveal" id="gallery">
+    <section class="section gallery-section reveal" id="gallery"${sbObject("gallery")}>
       ${sectionHeading(gallery)}
-      <div class="gallery-grid">
+      <div class="gallery-grid"${sbField(".items")}>
         ${(gallery.items || [])
-          .map((item) => `
-            <article class="media-card">
-              ${imageMarkup(item.image, item.alt || item.title)}
+          .map((item, index) => `
+            <article class="media-card"${sbField(`.${index}`)}>
+              <div${sbField(".image")}>${imageMarkup(item.image, item.alt || item.title)}</div>
               <div>
-                <h3>${escapeHtml(item.title)}</h3>
-                <p>${escapeHtml(item.text)}</p>
+                <h3${sbField(".title")}>${escapeHtml(item.title)}</h3>
+                <p${sbField(".text")}>${escapeHtml(item.text)}</p>
               </div>
             </article>
           `)
@@ -589,16 +599,16 @@ function renderTestimonials(content) {
   if (!isEnabled(content, "testimonials")) return "";
   const testimonials = content.testimonials || {};
   return `
-    <section class="section testimonials-section reveal" id="testimonials">
+    <section class="section testimonials-section reveal" id="testimonials"${sbObject("testimonials")}>
       ${sectionHeading(testimonials)}
-      <div class="testimonial-grid">
+      <div class="testimonial-grid"${sbField(".items")}>
         ${(testimonials.items || [])
-          .map((item) => `
-            <article class="testimonial-card">
-              ${imageMarkup(item.image, item.name, "avatar")}
-              <p>${escapeHtml(item.quote)}</p>
-              <strong>${escapeHtml(item.name)}</strong>
-              <span>${escapeHtml(item.role)}</span>
+          .map((item, index) => `
+            <article class="testimonial-card"${sbField(`.${index}`)}>
+              <div${sbField(".image")}>${imageMarkup(item.image, item.name, "avatar")}</div>
+              <p${sbField(".quote")}>${escapeHtml(item.quote)}</p>
+              <strong${sbField(".name")}>${escapeHtml(item.name)}</strong>
+              <span${sbField(".role")}>${escapeHtml(item.role)}</span>
             </article>
           `)
           .join("")}
@@ -611,18 +621,18 @@ function renderCaseStudies(content) {
   if (!isEnabled(content, "caseStudies")) return "";
   const caseStudies = content.caseStudies || {};
   return `
-    <section class="section case-section reveal" id="case-studies">
+    <section class="section case-section reveal" id="case-studies"${sbObject("caseStudies")}>
       ${sectionHeading(caseStudies)}
-      <div class="case-grid">
+      <div class="case-grid"${sbField(".items")}>
         ${(caseStudies.items || [])
-          .map((item) => `
-            <article class="case-card">
-              ${hasText(item.image) ? imageMarkup(item.image, item.title) : visualTileMarkup(item.industry || "Case", item.title)}
+          .map((item, index) => `
+            <article class="case-card"${sbField(`.${index}`)}>
+              <div${sbField(".image")}>${hasText(item.image) ? imageMarkup(item.image, item.title) : visualTileMarkup(item.industry || "Case", item.title)}</div>
               <div>
-                <span>${escapeHtml(item.industry)}</span>
-                <h3>${escapeHtml(item.title)}</h3>
-                <p>${escapeHtml(item.summary)}</p>
-                <strong>${escapeHtml(item.result)}</strong>
+                <span${sbField(".industry")}>${escapeHtml(item.industry)}</span>
+                <h3${sbField(".title")}>${escapeHtml(item.title)}</h3>
+                <p${sbField(".summary")}>${escapeHtml(item.summary)}</p>
+                <strong${sbField(".result")}>${escapeHtml(item.result)}</strong>
               </div>
             </article>
           `)
@@ -636,17 +646,17 @@ function renderBlog(content) {
   if (!isEnabled(content, "blog")) return "";
   const blog = content.blog || {};
   return `
-    <section class="section blog-section reveal" id="blog">
+    <section class="section blog-section reveal" id="blog"${sbObject("blog")}>
       ${sectionHeading(blog)}
-      <div class="blog-grid">
+      <div class="blog-grid"${sbField(".items")}>
         ${(blog.items || [])
-          .map((item) => `
-            <article class="blog-card">
-              ${hasText(item.image) ? imageMarkup(item.image, item.title) : visualTileMarkup(item.category || "Insight", item.title)}
+          .map((item, index) => `
+            <article class="blog-card"${sbField(`.${index}`)}>
+              <div${sbField(".image")}>${hasText(item.image) ? imageMarkup(item.image, item.title) : visualTileMarkup(item.category || "Insight", item.title)}</div>
               <div>
-                <span>${escapeHtml(item.category)}${hasText(item.date) ? ` • ${escapeHtml(item.date)}` : ""}</span>
-                <h3>${escapeHtml(item.title)}</h3>
-                <p>${escapeHtml(item.excerpt)}</p>
+                <span${sbField(".category")}>${escapeHtml(item.category)}${hasText(item.date) ? ` • ${escapeHtml(item.date)}` : ""}</span>
+                <h3${sbField(".title")}>${escapeHtml(item.title)}</h3>
+                <p${sbField(".excerpt")}>${escapeHtml(item.excerpt)}</p>
                 ${hasText(item.link) ? `<a href="${escapeHtml(item.link)}">Read more</a>` : ""}
               </div>
             </article>
@@ -661,14 +671,14 @@ function renderFaq(content) {
   if (!isEnabled(content, "faq")) return "";
   const faq = content.faq || {};
   return `
-    <section class="section faq-section reveal" id="faq">
+    <section class="section faq-section reveal" id="faq"${sbObject("faq")}>
       ${sectionHeading(faq)}
-      <div class="faq-list">
+      <div class="faq-list"${sbField(".items")}>
         ${(faq.items || [])
           .map((item, index) => `
-            <details ${index === 0 ? "open" : ""}>
-              <summary>${escapeHtml(item.question)}</summary>
-              <p>${escapeHtml(item.answer)}</p>
+            <details ${index === 0 ? "open" : ""}${sbField(`.${index}`)}>
+              <summary${sbField(".question")}>${escapeHtml(item.question)}</summary>
+              <p${sbField(".answer")}>${escapeHtml(item.answer)}</p>
             </details>
           `)
           .join("")}
@@ -681,23 +691,23 @@ function renderCustomSections(content) {
   if (!isEnabled(content, "customSections")) return "";
   return (content.customSections || [])
     .filter((section) => section.enabled)
-    .map((section) => `
-      <section class="section custom-section reveal">
+    .map((section, index) => `
+      <section class="section custom-section reveal"${sbObject(`customSections.${index}`)}>
         <div class="custom-layout">
           <div>
             ${sectionHeading(section)}
-            <div class="custom-items">
+            <div class="custom-items"${sbField(".items")}>
               ${(section.items || [])
-                .map((item) => `
-                  <article>
-                    <h3>${escapeHtml(item.title)}</h3>
-                    <p>${escapeHtml(item.text)}</p>
+                .map((item, itemIndex) => `
+                  <article${sbField(`.${itemIndex}`)}>
+                    <h3${sbField(".title")}>${escapeHtml(item.title)}</h3>
+                    <p${sbField(".text")}>${escapeHtml(item.text)}</p>
                   </article>
                 `)
                 .join("")}
             </div>
           </div>
-          <div class="custom-media">
+          <div class="custom-media"${sbField(".image")}>
             ${videoMarkup(section.videoUrl, section.image, section.title) || imageMarkup(section.image, section.title)}
           </div>
         </div>
@@ -712,13 +722,13 @@ function renderContact(content) {
   const services = content.services || {};
   const contact = content.contact || {};
   return `
-    <section class="contact-section reveal" id="contact">
+    <section class="contact-section reveal" id="contact"${sbObject("contact")}>
       <div class="contact-card">
-        <p class="eyebrow">${escapeHtml(contact.eyebrow)}</p>
-        <h2>${escapeHtml(contact.title)}</h2>
-        <p>${escapeHtml(contact.copy)}</p>
+        <p class="eyebrow"${sbField(".eyebrow")}>${escapeHtml(contact.eyebrow)}</p>
+        <h2${sbField(".title")}>${escapeHtml(contact.title)}</h2>
+        <p${sbField(".copy")}>${escapeHtml(contact.copy)}</p>
         <div class="contact-links">
-          <a href="mailto:${escapeHtml(site.email)}">${escapeHtml(site.email)}</a>
+          <a href="mailto:${escapeHtml(site.email)}"${sbObject("site.email")}>${escapeHtml(site.email)}</a>
           <a href="${escapeHtml(site.domain)}">${escapeHtml(hostFromUrl(site.domain))}</a>
         </div>
       </div>
@@ -736,7 +746,7 @@ function renderContact(content) {
           </select>
         </label>
         <label><span>Message</span><textarea name="message" rows="5" required></textarea></label>
-        <button class="button button-primary" type="submit">${escapeHtml(contact.formButton || "Send Inquiry")}</button>
+        <button class="button button-primary" type="submit"${sbField(".formButton")}>${escapeHtml(contact.formButton || "Send Inquiry")}</button>
         <p class="form-status" data-form-status aria-live="polite"></p>
       </form>
     </section>
@@ -746,9 +756,9 @@ function renderContact(content) {
 function renderFooter(content) {
   const site = content.site || {};
   return `
-    <footer class="site-footer">
-      ${imageMarkup(site.logo, "AimAze Tech Solutions logo")}
-      <p>© <span data-year></span> ${escapeHtml(site.footerText)}</p>
+    <footer class="site-footer"${sbObject("site")}>
+      <div${sbField(".logo")}>${imageMarkup(site.logo, "AimAze Tech Solutions logo")}</div>
+      <p${sbField(".footerText")}>© <span data-year></span> ${escapeHtml(site.footerText)}</p>
     </footer>
   `;
 }
@@ -852,4 +862,13 @@ loadContent().then((content) => {
   applyTypography(content);
   setMeta(content);
   renderSite(content);
+});
+
+window.addEventListener("stackbitObjectsChanged", () => {
+  loadContent().then((content) => {
+    applyTheme(content);
+    applyTypography(content);
+    setMeta(content);
+    renderSite(content);
+  });
 });

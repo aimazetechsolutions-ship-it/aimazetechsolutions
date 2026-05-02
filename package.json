@@ -1,0 +1,14 @@
+{
+  "name": "aimaze-tech-solutions-website",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "serve .",
+    "visual-editor": "stackbit dev"
+  },
+  "devDependencies": {
+    "@stackbit/cms-git": "^1.0.0",
+    "@stackbit/types": "^0.6.0",
+    "serve": "^14.2.4"
+  }
+}
