@@ -1,43 +1,10 @@
 {
-  "contact": {
-    "eyebrow": "Request a free business process analysis",
-    "title": "Ready to scale without operational chaos?",
-    "copy": "Share what you want to improve and AimAze will help you identify the right ERP, software, website or IT solution path.",
-    "formButton": "Send Inquiry"
-  },
-  "blog": {
-    "eyebrow": "Insights",
-    "title": "News, guides, and practical technology notes.",
-    "items": [
-      {
-        "title": "When should a business move to ERP?",
-        "date": "2026-05-02",
-        "category": "ERP",
-        "excerpt": "A simple guide to signs that spreadsheets and disconnected tools are slowing down growth.",
-        "image": "",
-        "link": ""
-      },
-      {
-        "title": "Why Odoo works well for growing companies",
-        "date": "2026-05-02",
-        "category": "Odoo",
-        "excerpt": "Odoo gives businesses a modular platform that can start small and expand over time.",
-        "image": "",
-        "link": ""
-      }
-    ]
-  },
-  "topStrip": {
-    "text": "Free Odoo ERP consultation for growing businesses",
-    "linkText": "Request analysis",
-    "linkHref": "#contact"
-  },
   "site": {
     "title": "AimAze Tech Solutions | Odoo ERP Implementation & Tech Solutions",
     "description": "AimAze Tech Solutions helps businesses implement Odoo ERP, customize workflows, integrate systems, and build professional software, applications, Salesforce cloud solutions, IT management systems, and websites.",
     "domain": "https://aimazetechsolutions.com",
     "logo": "assets/aimaze-logo-transparent.png",
-    "ogImage": "",
+    "ogImage": "assets/aimaze-coverpage.png",
     "email": "info@aimazetechsolutions.com",
     "footerText": "AimAze Tech Solutions LLC. All rights reserved."
   },
@@ -51,6 +18,83 @@
     "muted": "#6d7789",
     "soft": "#f5fbfd"
   },
+  "typography": {
+    "googleFontUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap",
+    "bodyFont": "Inter, Arial, Helvetica, sans-serif",
+    "headingFont": "Inter, Arial, Helvetica, sans-serif",
+    "bodySize": "16px",
+    "topStripSize": "0.88rem",
+    "navSize": "0.95rem",
+    "eyebrowSize": "0.78rem",
+    "heroTitleMin": "3.35rem",
+    "heroTitleMax": "6.6rem",
+    "heroCopySize": "1.18rem",
+    "pageTitleMin": "3.35rem",
+    "pageTitleMax": "6.6rem",
+    "sectionTitleMin": "2rem",
+    "sectionTitleMax": "4rem",
+    "paragraphSize": "1.06rem",
+    "cardTitleSize": "1.24rem",
+    "cardTextSize": "1rem",
+    "tagSize": "0.92rem",
+    "statsValueMin": "2.4rem",
+    "statsValueMax": "3.8rem",
+    "statsLabelSize": "1rem",
+    "buttonSize": "1rem",
+    "formSize": "1rem",
+    "footerSize": "1rem"
+  },
+  "sections": {
+    "about": true,
+    "problems": true,
+    "platform": true,
+    "stats": true,
+    "services": true,
+    "industries": true,
+    "process": true,
+    "video": true,
+    "gallery": true,
+    "testimonials": true,
+    "caseStudies": true,
+    "blog": true,
+    "faq": true,
+    "contact": true,
+    "customSections": true
+  },
+  "topStrip": {
+    "text": "Free Odoo ERP consultation for growing businesses",
+    "linkText": "Request analysis",
+    "linkHref": "#contact"
+  },
+  "navigation": [
+    { "label": "Home", "href": "index.html" },
+    { "label": "About", "href": "about.html" },
+    { "label": "Services", "href": "services.html" },
+    { "label": "Odoo ERP", "href": "odoo.html" },
+    { "label": "Industries", "href": "industries.html" },
+    { "label": "Portfolio", "href": "portfolio.html" },
+    { "label": "Blog", "href": "blog.html" }
+  ],
+  "hero": {
+    "eyebrow": "Odoo ERP, software and IT solutions",
+    "title": "Accelerate growth with practical ERP implementation.",
+    "copy": "AimAze Tech Solutions helps you replace scattered tools, manual reporting, and disconnected processes with clean, scalable systems built around the way your business actually works.",
+    "points": [
+      "Odoo ERP implementation",
+      "Custom modules",
+      "Integrations and support"
+    ],
+    "primaryButton": { "label": "Talk to Us", "href": "#contact" },
+    "secondaryButton": { "label": "View Services", "href": "services.html" },
+    "image": "assets/odoo-erp-solution-post.png",
+    "imageAlt": "Odoo ERP solutions by AimAze Tech Solutions",
+    "cardTitle": "ERP that fits your process",
+    "cardText": "CRM, HR, finance, sales, inventory, training and support",
+    "gallery": [
+      { "image": "assets/aimaze-coverpage.png", "alt": "AimAze Tech Solutions cover design" }
+    ],
+    "videoUrl": ""
+  },
   "about": {
     "eyebrow": "About AimAze",
     "title": "Your technology partner for business operations.",
@@ -59,62 +103,15 @@
       "We focus on clear requirements, practical configuration, thoughtful customization, and long-term support so your software keeps improving with your business."
     ]
   },
-  "sections": {
-    "contact": true,
-    "blog": true,
-    "about": true,
-    "process": true,
-    "gallery": true,
-    "platform": true,
-    "problems": true,
-    "testimonials": true,
-    "faq": true,
-    "caseStudies": true,
-    "video": true,
-    "industries": true,
-    "services": true,
-    "stats": true,
-    "customSections": true
-  },
-  "process": {
-    "eyebrow": "Implementation process",
-    "title": "From business process analysis to post-go-live support.",
+  "problems": {
+    "eyebrow": "Operational challenges",
+    "title": "Is your business outgrowing its current software?",
+    "copy": "Growth becomes harder when teams rely on spreadsheets, disconnected tools, and manual follow-ups. The right ERP setup gives every team one reliable view of the business.",
     "items": [
-      {
-        "title": "Discover",
-        "text": "Review current tools, workflows, departments, reports, approvals and pain points."
-      },
-      {
-        "title": "Design",
-        "text": "Map modules, roles, data structure, automations, integrations and rollout priorities."
-      },
-      {
-        "title": "Deploy",
-        "text": "Configure, customize, test, migrate data, train users and prepare for go-live."
-      },
-      {
-        "title": "Improve",
-        "text": "Support users, refine dashboards, optimize workflows and add capabilities over time."
-      }
-    ]
-  },
-  "gallery": {
-    "eyebrow": "Gallery",
-    "title": "Visual highlights from our solutions and brand.",
-    "copy": "Add project screenshots, service visuals, team photos, marketing graphics, or product images.",
-    "items": [
-      {
-        "title": "Odoo ERP Solutions",
-        "text": "A practical ERP message for growing businesses.",
-        "image": "assets/odoo-erp-solution-post.png",
-        "alt": "Odoo ERP solution graphic"
-      },
-      {
-        "title": "AimAze Tech Solutions",
-        "text": "Brand cover design and service overview.",
-        "image": "assets/aimaze-coverpage.png",
-        "alt": "AimAze cover page"
-      }
+      { "number": "01", "title": "Disconnected data", "text": "Sales, inventory, accounting, and operations do not always agree." },
+      { "number": "02", "title": "Manual effort", "text": "Your team spends too much time entering data and preparing reports." },
+      { "number": "03", "title": "Limited visibility", "text": "Management decisions become slower when live performance is unclear." },
+      { "number": "04", "title": "Process gaps", "text": "Approvals, handovers, and customer updates depend on people chasing people." }
     ]
   },
   "platform": {
@@ -131,174 +128,62 @@
     "guideEyebrow": "One expert partner",
     "guideTitle": "The AimAze delivery model",
     "guideItems": [
-      {
-        "title": "Implementation",
-        "text": "Setup, configuration and rollout"
-      },
-      {
-        "title": "Customization",
-        "text": "Modules, workflows and dashboards"
-      },
-      {
-        "title": "Training",
-        "text": "User guidance and adoption support"
-      },
-      {
-        "title": "Support",
-        "text": "Maintenance and continuous improvement"
-      }
+      { "title": "Implementation", "text": "Setup, configuration and rollout" },
+      { "title": "Customization", "text": "Modules, workflows and dashboards" },
+      { "title": "Training", "text": "User guidance and adoption support" },
+      { "title": "Support", "text": "Maintenance and continuous improvement" }
     ]
   },
-  "problems": {
-    "eyebrow": "Operational challenges",
-    "title": "Is your business outgrowing its current software?",
-    "copy": "Growth becomes harder when teams rely on spreadsheets, disconnected tools, and manual follow-ups. The right ERP setup gives every team one reliable view of the business.",
-    "items": [
-      {
-        "number": "01",
-        "title": "Disconnected data",
-        "text": "Sales, inventory, accounting, and operations do not always agree."
-      },
-      {
-        "number": "02",
-        "title": "Manual effort",
-        "text": "Your team spends too much time entering data and preparing reports."
-      },
-      {
-        "number": "03",
-        "title": "Limited visibility",
-        "text": "Management decisions become slower when live performance is unclear."
-      },
-      {
-        "number": "04",
-        "title": "Process gaps",
-        "text": "Approvals, handovers, and customer updates depend on people chasing people."
-      }
-    ]
-  },
-  "navigation": [
-    {
-      "label": "Home",
-      "href": "index.html"
-    },
-    {
-      "label": "About",
-      "href": "about.html"
-    },
-    {
-      "label": "Services",
-      "href": "services.html"
-    },
-    {
-      "label": "Odoo ERP",
-      "href": "odoo.html"
-    },
-    {
-      "label": "Industries",
-      "href": "industries.html"
-    },
-    {
-      "label": "Portfolio",
-      "href": "portfolio.html"
-    },
-    {
-      "label": "Blog",
-      "href": "blog.html"
-    }
+  "stats": [
+    { "value": "6", "label": "Core technology services" },
+    { "value": "ERP", "label": "Implementation-first delivery" },
+    { "value": "360", "label": "Process, data and support mindset" },
+    { "value": "1", "label": "Partner for your digital operations" }
   ],
-  "testimonials": {
-    "eyebrow": "Testimonials",
-    "title": "What clients can say about working with AimAze.",
+  "services": {
+    "eyebrow": "Our services",
+    "title": "Business technology solutions under one roof.",
+    "copy": "From ERP to websites, we build systems that are useful, maintainable, and aligned with the way your team works.",
     "items": [
-      {
-        "quote": "AimAze helped us think clearly about our business process before jumping into software.",
-        "name": "Client Name",
-        "role": "Operations Manager",
-        "image": ""
-      },
-      {
-        "quote": "The team made ERP implementation feel structured, practical, and manageable.",
-        "name": "Client Name",
-        "role": "Business Owner",
-        "image": ""
-      }
+      { "short": "ERP", "title": "Odoo ERP Implementation", "text": "Module planning, setup, workflows, access roles, reporting, migration and rollout.", "image": "", "videoUrl": "" },
+      { "short": "DEV", "title": "Software Development", "text": "Custom web systems, APIs, portals, automation tools and internal platforms.", "image": "", "videoUrl": "" },
+      { "short": "APP", "title": "Application Development", "text": "Business applications that help teams capture, process and act on information.", "image": "", "videoUrl": "" },
+      { "short": "SF", "title": "Salesforce Cloud Development", "text": "Salesforce customization, automation, data models, reports and integrations.", "image": "", "videoUrl": "" },
+      { "short": "IT", "title": "IT Management Solutions", "text": "Operational support, documentation, monitoring structure and system administration.", "image": "", "videoUrl": "" },
+      { "short": "WEB", "title": "Website Development", "text": "Professional company websites, landing pages, campaigns and lead-generation pages.", "image": "", "videoUrl": "" }
+    ]
+  },
+  "industries": {
+    "eyebrow": "Industries",
+    "title": "Built for businesses that need control and visibility.",
+    "items": [
+      "Trading and distribution",
+      "Retail operations",
+      "Professional services",
+      "Inventory-led businesses",
+      "Sales teams",
+      "Finance and HR teams"
+    ]
+  },
+  "process": {
+    "eyebrow": "Implementation process",
+    "title": "From business process analysis to post-go-live support.",
+    "items": [
+      { "title": "Discover", "text": "Review current tools, workflows, departments, reports, approvals and pain points." },
+      { "title": "Design", "text": "Map modules, roles, data structure, automations, integrations and rollout priorities." },
+      { "title": "Deploy", "text": "Configure, customize, test, migrate data, train users and prepare for go-live." },
+      { "title": "Improve", "text": "Support users, refine dashboards, optimize workflows and add capabilities over time." }
     ]
   },
   "faq": {
     "eyebrow": "Questions answered",
     "title": "Odoo ERP and implementation FAQ.",
     "items": [
-      {
-        "question": "What does AimAze do?",
-        "answer": "AimAze Tech Solutions delivers Odoo ERP implementation, custom software, application development, Salesforce cloud development, IT management solutions and website development."
-      },
-      {
-        "question": "Can Odoo be customized for my business?",
-        "answer": "Yes. Odoo can be configured with standard modules and extended with custom modules, reports, integrations and workflow changes where your process needs something specific."
-      },
-      {
-        "question": "Do you provide training and support?",
-        "answer": "Yes. Training and support are part of the delivery approach so your team can use the system confidently after implementation."
-      },
-      {
-        "question": "Can AimAze build my company website too?",
-        "answer": "Yes. AimAze also builds professional websites and landing pages for businesses that need a clean online presence and lead-generation flow."
-      }
+      { "question": "What does AimAze do?", "answer": "AimAze Tech Solutions delivers Odoo ERP implementation, custom software, application development, Salesforce cloud development, IT management solutions and website development." },
+      { "question": "Can Odoo be customized for my business?", "answer": "Yes. Odoo can be configured with standard modules and extended with custom modules, reports, integrations and workflow changes where your process needs something specific." },
+      { "question": "Do you provide training and support?", "answer": "Yes. Training and support are part of the delivery approach so your team can use the system confidently after implementation." },
+      { "question": "Can AimAze build my company website too?", "answer": "Yes. AimAze also builds professional websites and landing pages for businesses that need a clean online presence and lead-generation flow." }
     ]
-  },
-  "caseStudies": {
-    "eyebrow": "Case studies",
-    "title": "Examples of business problems AimAze can solve.",
-    "items": [
-      {
-        "title": "ERP process cleanup",
-        "industry": "Trading and distribution",
-        "summary": "Mapped sales, inventory, approvals, and finance into one connected workflow.",
-        "result": "Cleaner reporting and fewer manual handovers.",
-        "image": ""
-      },
-      {
-        "title": "Custom business application",
-        "industry": "Professional services",
-        "summary": "Built a central system to capture requests, assign tasks, and monitor progress.",
-        "result": "Better visibility for management and faster team follow-up.",
-        "image": ""
-      }
-    ]
-  },
-  "hero": {
-    "points": [
-      "Odoo ERP implementation",
-      "Custom modules",
-      "Integrations and support"
-    ],
-    "secondaryButton": {
-      "label": "View Services",
-      "href": "services.html"
-    },
-    "cardTitle": "ERP that fits your process",
-    "eyebrow": "Odoo ERP, software and IT solutions",
-    "imageAlt": "Odoo ERP solutions by AimAze Tech Solutions",
-    "gallery": [
-      {
-        "image": "assets/uploads/sm_1.jpg"
-      },
-      {
-        "image": "assets/uploads/istockphoto-1818616410-612x612.jpg"
-      },
-      {
-        "image": "assets/uploads/istockphoto-1475344770-612x612.jpg"
-      }
-    ],
-    "videoUrl": "",
-    "primaryButton": {
-      "label": "Talk to Us",
-      "href": "#contact"
-    },
-    "copy": "AimAze Tech Solutions helps you replace scattered tools, manual reporting, and disconnected processes with clean, scalable systems built around the way your business actually works.",
-    "title": "Accelerate growth with practical ERP implementation.",
-    "image": "assets/odoo-erp-solution-post.png",
-    "cardText": "CRM, HR, finance, sales, inventory, training and support"
   },
   "video": {
     "eyebrow": "Watch AimAze in action",
@@ -307,84 +192,39 @@
     "videoUrl": "",
     "posterImage": "assets/aimaze-coverpage.png"
   },
-  "industries": {
-    "eyebrow": "Industries",
-    "title": "Built for businesses that need control and visibility.",
+  "gallery": {
+    "eyebrow": "Gallery",
+    "title": "Visual highlights from our solutions and brand.",
+    "copy": "Add project screenshots, service visuals, team photos, marketing graphics, or product images.",
     "items": [
-      "Travel and Tourism",
-      "Hospitality",
-      "Real Estate",
-      "Trading and Retail",
-      "Professional Services"
+      { "title": "Odoo ERP Solutions", "text": "A practical ERP message for growing businesses.", "image": "assets/odoo-erp-solution-post.png", "alt": "Odoo ERP solution graphic" },
+      { "title": "AimAze Tech Solutions", "text": "Brand cover design and service overview.", "image": "assets/aimaze-coverpage.png", "alt": "AimAze cover page" }
     ]
   },
-  "services": {
-    "eyebrow": "Our services",
-    "title": "Business technology solutions under one roof.",
-    "copy": "From ERP to websites, we build systems that are useful, maintainable, and aligned with the way your team works.",
+  "testimonials": {
+    "eyebrow": "Testimonials",
+    "title": "What clients can say about working with AimAze.",
     "items": [
-      {
-        "short": "ERP",
-        "title": "Odoo ERP Implementation",
-        "text": "Module planning, setup, workflows, access roles, reporting, migration and rollout.",
-        "image": "assets/uploads/1756736435621.jpeg",
-        "videoUrl": ""
-      },
-      {
-        "short": "DEV",
-        "title": "Software Development",
-        "text": "Custom web systems, APIs, portals, automation tools and internal platforms.",
-        "image": "assets/uploads/istockphoto-1700567210-612x612.jpg",
-        "videoUrl": ""
-      },
-      {
-        "short": "APP",
-        "title": "Application Development",
-        "text": "Business applications that help teams capture, process and act on information.",
-        "image": "assets/uploads/istockphoto-2244276959-612x612.jpg",
-        "videoUrl": ""
-      },
-      {
-        "short": "SF",
-        "title": "Salesforce Cloud Development",
-        "text": "Salesforce customization, automation, data models, reports and integrations.",
-        "image": "assets/uploads/istockphoto-952067022-612x612.jpg",
-        "videoUrl": ""
-      },
-      {
-        "short": "IT",
-        "title": "IT Management Solutions",
-        "text": "Operational support, documentation, monitoring structure and system administration.",
-        "image": "assets/uploads/istockphoto-1172642339-612x612.jpg",
-        "videoUrl": ""
-      },
-      {
-        "short": "WEB",
-        "title": "Website Development",
-        "text": "Professional company websites, landing pages, campaigns and lead-generation pages.",
-        "image": "assets/uploads/istockphoto-2212508544-612x612.jpg",
-        "videoUrl": ""
-      }
+      { "quote": "AimAze helped us think clearly about our business process before jumping into software.", "name": "Client Name", "role": "Operations Manager", "image": "" },
+      { "quote": "The team made ERP implementation feel structured, practical, and manageable.", "name": "Client Name", "role": "Business Owner", "image": "" }
     ]
   },
-  "stats": [
-    {
-      "value": "6",
-      "label": "Core technology services"
-    },
-    {
-      "value": "ERP",
-      "label": "Implementation-first delivery"
-    },
-    {
-      "value": "360",
-      "label": "Process, data and support mindset"
-    },
-    {
-      "value": "1",
-      "label": "Partner for your digital operations"
-    }
-  ],
+  "caseStudies": {
+    "eyebrow": "Case studies",
+    "title": "Examples of business problems AimAze can solve.",
+    "items": [
+      { "title": "ERP process cleanup", "industry": "Trading and distribution", "summary": "Mapped sales, inventory, approvals, and finance into one connected workflow.", "result": "Cleaner reporting and fewer manual handovers.", "image": "" },
+      { "title": "Custom business application", "industry": "Professional services", "summary": "Built a central system to capture requests, assign tasks, and monitor progress.", "result": "Better visibility for management and faster team follow-up.", "image": "" }
+    ]
+  },
+  "blog": {
+    "eyebrow": "Insights",
+    "title": "News, guides, and practical technology notes.",
+    "items": [
+      { "title": "When should a business move to ERP?", "date": "2026-05-02", "category": "ERP", "excerpt": "A simple guide to signs that spreadsheets and disconnected tools are slowing down growth.", "image": "", "link": "" },
+      { "title": "Why Odoo works well for growing companies", "date": "2026-05-02", "category": "Odoo", "excerpt": "Odoo gives businesses a modular platform that can start small and expand over time.", "image": "", "link": "" }
+    ]
+  },
   "customSections": [
     {
       "enabled": false,
@@ -394,11 +234,14 @@
       "image": "",
       "videoUrl": "",
       "items": [
-        {
-          "title": "Custom item",
-          "text": "Add supporting points, features, or details here."
-        }
+        { "title": "Custom item", "text": "Add supporting points, features, or details here." }
       ]
     }
-  ]
+  ],
+  "contact": {
+    "eyebrow": "Request a free business process analysis",
+    "title": "Ready to scale without operational chaos?",
+    "copy": "Share what you want to improve and AimAze will help you identify the right ERP, software, website or IT solution path.",
+    "formButton": "Send Inquiry"
+  }
 }

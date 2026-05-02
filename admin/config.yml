@@ -128,6 +128,7 @@ collections:
                   - { label: "Label", name: "label", widget: "string" }
                   - { label: "Link URL", name: "href", widget: "string" }
               - { label: "Hero Image", name: "image", widget: "image", required: false }
+              - { label: "Hero Background Image", name: "backgroundImage", widget: "image", required: false, hint: "Large tech/background image shown behind the top home-page hero text." }
               - { label: "Hero Image Alt Text", name: "imageAlt", widget: "string" }
               - { label: "Card Title", name: "cardTitle", widget: "string" }
               - { label: "Card Text", name: "cardText", widget: "string" }

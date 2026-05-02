@@ -162,6 +162,11 @@ function imageMarkup(src, alt = "", className = "") {
   return `<img${className ? ` class="${escapeHtml(className)}"` : ""} src="${escapeHtml(src)}" alt="${escapeHtml(alt)}" />`;
 }
 
+function cssImageUrl(src) {
+  if (!hasText(src)) return "";
+  return `url("${String(src).replaceAll("\\", "\\\\").replaceAll('"', '\\"')}")`;
+}
+
 function videoMarkup(url, poster = "", title = "Video") {
   if (!hasText(url)) return "";
   const cleanUrl = String(url).trim();
@@ -352,8 +357,9 @@ function renderPageHero(content, key) {
 
 function renderHero(content) {
   const hero = content.hero || {};
+  const heroBackground = hero.backgroundImage || hero.image || content.site?.ogImage || "";
   return `
-    <section class="hero reveal" id="home">
+    <section class="hero hero-with-background reveal" id="home" style="--hero-bg-image: ${escapeHtml(cssImageUrl(heroBackground))};">
       <div class="hero-shape hero-shape-one"></div>
       <div class="hero-shape hero-shape-two"></div>
       <div class="hero-inner">
