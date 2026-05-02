@@ -354,7 +354,7 @@
         "title": "Add your company intro, demo, or client walkthrough video.",
         "copy": "Use this section for an Odoo demo, company profile, service explanation, or short promotional video.",
         "videoUrl": "",
-        "posterImage": "assets/aimaze-coverpage.png"
+        "posterImage": "/assets/uploads/sm_1.jpg"
     },
     "gallery": {
         "eyebrow": "Gallery",
