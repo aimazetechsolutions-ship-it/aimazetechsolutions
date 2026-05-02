@@ -46,6 +46,23 @@ const defaultContent = {
     footerSize: "1rem",
   },
   sections: {},
+  homeSectionOrder: [
+    "hero",
+    "about",
+    "problems",
+    "platform",
+    "stats",
+    "services",
+    "industries",
+    "gallery",
+    "testimonials",
+    "caseStudies",
+    "faq",
+    "contact",
+  ],
+  appearance: {
+    hero: {},
+  },
   navigation: [],
   topStrip: {},
   hero: {},
@@ -156,6 +173,16 @@ function isEnabled(content, key) {
 
 function hasText(value) {
   return String(value || "").trim().length > 0;
+}
+
+function cssVar(name, value) {
+  return hasText(value) ? `--${name}: ${escapeHtml(value)};` : "";
+}
+
+function styleVars(vars) {
+  return Object.entries(vars)
+    .map(([name, value]) => cssVar(name, value))
+    .join(" ");
 }
 
 function imageMarkup(src, alt = "", className = "") {
@@ -368,14 +395,41 @@ function renderPageHero(content, key) {
 
 function renderHero(content) {
   const hero = content.hero || {};
+  const heroStyle = content.appearance?.hero || {};
+  const showVisualArea = hero.showVisualArea !== false;
+  const showInfoPanel = hero.showInfoPanel !== false;
   const showBackgroundImage = hero.showBackgroundImage !== false;
   const showMainImage = hero.showMainImage !== false;
   const showExtraImages = hero.showExtraImages !== false;
   const showFloatingCards = hero.showFloatingCards !== false;
   const heroBackground = showBackgroundImage ? hero.backgroundImage || hero.image || content.site?.ogImage || "" : "";
   const heroImage = showMainImage && hasText(hero.image) ? imageMarkup(hero.image, hero.imageAlt) : "";
+  const heroCard = heroImage || showInfoPanel ? `
+          <div class="hero-card"${sbField(".showMainImage")}>
+            ${heroImage ? `<div${sbField(".image")}>${heroImage}</div>` : ""}
+            ${showInfoPanel ? `
+              <div class="hero-card-panel"${sbField(".showInfoPanel")}>
+                <strong${sbField(".cardTitle")}>${escapeHtml(hero.cardTitle)}</strong>
+                <span${sbField(".cardText")}>${escapeHtml(hero.cardText)}</span>
+              </div>
+            ` : ""}
+          </div>
+        ` : "";
+  const heroInlineStyle = [
+    `--hero-bg-image: ${escapeHtml(cssImageUrl(heroBackground))};`,
+    styleVars({
+      "hero-title-color": heroStyle.titleColor,
+      "hero-copy-color": heroStyle.copyColor,
+      "hero-eyebrow-color": heroStyle.eyebrowColor,
+      "hero-title-size": heroStyle.titleSize,
+      "hero-copy-size": heroStyle.copySize,
+      "hero-overlay-color": heroStyle.overlayColor,
+      "hero-card-bg": heroStyle.cardBackground,
+      "hero-card-text": heroStyle.cardTextColor,
+    }),
+  ].filter(Boolean).join(" ");
   return `
-    <section class="hero ${showBackgroundImage ? "hero-with-background" : "hero-without-background"} reveal" id="home" style="--hero-bg-image: ${escapeHtml(cssImageUrl(heroBackground))};"${sbObject("hero")}>
+    <section class="hero ${showBackgroundImage ? "hero-with-background" : "hero-without-background"} reveal" id="home" style="${heroInlineStyle}"${sbObject("hero")}>
       <div class="hero-shape hero-shape-one"></div>
       <div class="hero-shape hero-shape-two"></div>
       <div class="hero-inner">
@@ -391,29 +445,25 @@ function renderHero(content) {
             <a class="button button-secondary" href="${escapeHtml(hero.secondaryButton?.href || "#services")}"${sbField(".secondaryButton.label")}>${escapeHtml(hero.secondaryButton?.label || "View Services")}</a>
           </div>
         </div>
-        <div class="hero-showcase" aria-label="AimAze ERP capabilities">
-          <div class="hero-card"${sbField(".showMainImage")}>
-            ${heroImage ? `<div${sbField(".image")}>${heroImage}</div>` : ""}
-            <div class="hero-card-panel">
-              <strong${sbField(".cardTitle")}>${escapeHtml(hero.cardTitle)}</strong>
-              <span${sbField(".cardText")}>${escapeHtml(hero.cardText)}</span>
-            </div>
+        ${showVisualArea ? `
+          <div class="hero-showcase" aria-label="AimAze ERP capabilities"${sbField(".showVisualArea")}>
+            ${heroCard}
+            ${showFloatingCards ? `
+              <div class="hero-float-card float-card-one"${sbField(".showFloatingCards")}>
+                <span>ERP</span>
+                <strong>Unified operations</strong>
+              </div>
+              <div class="hero-float-card float-card-two"${sbField(".showFloatingCards")}>
+                <span>360</span>
+                <strong>Process visibility</strong>
+              </div>
+              <div class="hero-float-card float-card-three"${sbField(".showFloatingCards")}>
+                <span>API</span>
+                <strong>Connected systems</strong>
+              </div>
+            ` : ""}
           </div>
-          ${showFloatingCards ? `
-            <div class="hero-float-card float-card-one"${sbField(".showFloatingCards")}>
-              <span>ERP</span>
-              <strong>Unified operations</strong>
-            </div>
-            <div class="hero-float-card float-card-two"${sbField(".showFloatingCards")}>
-              <span>360</span>
-              <strong>Process visibility</strong>
-            </div>
-            <div class="hero-float-card float-card-three"${sbField(".showFloatingCards")}>
-              <span>API</span>
-              <strong>Connected systems</strong>
-            </div>
-          ` : ""}
-        </div>
+        ` : ""}
       </div>
       ${showExtraImages && (hero.gallery || []).length ? `
         <div class="hero-gallery"${sbField(".showExtraImages")}>
@@ -423,6 +473,31 @@ function renderHero(content) {
       ${hasText(hero.videoUrl) ? `<div class="hero-video video-frame">${videoMarkup(hero.videoUrl, hero.image, hero.title)}</div>` : ""}
     </section>
   `;
+}
+
+function renderHomeSections(content) {
+  const sectionRenderers = {
+    hero: () => renderHero(content),
+    about: () => renderAbout(content),
+    problems: () => renderProblems(content),
+    platform: () => renderPlatform(content),
+    stats: () => renderStats(content),
+    services: () => renderServices(content),
+    industries: () => renderIndustries(content),
+    process: () => renderProcess(content),
+    video: () => renderVideoSection(content),
+    gallery: () => renderGallery(content),
+    testimonials: () => renderTestimonials(content),
+    caseStudies: () => renderCaseStudies(content),
+    blog: () => renderBlog(content),
+    faq: () => renderFaq(content),
+    customSections: () => renderCustomSections(content),
+    contact: () => renderContact(content),
+  };
+  const fallbackOrder = defaultContent.homeSectionOrder;
+  const order = (content.homeSectionOrder || fallbackOrder).filter((key) => sectionRenderers[key]);
+  const missing = fallbackOrder.filter((key) => !order.includes(key));
+  return [...order, ...missing].map((key) => sectionRenderers[key]()).join("");
 }
 
 function renderAbout(content) {
@@ -784,20 +859,7 @@ function renderSite(content) {
 
 function renderPageContent(content, page) {
   const layouts = {
-    home: () => `
-      ${renderHero(content)}
-      ${renderAbout(content)}
-      ${renderProblems(content)}
-      ${renderPlatform(content)}
-      ${renderStats(content)}
-      ${renderServices(content)}
-      ${renderIndustries(content)}
-      ${renderGallery(content)}
-      ${renderTestimonials(content)}
-      ${renderCaseStudies(content)}
-      ${renderFaq(content)}
-      ${renderContact(content)}
-    `,
+    home: () => renderHomeSections(content),
     about: () => `
       ${renderPageHero(content, "about")}
       ${renderAbout(content)}

@@ -91,6 +91,29 @@ collections:
               - { label: "Show Contact", name: "contact", widget: "boolean", default: true }
               - { label: "Show Custom Sections", name: "customSections", widget: "boolean", default: true }
 
+          - label: "Home Section Order"
+            name: "homeSectionOrder"
+            widget: "list"
+            hint: "Move sections by reordering these keys. Valid keys: hero, about, problems, platform, stats, services, industries, process, video, gallery, testimonials, caseStudies, blog, faq, customSections, contact."
+            field: { label: "Section Key", name: "section", widget: "string" }
+
+          - label: "Hero Appearance"
+            name: "appearance"
+            widget: "object"
+            fields:
+              - label: "Hero"
+                name: "hero"
+                widget: "object"
+                fields:
+                  - { label: "Title Color", name: "titleColor", widget: "string", required: false, hint: "Example: #ffffff" }
+                  - { label: "Copy Color", name: "copyColor", widget: "string", required: false, hint: "Example: rgba(255, 255, 255, 0.84)" }
+                  - { label: "Eyebrow Color", name: "eyebrowColor", widget: "string", required: false, hint: "Example: #a9f4f7" }
+                  - { label: "Title Size", name: "titleSize", widget: "string", required: false, hint: "Example: 5rem. Leave empty for responsive default." }
+                  - { label: "Copy Size", name: "copySize", widget: "string", required: false, hint: "Example: 1.2rem. Leave empty for responsive default." }
+                  - { label: "Overlay Color", name: "overlayColor", widget: "string", required: false, hint: "Example: rgba(10, 18, 34, 0.94)" }
+                  - { label: "Info Card Background", name: "cardBackground", widget: "string", required: false, hint: "Example: rgba(20, 27, 44, 0.76)" }
+                  - { label: "Info Card Text Color", name: "cardTextColor", widget: "string", required: false, hint: "Example: #ffffff" }
+
           - label: "Top Strip"
             name: "topStrip"
             widget: "object"
@@ -129,6 +152,8 @@ collections:
                 fields:
                   - { label: "Label", name: "label", widget: "string" }
                   - { label: "Link URL", name: "href", widget: "string" }
+              - { label: "Show Full Hero Visual Area", name: "showVisualArea", widget: "boolean", default: true, required: false }
+              - { label: "Show Right Info Panel", name: "showInfoPanel", widget: "boolean", default: true, required: false }
               - { label: "Show Hero Background Image", name: "showBackgroundImage", widget: "boolean", default: true, required: false }
               - { label: "Show Hero Main Image", name: "showMainImage", widget: "boolean", default: true, required: false }
               - { label: "Show Extra Hero Images", name: "showExtraImages", widget: "boolean", default: true, required: false }

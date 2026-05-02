@@ -62,6 +62,32 @@
     "contact": true,
     "customSections": true
   },
+  "homeSectionOrder": [
+    "hero",
+    "about",
+    "problems",
+    "platform",
+    "stats",
+    "services",
+    "industries",
+    "gallery",
+    "testimonials",
+    "caseStudies",
+    "faq",
+    "contact"
+  ],
+  "appearance": {
+    "hero": {
+      "titleColor": "#ffffff",
+      "copyColor": "rgba(255, 255, 255, 0.84)",
+      "eyebrowColor": "#a9f4f7",
+      "titleSize": "",
+      "copySize": "",
+      "overlayColor": "rgba(10, 18, 34, 0.94)",
+      "cardBackground": "rgba(20, 27, 44, 0.76)",
+      "cardTextColor": "#ffffff"
+    }
+  },
   "topStrip": {
     "text": "Free Odoo ERP consultation for growing businesses",
     "linkText": "Request analysis",
@@ -87,6 +113,8 @@
     ],
     "primaryButton": { "label": "Talk to Us", "href": "#contact" },
     "secondaryButton": { "label": "View Services", "href": "services.html" },
+    "showVisualArea": true,
+    "showInfoPanel": true,
     "showBackgroundImage": true,
     "showMainImage": true,
     "showExtraImages": true,
