@@ -335,35 +335,35 @@
         "short": "DEV",
         "title": "Software Development",
         "text": "Custom web systems, APIs, portals, automation tools and internal platforms.",
-        "image": "",
+        "image": "assets/uploads/istockphoto-1700567210-612x612.jpg",
         "videoUrl": ""
       },
       {
         "short": "APP",
         "title": "Application Development",
         "text": "Business applications that help teams capture, process and act on information.",
-        "image": "",
+        "image": "assets/uploads/istockphoto-2244276959-612x612.jpg",
         "videoUrl": ""
       },
       {
         "short": "SF",
         "title": "Salesforce Cloud Development",
         "text": "Salesforce customization, automation, data models, reports and integrations.",
-        "image": "",
+        "image": "assets/uploads/istockphoto-952067022-612x612.jpg",
         "videoUrl": ""
       },
       {
         "short": "IT",
         "title": "IT Management Solutions",
         "text": "Operational support, documentation, monitoring structure and system administration.",
-        "image": "",
+        "image": "assets/uploads/istockphoto-1172642339-612x612.jpg",
         "videoUrl": ""
       },
       {
         "short": "WEB",
         "title": "Website Development",
         "text": "Professional company websites, landing pages, campaigns and lead-generation pages.",
-        "image": "",
+        "image": "assets/uploads/istockphoto-2212508544-612x612.jpg",
         "videoUrl": ""
       }
     ]
