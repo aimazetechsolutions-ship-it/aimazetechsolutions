@@ -141,7 +141,7 @@
             "href": "services.html"
         },
         "showVisualArea": false,
-        "showInfoPanel": true,
+        "showInfoPanel": false,
         "showBackgroundImage": true,
         "showMainImage": false,
         "showExtraImages": false,
