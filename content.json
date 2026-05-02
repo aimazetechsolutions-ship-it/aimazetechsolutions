@@ -114,7 +114,7 @@
             "label": "View Services",
             "href": "services.html"
         },
-        "showBackgroundImage": false,
+        "showBackgroundImage": true,
         "showMainImage": true,
         "showExtraImages": true,
         "showFloatingCards": true,
