@@ -167,6 +167,19 @@ export default defineStackbitConfig({
               booleanField("contact", "Show Contact"),
               booleanField("customSections", "Show Custom Sections"),
             ], "pages"),
+            listField("homeSectionOrder", "Home Section Order", null, "pages"),
+            objectField("appearance", "Appearance / Per-Section Styles", [
+              objectField("hero", "Hero Style", [
+                stringField("titleColor", "Title color"),
+                stringField("copyColor", "Copy color"),
+                stringField("eyebrowColor", "Eyebrow color"),
+                stringField("titleSize", "Title size"),
+                stringField("copySize", "Copy size"),
+                stringField("overlayColor", "Overlay color"),
+                stringField("cardBackground", "Info card background"),
+                stringField("cardTextColor", "Info card text color"),
+              ]),
+            ], "design"),
             objectField("topStrip", "Top Strip", [
               stringField("text", "Text"),
               stringField("linkText", "Link text"),
@@ -189,6 +202,8 @@ export default defineStackbitConfig({
                 stringField("label", "Label"),
                 stringField("href", "Link URL"),
               ]),
+              booleanField("showVisualArea", "Show full hero visual area"),
+              booleanField("showInfoPanel", "Show right info panel"),
               booleanField("showBackgroundImage", "Show hero background image"),
               booleanField("showMainImage", "Show hero main image"),
               booleanField("showExtraImages", "Show extra hero images"),
