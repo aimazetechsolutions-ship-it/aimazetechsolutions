@@ -4,7 +4,7 @@
         "title": "AimAze Tech Solutions | Odoo ERP Implementation & Tech Solutions",
         "description": "AimAze Tech Solutions helps businesses implement Odoo ERP, customize workflows, integrate systems, and build professional software, applications, Salesforce cloud solutions, IT management systems, and websites.",
         "domain": "https://aimazetechsolutions.com",
-        "logo": "assets/aimaze-logo-transparent.png",
+        "logo": "/assets/aimaze-logo-transparent.png",
         "ogImage": "assets/aimaze-coverpage.png",
         "email": "info@aimazetechsolutions.com",
         "footerText": "AimAze Tech Solutions LLC. All rights reserved."
