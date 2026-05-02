@@ -142,7 +142,7 @@
         },
         "showVisualArea": false,
         "showInfoPanel": false,
-        "showBackgroundImage": false,
+        "showBackgroundImage": true,
         "showMainImage": false,
         "showExtraImages": false,
         "showFloatingCards": false,
