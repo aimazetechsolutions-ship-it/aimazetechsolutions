@@ -140,7 +140,7 @@
             "label": "View Services",
             "href": "services.html"
         },
-        "showVisualArea": true,
+        "showVisualArea": false,
         "showInfoPanel": true,
         "showBackgroundImage": true,
         "showMainImage": false,
