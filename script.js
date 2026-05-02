@@ -51,10 +51,29 @@ function initAimazeInteractions() {
       window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
     });
   }
+
+  const revealItems = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window && revealItems.length) {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.12 }
+    );
+
+    revealItems.forEach((item) => observer.observe(item));
+  } else {
+    revealItems.forEach((item) => item.classList.add("is-visible"));
+  }
 }
 
 if (document.querySelector("[data-header]")) {
   initAimazeInteractions();
 } else {
-  document.addEventListener("aimaze:rendered", initAimazeInteractions, { once: true });
+  document.addEventListener("aimaze:rendered", initAimazeInteractions);
 }
