@@ -1,486 +1,122 @@
 {
-  "site": {
-    "title": "Odoo ERP Implementation UAE | AimAze Tech Solutions",
-    "description": "AimAze Tech Solutions delivers Odoo ERP implementation, CRM, finance automation, dashboards, software development, IT services, and professional websites for UAE and international clients.",
-    "domain": "https://aimazetechsolutions.com",
-    "logo": "assets/aimaze-logo-transparent.png",
-    "ogImage": "assets/aimaze-coverpage.png",
-    "email": "info@aimazetechsolutions.com",
-    "footerText": "AimAze Tech Solutions LLC. Odoo ERP, software, cloud, IT and website solutions. All rights reserved.",
-    "whatsapp": "YOUR_WHATSAPP_NUMBER"
-  },
-  "theme": {
-    "cyan": "#27c7d7",
-    "blue": "#3f83df",
-    "orange": "#ff8847",
-    "purple": "#70419a",
-    "ink": "#141b2c",
-    "text": "#344154",
-    "muted": "#6d7789",
-    "soft": "#f5fbfd"
-  },
-  "typography": {
-    "googleFontUrl": "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap",
-    "bodyFont": "Inter, Arial, Helvetica, sans-serif",
-    "headingFont": "Inter, Arial, Helvetica, sans-serif",
-    "bodySize": "16px",
-    "topStripSize": "0.88rem",
-    "navSize": "0.95rem",
-    "eyebrowSize": "0.78rem",
-    "heroTitleMin": "3.35rem",
-    "heroTitleMax": "6.6rem",
-    "heroCopySize": "1.18rem",
-    "pageTitleMin": "3.35rem",
-    "pageTitleMax": "6.6rem",
-    "sectionTitleMin": "2rem",
-    "sectionTitleMax": "4rem",
-    "paragraphSize": "1.06rem",
-    "cardTitleSize": "1.24rem",
-    "cardTextSize": "1rem",
-    "tagSize": "0.92rem",
-    "statsValueMin": "2.4rem",
-    "statsValueMax": "3.8rem",
-    "statsLabelSize": "1rem",
-    "buttonSize": "1rem",
-    "formSize": "1rem",
-    "footerSize": "1rem"
-  },
-  "sections": {
-    "about": true,
-    "problems": true,
-    "platform": true,
-    "stats": true,
-    "services": true,
-    "industries": true,
-    "process": true,
-    "video": true,
-    "gallery": true,
-    "testimonials": true,
-    "caseStudies": true,
-    "blog": true,
-    "faq": true,
-    "contact": true,
-    "customSections": true
-  },
-  "topStrip": {
-    "text": "UAE + International ERP, software and digital transformation partner",
-    "linkText": "Book free process analysis",
-    "linkHref": "contact.html"
-  },
-  "navigation": [
-    {
-      "label": "Home",
-      "href": "index.html"
-    },
-    {
-      "label": "About",
-      "href": "about.html"
-    },
-    {
-      "label": "Services",
-      "href": "services.html"
-    },
-    {
-      "label": "Odoo ERP",
-      "href": "odoo.html"
-    },
-    {
-      "label": "Industries",
-      "href": "industries.html"
-    },
-    {
-      "label": "Portfolio",
-      "href": "portfolio.html"
-    },
-    {
-      "label": "Blog",
-      "href": "blog.html"
-    }
-  ],
-  "hero": {
-    "eyebrow": "Odoo ERP • CRM • Software • Websites",
-    "title": "Implement Odoo ERP and automate your business growth.",
-    "copy": "AimAze Tech Solutions helps UAE and international companies move from spreadsheets, manual approvals and disconnected tools to a clean ERP, CRM, finance, reporting and customer-management system built around real business workflows.",
-    "points": [
-      "Odoo ERP implementation",
-      "Finance & CRM automation",
-      "Custom software + websites"
-    ],
-    "primaryButton": {
-      "label": "Book Free ERP Consultation",
-      "href": "contact.html"
-    },
-    "secondaryButton": {
-      "label": "Explore Odoo Services",
-      "href": "odoo.html"
-    },
-    "image": "assets/odoo-erp-solution-post.png",
-    "imageAlt": "Odoo ERP solutions by AimAze Tech Solutions",
-    "cardTitle": "ERP designed for management control",
-    "cardText": "Sales, finance, CRM, HR, inventory, dashboards and integrations",
-    "gallery": [
-      {
-        "image": "assets/aimaze-coverpage.png",
-        "alt": "AimAze Tech Solutions cover design"
-      }
-    ],
-    "videoUrl": ""
-  },
-  "about": {
-    "eyebrow": "Why AimAze",
-    "title": "A business-first technology partner, not only a software vendor.",
-    "paragraphs": [
-      "We combine practical finance, operations and ERP understanding with technology delivery, so every implementation is aligned with control, reporting, accountability and management visibility.",
-      "Our approach is built for growing companies that need reliable systems, not complicated software. We map your process, configure the right modules, customize only where it adds value, train your teams and support continuous improvement."
-    ]
-  },
-  "problems": {
-    "eyebrow": "Business pain points we solve",
-    "title": "If operations depend on Excel, WhatsApp and manual follow-ups, growth becomes expensive.",
-    "copy": "AimAze helps companies replace disconnected work with one connected operating system for sales, finance, operations and management reporting.",
-    "items": [
-      {
-        "number": "01",
-        "title": "No real-time visibility",
-        "text": "Management cannot see live sales, receivables, payables, margin, tasks or team performance."
-      },
-      {
-        "number": "02",
-        "title": "Manual reporting",
-        "text": "Finance and operations teams spend hours preparing reports instead of controlling the business."
-      },
-      {
-        "number": "03",
-        "title": "Disconnected departments",
-        "text": "Sales, accounts, HR and operations use separate files and information becomes unreliable."
-      },
-      {
-        "number": "04",
-        "title": "Weak approval control",
-        "text": "Approvals, handovers and customer updates are not properly tracked inside one system."
-      }
-    ]
-  },
-  "platform": {
-    "eyebrow": "Odoo ERP specialists",
-    "title": "A practical Odoo setup shaped around your business workflow.",
-    "copy": "We help you select the right Odoo modules, configure the workflow, customize approval and reporting logic, integrate existing systems and train your users so ERP becomes a daily management tool.",
-    "bullets": [
-      "CRM, sales, invoicing, accounting, inventory, HR and project workflows",
-      "Custom dashboards for CFO, CEO, sales and operations visibility",
-      "Approval flows, document attachment controls and audit-ready processes",
-      "Integrations with websites, forms, chat tools, payment links and third-party systems",
-      "Training, go-live support, issue tracking and continuous improvement"
-    ],
-    "guideEyebrow": "AimAze delivery model",
-    "guideTitle": "From process review to live ERP adoption",
-    "guideItems": [
-      {
-        "title": "Process audit",
-        "text": "Understand current workflow, gaps and reporting needs"
-      },
-      {
-        "title": "ERP blueprint",
-        "text": "Define modules, data, roles, approvals and dashboards"
-      },
-      {
-        "title": "Implementation",
-        "text": "Configure, customize, test and migrate data"
-      },
-      {
-        "title": "Go-live support",
-        "text": "Train users, solve issues and stabilize operations"
-      }
-    ]
-  },
+  "company": "AimAze Tech Solutions LLC",
+  "domain": "https://aimazetechsolutions.com",
+  "email": "info@aimazetechsolutions.com",
+  "phone": "",
+  "whatsapp": "YOUR_WHATSAPP_NUMBER",
+  "tagline": "UAE + International ERP, software and digital transformation partner",
+  "heroTitle": "Odoo ERP, Software & Digital Transformation for Growing Businesses",
+  "heroText": "AimAze Tech Solutions helps UAE and international companies implement Odoo ERP, automate workflows, improve reporting, and build scalable digital systems around real business operations.",
+  "primaryCta": "Book Free Process Analysis",
+  "secondaryCta": "Explore Odoo Services",
   "stats": [
-    {
-      "value": "UAE+",
-      "label": "Serving UAE and international businesses"
-    },
-    {
-      "value": "Odoo",
-      "label": "Main ERP implementation focus"
-    },
-    {
-      "value": "360°",
-      "label": "Finance, CRM, operations and reporting mindset"
-    },
-    {
-      "value": "1",
-      "label": "Partner for ERP, software, IT and websites"
-    }
+    [
+      "Odoo ERP",
+      "Implementation focus"
+    ],
+    [
+      "UAE + Global",
+      "Delivery coverage"
+    ],
+    [
+      "CRM \u2022 Finance \u2022 HR",
+      "Operational modules"
+    ],
+    [
+      "Support",
+      "Training & optimization"
+    ]
   ],
-  "services": {
-    "eyebrow": "Services built for business results",
-    "title": "ERP-first technology services for growing companies.",
-    "copy": "We focus on solutions that improve control, reduce manual work and help management make faster decisions.",
-    "items": [
-      {
-        "short": "ERP",
-        "title": "Odoo ERP Implementation",
-        "text": "Module selection, configuration, workflow design, data migration, user training and go-live support for UAE and international companies.",
-        "image": "assets/odoo-erp-solution-post.png",
-        "videoUrl": ""
-      },
-      {
-        "short": "CRM",
-        "title": "CRM & Sales Pipeline Automation",
-        "text": "Lead capture, opportunity stages, follow-up automation, quotation flow, sales reporting and customer communication setup.",
-        "image": "assets/aimaze-coverpage.png",
-        "videoUrl": ""
-      },
-      {
-        "short": "Finance",
-        "title": "Finance Automation & Dashboards",
-        "text": "Invoice controls, receivable/payable visibility, margin reporting, approval workflows and CFO/CEO dashboard structures.",
-        "image": "assets/aimaze-coverpage.png",
-        "videoUrl": ""
-      },
-      {
-        "short": "Custom",
-        "title": "Custom Software & Integrations",
-        "text": "Business applications, portals, APIs and integrations between ERP, websites, payment systems, forms and third-party tools.",
-        "image": "assets/aimaze-coverpage.png",
-        "videoUrl": ""
-      },
-      {
-        "short": "Cloud",
-        "title": "Salesforce & Cloud Solutions",
-        "text": "Cloud-based CRM, workflow automation, reporting and integration support for sales and customer service teams.",
-        "image": "assets/aimaze-coverpage.png",
-        "videoUrl": ""
-      },
-      {
-        "short": "Web",
-        "title": "Professional Website Development",
-        "text": "Premium corporate websites, landing pages, SEO structure, lead forms and WhatsApp conversion flows.",
-        "image": "assets/aimaze-coverpage.png",
-        "videoUrl": ""
-      }
+  "services": [
+    [
+      "Odoo ERP Implementation",
+      "Module planning, configuration, migration, training and go-live support for CRM, sales, finance, HR, inventory and operations."
+    ],
+    [
+      "Odoo Customization",
+      "Custom workflows, dashboards, approvals, automated reports and business-specific modules."
+    ],
+    [
+      "CRM & Sales Automation",
+      "Lead management, pipeline stages, follow-ups, quotation workflow and management visibility."
+    ],
+    [
+      "Finance Dashboards",
+      "CFO dashboards, receivable tracking, margin reporting, VAT workflows and KPI visibility."
+    ],
+    [
+      "Custom Software & Websites",
+      "Professional business websites, portals, internal tools and web applications."
+    ],
+    [
+      "IT Support & Digital Advisory",
+      "Process review, automation roadmaps, integration planning and long-term support."
     ]
-  },
-  "industries": {
-    "eyebrow": "Industries we support",
-    "title": "ERP and digital systems for operational teams.",
-    "items": [
-      {
-        "title": "Travel & Tourism",
-        "text": "CRM, bookings, invoicing, agents, payment tracking and reporting workflows."
-      },
-      {
-        "title": "Real Estate",
-        "text": "Leads, property records, follow-ups, commissions, document controls and sales dashboards."
-      },
-      {
-        "title": "Trading & Distribution",
-        "text": "Inventory, purchasing, sales orders, receivables, supplier control and margin visibility."
-      },
-      {
-        "title": "Professional Services",
-        "text": "Projects, tasks, timesheets, billing, CRM and management reporting."
-      },
-      {
-        "title": "Retail & E-commerce",
-        "text": "Products, stock, sales channels, customer management and accounting integration."
-      },
-      {
-        "title": "Finance-led Operations",
-        "text": "Audit-ready workflows, approvals, documents, dashboards and control reporting."
-      }
-    ]
-  },
-  "process": {
-    "eyebrow": "Implementation process",
-    "title": "A structured ERP implementation path that reduces risk.",
-    "items": [
-      {
-        "title": "Discovery",
-        "text": "Review business goals, current process, pain points, users and reports."
-      },
-      {
-        "title": "Blueprint",
-        "text": "Prepare modules, roles, workflow, data structure and implementation plan."
-      },
-      {
-        "title": "Build & Configure",
-        "text": "Configure Odoo, develop required customizations and connect systems."
-      },
-      {
-        "title": "Test & Train",
-        "text": "User testing, management review, training and correction cycles."
-      },
-      {
-        "title": "Go Live",
-        "text": "Deploy, support daily users and resolve real-time operational issues."
-      },
-      {
-        "title": "Improve",
-        "text": "Add dashboards, automation and enhancements after stabilization."
-      }
-    ]
-  },
-  "faq": {
-    "eyebrow": "FAQ",
-    "title": "Questions business owners ask before starting.",
-    "items": [
-      {
-        "question": "Do you only provide Odoo ERP?",
-        "answer": "Odoo ERP is our main focus, but we also provide CRM, software development, dashboards, integrations, IT management and professional websites."
-      },
-      {
-        "question": "Can you support businesses outside UAE?",
-        "answer": "Yes. We support UAE and international clients through remote discovery, implementation, training and support."
-      },
-      {
-        "question": "Can you customize Odoo for our workflow?",
-        "answer": "Yes. We first map your process and then customize workflows, approvals, reports, dashboards and integrations where required."
-      },
-      {
-        "question": "Can we add WhatsApp inquiry later?",
-        "answer": "Yes. The website includes a WhatsApp-ready button. Replace YOUR_WHATSAPP_NUMBER in content.json with your number in international format."
-      },
-      {
-        "question": "Do you provide support after go-live?",
-        "answer": "Yes. Go-live support, user training, issue tracking and continuous improvements are part of the recommended implementation approach."
-      }
-    ]
-  },
-  "video": {
-    "eyebrow": "Watch AimAze in action",
-    "title": "Add your company intro, demo, or client walkthrough video.",
-    "copy": "Use this section for an Odoo demo, company profile, service explanation, or short promotional video.",
-    "videoUrl": "",
-    "posterImage": "assets/aimaze-coverpage.png"
-  },
-  "gallery": {
-    "eyebrow": "Gallery",
-    "title": "Visual highlights from our solutions and brand.",
-    "copy": "Add project screenshots, service visuals, team photos, marketing graphics, or product images.",
-    "items": [
-      {
-        "title": "Odoo ERP Solutions",
-        "text": "A practical ERP message for growing businesses.",
-        "image": "assets/odoo-erp-solution-post.png",
-        "alt": "Odoo ERP solution graphic"
-      },
-      {
-        "title": "AimAze Tech Solutions",
-        "text": "Brand cover design and service overview.",
-        "image": "assets/aimaze-coverpage.png",
-        "alt": "AimAze cover page"
-      }
-    ]
-  },
-  "testimonials": {
-    "eyebrow": "Trust signals",
-    "title": "Built for decision makers who need control and visibility.",
-    "items": [
-      {
-        "quote": "AimAze focuses on business process first, which makes ERP easier for management and users to adopt.",
-        "name": "Operations Leader",
-        "role": "UAE Business Group",
-        "image": ""
-      },
-      {
-        "quote": "Their finance and reporting mindset helps convert software setup into useful management control.",
-        "name": "Finance Manager",
-        "role": "Service Company",
-        "image": ""
-      },
-      {
-        "quote": "Clear workflow mapping and practical support make the implementation process more manageable.",
-        "name": "Business Owner",
-        "role": "Growing Company",
-        "image": ""
-      }
-    ]
-  },
-  "caseStudies": {
-    "eyebrow": "Solution examples",
-    "title": "Common business outcomes we can deliver.",
-    "items": [
-      {
-        "industry": "ERP Implementation",
-        "title": "From scattered files to one connected ERP",
-        "summary": "Centralize CRM, sales, invoicing and operations into one Odoo workflow.",
-        "result": "Outcome: faster reporting and stronger management visibility",
-        "image": ""
-      },
-      {
-        "industry": "Finance Automation",
-        "title": "CFO dashboard and approval controls",
-        "summary": "Create live dashboards for receivables, payables, margins and operational KPIs.",
-        "result": "Outcome: better decisions with less manual reporting",
-        "image": ""
-      },
-      {
-        "industry": "Website + CRM",
-        "title": "Lead generation website connected to business process",
-        "summary": "Build landing pages, inquiry forms and WhatsApp CTAs that support sales follow-up.",
-        "result": "Outcome: more qualified inquiries and cleaner tracking",
-        "image": ""
-      }
-    ]
-  },
-  "blog": {
-    "eyebrow": "Insights",
-    "title": "ERP and digital transformation topics for business owners.",
-    "items": [
-      {
-        "category": "Odoo ERP",
-        "date": "2026",
-        "title": "How to choose the right Odoo modules before implementation",
-        "excerpt": "A practical guide to selecting modules based on workflow, users, reports and controls.",
-        "link": "odoo.html",
-        "image": ""
-      },
-      {
-        "category": "Finance Automation",
-        "date": "2026",
-        "title": "Why CFO dashboards are essential for growing businesses",
-        "excerpt": "Live visibility into sales, margins, receivables and approvals helps management act faster.",
-        "link": "services.html",
-        "image": ""
-      },
-      {
-        "category": "Business Websites",
-        "date": "2026",
-        "title": "How websites should generate leads, not only look good",
-        "excerpt": "A corporate website should include SEO, trust signals, clear CTAs and fast contact options.",
-        "link": "contact.html",
-        "image": ""
-      }
-    ]
-  },
-  "customSections": [
-    {
-      "enabled": true,
-      "eyebrow": "Why choose AimAze",
-      "title": "A practical advantage: business + technology thinking together.",
-      "copy": "Many ERP projects fail because they are treated only as software. AimAze focuses on workflow, controls, user adoption and management reporting.",
-      "items": [
-        {
-          "title": "Finance-aware ERP delivery",
-          "text": "We understand approvals, margins, documents, reporting, receivables and management control."
-        },
-        {
-          "title": "UAE market understanding",
-          "text": "We design solutions for businesses that need speed, accountability and cost-effective implementation."
-        },
-        {
-          "title": "Long-term support mindset",
-          "text": "We help improve the system after go-live as your team learns and your business grows."
-        }
-      ],
-      "image": "assets/aimaze-coverpage.png",
-      "videoUrl": ""
-    }
   ],
-  "contact": {
-    "eyebrow": "Start with a free process analysis",
-    "title": "Tell us what you want to automate or improve.",
-    "copy": "Share your ERP, CRM, finance, operations, website or software requirement. We will review your business process and suggest a practical solution path.",
-    "formButton": "Send Inquiry / Request Consultation"
-  }
+  "industries": [
+    "Travel & Tourism",
+    "Real Estate",
+    "Trading & Distribution",
+    "Professional Services",
+    "Retail & E-commerce",
+    "Finance & Operations Teams"
+  ],
+  "process": [
+    [
+      "01",
+      "Discover",
+      "We study your current process, pain points, reports and required controls."
+    ],
+    [
+      "02",
+      "Design",
+      "We map the right Odoo modules, workflows, roles and dashboards."
+    ],
+    [
+      "03",
+      "Implement",
+      "We configure, customize, migrate data and test with your users."
+    ],
+    [
+      "04",
+      "Train & Support",
+      "We train your team and keep improving the system after go-live."
+    ]
+  ],
+  "why": [
+    [
+      "Business-first approach",
+      "We understand finance, controls, operations and management reporting, not only software screens."
+    ],
+    [
+      "Practical Odoo expertise",
+      "We focus on the right configuration and customization for real workflows."
+    ],
+    [
+      "Cost-effective delivery",
+      "Open-source flexibility with professional implementation and support."
+    ],
+    [
+      "Long-term partner",
+      "We stay involved after launch for training, improvements and optimization."
+    ]
+  ],
+  "faq": [
+    [
+      "Can you implement Odoo Community Edition?",
+      "Yes. We can work with Odoo Community Edition and customize it according to business requirements."
+    ],
+    [
+      "Do you support UAE businesses?",
+      "Yes. UAE is a primary target market, and we also support international clients remotely."
+    ],
+    [
+      "Can you build dashboards for finance and management?",
+      "Yes. We can design CFO dashboards, receivable reports, sales KPIs, margin reports and operational views."
+    ],
+    [
+      "Can I change website content later?",
+      "Yes. This package includes a local visual admin editor that exports updated content.json."
+    ]
+  ]
 }
