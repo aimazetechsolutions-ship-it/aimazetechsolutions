@@ -1,164 +1,107 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Blog | AimAze Tech Solutions</title>
 <meta name="description" content="ERP, Odoo, software and digital transformation insights for UAE and international businesses.">
-<meta property="og:title" content="Blog | AimAze Tech Solutions">
-<meta property="og:description" content="ERP, Odoo, software and digital transformation insights.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://aimazetechsolutions.com">
-<meta property="og:image" content="assets/aimaze-coverpage.png">
 <link rel="icon" href="assets/aimaze-logo-transparent.png">
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="site.css">
 <style>
-.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-.blog-card{border:1px solid var(--line);border-radius:22px;background:#fff;box-shadow:0 18px 54px rgba(20,27,44,.07);overflow:hidden;transition:.25s;display:flex;flex-direction:column}
-.blog-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:rgba(63,131,223,.35)}
-.blog-thumb{height:180px;background:linear-gradient(135deg,var(--cyan),var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;font-size:48px}
-.blog-body{padding:24px;flex:1;display:flex;flex-direction:column;gap:10px}
-.blog-tag{display:inline-block;padding:4px 12px;border-radius:999px;background:var(--soft);color:var(--purple);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}
-.blog-body h3{margin:0;font-size:19px;line-height:1.3}
-.blog-body p{margin:0;color:var(--muted);font-size:15px;flex:1}
-.blog-meta{font-size:13px;color:var(--muted);font-weight:700}
-.blog-link{margin-top:14px;display:inline-flex;align-items:center;gap:6px;color:var(--blue);font-weight:800;font-size:14px}
-@media(max-width:980px){.blog-grid{grid-template-columns:1fr 1fr}}
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:28px}
+.blog-card{border-radius:22px;overflow:hidden;border:1px solid #e8f0f7;background:#fff;box-shadow:0 20px 60px rgba(16,23,41,.06);transition:.35s;display:flex;flex-direction:column}
+.blog-card:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:rgba(39,199,215,.3)}
+.blog-thumb{height:200px;display:flex;align-items:center;justify-content:center;font-size:56px;position:relative}
+.blog-tag-badge{position:absolute;bottom:14px;left:14px;padding:5px 12px;border-radius:999px;background:rgba(255,255,255,.9);font-size:11px;font-weight:800;color:var(--secondary);text-transform:uppercase;letter-spacing:.06em}
+.blog-body{padding:28px;flex:1;display:flex;flex-direction:column}
+.blog-date{font-size:12px;color:#a0aec0;font-weight:600;margin-bottom:10px}
+.blog-body h3{font-family:var(--heading-font);font-size:19px;font-weight:700;line-height:1.3;margin-bottom:12px}
+.blog-body p{color:#6d7789;font-size:14px;line-height:1.65;flex:1}
+.blog-link{display:inline-flex;align-items:center;gap:6px;margin-top:20px;font-size:14px;font-weight:700;color:var(--secondary);transition:.2s}
+.blog-link:hover{gap:10px;color:var(--primary)}
+@media(max-width:900px){.blog-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:620px){.blog-grid{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
+<div class="topbar" id="topbar"></div>
+<nav class="navbar" id="navbar">
+  <a class="brand" href="index.html"><img src="assets/aimaze-logo-transparent.png" alt="AimAze"><span class="brand-name">AimAze Tech Solutions</span></a>
+  <div class="nav-links" id="nav-links"></div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
 
-<div class="topbar">
-  <span>UAE + International ERP, software and digital transformation partner</span>
-  <a href="contact.html">Book free process analysis</a>
+<section class="page-hero">
+  <p class="eyebrow">Insights & Guides</p>
+  <h1>Practical technology thinking for business growth.</h1>
+  <p>Guides on Odoo ERP, automation, reporting, workflows and digital operations for UAE and international businesses.</p>
+</section>
+
+<section class="section light">
+  <div class="blog-grid">
+    <article class="blog-card reveal delay-1">
+      <div class="blog-thumb" style="background:linear-gradient(135deg,#27c7d7,#3f83df)">📊<span class="blog-tag-badge">Odoo ERP</span></div>
+      <div class="blog-body">
+        <p class="blog-date">May 2026 · 5 min read</p>
+        <h3>How to Choose the Right Odoo Modules for Your Business</h3>
+        <p>Not every business needs every module. Learn how to map your operations to the right Odoo setup and avoid costly over-configuration.</p>
+        <a class="blog-link" href="contact.html">Read more →</a>
+      </div>
+    </article>
+    <article class="blog-card reveal delay-2">
+      <div class="blog-thumb" style="background:linear-gradient(135deg,#ff8847,#7c3aed)">💰<span class="blog-tag-badge">Finance</span></div>
+      <div class="blog-body">
+        <p class="blog-date">April 2026 · 6 min read</p>
+        <h3>Building a CFO Dashboard in Odoo: Key Metrics That Matter</h3>
+        <p>From receivables to margin reporting — what your finance team should see every morning and how to set it up in Odoo.</p>
+        <a class="blog-link" href="contact.html">Read more →</a>
+      </div>
+    </article>
+    <article class="blog-card reveal delay-3">
+      <div class="blog-thumb" style="background:linear-gradient(135deg,#3f83df,#27c7d7)">🔄<span class="blog-tag-badge">Automation</span></div>
+      <div class="blog-body">
+        <p class="blog-date">April 2026 · 4 min read</p>
+        <h3>5 Repetitive Workflows You Can Automate with Odoo Right Now</h3>
+        <p>Quotation follow-ups, invoice reminders, purchase approvals — fully automated with the right Odoo configuration.</p>
+        <a class="blog-link" href="contact.html">Read more →</a>
+      </div>
+    </article>
+    <article class="blog-card reveal delay-1">
+      <div class="blog-thumb" style="background:linear-gradient(135deg,#7c3aed,#ff8847)">🏢<span class="blog-tag-badge">UAE Business</span></div>
+      <div class="blog-body">
+        <p class="blog-date">March 2026 · 7 min read</p>
+        <h3>Odoo ERP for UAE Trading Companies: A Practical Guide</h3>
+        <p>How UAE trading and distribution companies can manage inventory, purchase orders, sales and VAT in one system.</p>
+        <a class="blog-link" href="contact.html">Read more →</a>
+      </div>
+    </article>
+    <article class="blog-card reveal delay-2">
+      <div class="blog-thumb" style="background:linear-gradient(135deg,#27c7d7,#7c3aed)">📈<span class="blog-tag-badge">CRM</span></div>
+      <div class="blog-body">
+        <p class="blog-date">March 2026 · 5 min read</p>
+        <h3>How to Set Up a Sales Pipeline in Odoo CRM Your Team Will Actually Use</h3>
+        <p>Pipeline stages, follow-up rules and management visibility — getting CRM adoption right from day one.</p>
+        <a class="blog-link" href="contact.html">Read more →</a>
+      </div>
+    </article>
+    <article class="blog-card reveal delay-3">
+      <div class="blog-thumb" style="background:linear-gradient(135deg,#3f83df,#ff8847)">🌐<span class="blog-tag-badge">Strategy</span></div>
+      <div class="blog-body">
+        <p class="blog-date">February 2026 · 6 min read</p>
+        <h3>Odoo Community vs Enterprise: Which Is Right for Your Business?</h3>
+        <p>A straightforward comparison of costs, features and limitations so you can make the right call for your budget.</p>
+        <a class="blog-link" href="contact.html">Read more →</a>
+      </div>
+    </article>
+  </div>
+</section>
+
+<div class="cta-banner reveal">
+  <div><h2>Want a topic covered or need direct advice?</h2><p>Book a free process analysis call with our team.</p></div>
+  <a class="btn-white" href="contact.html">Book Free Consultation</a>
 </div>
 
-<header class="header">
-  <a class="brand" href="index.html">
-    <img src="assets/aimaze-logo-transparent.png" alt="AimAze Tech Solutions">
-    <span>AimAze Tech Solutions</span>
-  </a>
-  <button class="menu" data-menu>☰</button>
-  <nav class="nav" data-nav>
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="services.html">Services</a>
-    <a href="odoo.html">Odoo ERP</a>
-    <a href="industries.html">Industries</a>
-    <a href="portfolio.html">Portfolio</a>
-    <a href="blog.html">Blog</a>
-    <a class="nav-cta" href="contact.html">Contact Us</a>
-  </nav>
-</header>
-
-<main>
-
-  <section class="page-hero">
-    <p class="eyebrow">Insights &amp; Guides</p>
-    <h1>Practical technology thinking for business growth.</h1>
-    <p>Guides about Odoo ERP, automation, reporting, workflows and digital operations for UAE and international businesses.</p>
-    <div class="actions">
-      <a class="btn primary" href="contact.html">Book Free Consultation</a>
-      <a class="btn secondary" href="index.html">Back Home</a>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="blog-grid">
-
-      <article class="blog-card reveal">
-        <div class="blog-thumb">📊</div>
-        <div class="blog-body">
-          <span class="blog-tag">Odoo ERP</span>
-          <h3>How to Choose the Right Odoo Modules for Your Business</h3>
-          <p>Not every business needs every module. Learn how to map your operations to the right Odoo setup and avoid costly over-configuration.</p>
-          <span class="blog-meta">May 2026 · 5 min read</span>
-          <a class="blog-link" href="contact.html">Read more →</a>
-        </div>
-      </article>
-
-      <article class="blog-card reveal">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,var(--orange),var(--purple))">💰</div>
-        <div class="blog-body">
-          <span class="blog-tag">Finance</span>
-          <h3>Building a CFO Dashboard in Odoo: Key Metrics That Matter</h3>
-          <p>From receivables to margin reporting — what your finance team should see every morning and how to set it up in Odoo.</p>
-          <span class="blog-meta">April 2026 · 6 min read</span>
-          <a class="blog-link" href="contact.html">Read more →</a>
-        </div>
-      </article>
-
-      <article class="blog-card reveal">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,var(--blue),var(--cyan))">🔄</div>
-        <div class="blog-body">
-          <span class="blog-tag">Automation</span>
-          <h3>5 Repetitive Workflows You Can Automate with Odoo Right Now</h3>
-          <p>Quotation follow-ups, invoice reminders, purchase approvals — these common tasks can be fully automated with the right Odoo configuration.</p>
-          <span class="blog-meta">April 2026 · 4 min read</span>
-          <a class="blog-link" href="contact.html">Read more →</a>
-        </div>
-      </article>
-
-      <article class="blog-card reveal">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,var(--purple),var(--orange))">🏢</div>
-        <div class="blog-body">
-          <span class="blog-tag">UAE Business</span>
-          <h3>Odoo ERP for UAE Trading Companies: A Practical Guide</h3>
-          <p>How UAE trading and distribution companies can use Odoo to manage inventory, purchase orders, sales and VAT reporting in one system.</p>
-          <span class="blog-meta">March 2026 · 7 min read</span>
-          <a class="blog-link" href="contact.html">Read more →</a>
-        </div>
-      </article>
-
-      <article class="blog-card reveal">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,var(--cyan),var(--purple))">📈</div>
-        <div class="blog-body">
-          <span class="blog-tag">CRM</span>
-          <h3>How to Set Up a Sales Pipeline in Odoo CRM That Your Team Will Actually Use</h3>
-          <p>Pipeline stages, follow-up rules and management visibility — getting CRM adoption right from day one.</p>
-          <span class="blog-meta">March 2026 · 5 min read</span>
-          <a class="blog-link" href="contact.html">Read more →</a>
-        </div>
-      </article>
-
-      <article class="blog-card reveal">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,var(--blue),var(--orange))">🌐</div>
-        <div class="blog-body">
-          <span class="blog-tag">Digital Transformation</span>
-          <h3>Odoo Community vs Enterprise: Which Is Right for Your Business?</h3>
-          <p>A straightforward comparison of costs, features and limitations — so you can make the right call for your budget and requirements.</p>
-          <span class="blog-meta">February 2026 · 6 min read</span>
-          <a class="blog-link" href="contact.html">Read more →</a>
-        </div>
-      </article>
-
-    </div>
-  </section>
-
-  <div class="cta" style="padding:60px clamp(24px,5vw,70px)">
-    <div>
-      <p class="eyebrow" style="color:#9dc6ff">Have a question?</p>
-      <h2>Want a topic covered or need direct advice?</h2>
-      <p>Book a free process analysis call with our team.</p>
-    </div>
-    <a class="btn" style="background:#fff;color:#101729;font-weight:900;white-space:nowrap" href="contact.html">Book Free Consultation</a>
-  </div>
-
-</main>
-
-<footer class="footer">
-  <div>
-    <strong>AimAze Tech Solutions LLC</strong>
-    <p>Odoo ERP, software, websites and digital transformation services for UAE and international businesses.</p>
-  </div>
-  <div>
-    <p><b>Email:</b> info@aimazetechsolutions.com</p>
-    <p><b>Website:</b> aimazetechsolutions.com</p>
-  </div>
-</footer>
-
-<a class="whatsapp" href="#" data-whatsapp>WhatsApp</a>
-<script src="script.js"></script>
+<footer class="footer" id="footer"><div id="footer-inner"></div></footer>
+<a class="whatsapp-float" href="contact.html" id="wa-btn">💬</a>
+<script src="shared.js"></script>
 </body>
 </html>
