@@ -88,14 +88,15 @@ img{max-width:100%;display:block}
   position:relative;min-height:100vh;
   display:flex;align-items:center;
   overflow:hidden;padding:120px clamp(20px,6vw,90px) 80px;
+  background:linear-gradient(135deg,#0f172a 0%,#1e3a5f 50%,#0f2d40 100%);
 }
 .hero-video{
   position:absolute;inset:0;z-index:0;
 }
-.hero-video video{width:100%;height:100%;object-fit:cover}
+.hero-video video{width:100%;height:100%;object-fit:cover;opacity:.6}
 .hero-overlay{
   position:absolute;inset:0;z-index:1;
-  background:linear-gradient(135deg,rgba(16,23,41,.88) 0%,rgba(39,199,215,.3) 100%);
+  background:linear-gradient(135deg,rgba(16,23,41,.85) 0%,rgba(39,199,215,.25) 100%);
 }
 .hero-content{position:relative;z-index:2;max-width:780px}
 .eyebrow{
@@ -511,9 +512,11 @@ img{max-width:100%;display:block}
 <section class="hero" id="hero">
   <div class="hero-video" id="hero-video-wrap">
     <video autoplay muted loop playsinline id="hero-video">
-      <source src="https://videos.pexels.com/video-files/3205209/3205209-uhd_2560_1440_25fps.mp4" type="video/mp4">
+      <source src="https://cdn.coverr.co/videos/coverr-typing-on-a-laptop-1585/1080p.mp4" type="video/mp4">
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-people-working-in-a-startup-office-4885-large.mp4" type="video/mp4">
     </video>
   </div>
+  <canvas id="hero-canvas" style="position:absolute;inset:0;z-index:0;opacity:.35;pointer-events:none"></canvas>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <p class="eyebrow" id="hero-eyebrow">UAE + International ERP Partner</p>
@@ -646,6 +649,60 @@ img{max-width:100%;display:block}
 <a class="whatsapp-float" href="contact.html" id="wa-btn" title="WhatsApp">💬</a>
 
 <script>
+// ── PARTICLE CANVAS (always runs as background layer) ──
+(function(){
+  const canvas=document.getElementById('hero-canvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  let W,H,particles=[];
+  function resize(){W=canvas.width=window.innerWidth;H=canvas.height=window.innerHeight}
+  resize();
+  window.addEventListener('resize',resize);
+  for(let i=0;i<80;i++){
+    particles.push({
+      x:Math.random()*W,y:Math.random()*H,
+      r:Math.random()*2+.5,
+      dx:(Math.random()-.5)*.4,dy:(Math.random()-.5)*.4,
+      o:Math.random()*.6+.2
+    });
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    particles.forEach(p=>{
+      ctx.beginPath();
+      ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+      ctx.fillStyle=`rgba(39,199,215,${p.o})`;
+      ctx.fill();
+      p.x+=p.dx;p.y+=p.dy;
+      if(p.x<0||p.x>W)p.dx*=-1;
+      if(p.y<0||p.y>H)p.dy*=-1;
+    });
+    // draw connecting lines
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        const d=Math.hypot(particles[i].x-particles[j].x,particles[i].y-particles[j].y);
+        if(d<120){
+          ctx.beginPath();
+          ctx.strokeStyle=`rgba(39,199,215,${.15*(1-d/120)})`;
+          ctx.lineWidth=.6;
+          ctx.moveTo(particles[i].x,particles[i].y);
+          ctx.lineTo(particles[j].x,particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+
+  // Hide canvas if video loads successfully
+  const vid=document.getElementById('hero-video');
+  if(vid){
+    vid.addEventListener('playing',()=>{canvas.style.opacity='0';canvas.style.transition='opacity 1s'});
+    vid.addEventListener('error',()=>{canvas.style.opacity='.5'});
+  }
+})();
+
 // ── LOAD CONTENT ──
 async function loadContent(){
   try{
