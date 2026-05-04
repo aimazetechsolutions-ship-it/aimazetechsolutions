@@ -705,27 +705,42 @@ img{max-width:100%;display:block}
   }
   draw();
 
-  // Try to load video — show it on top of canvas if it works
+  // ── VIDEO SETUP — runs after content loaded ──
   const vid=document.getElementById('hero-video');
   const wrap=document.getElementById('hero-video-wrap');
-  if(vid){
+  if(vid&&wrap){
+    // Start hidden
     wrap.style.opacity='0';
     wrap.style.transition='opacity 1.5s ease';
-    vid.addEventListener('playing',()=>{
-      wrap.style.opacity='1';
-      canvas.style.opacity='.15'; // dim particles when video plays
-    });
+
+    function tryPlay(){
+      vid.muted=true; // required for autoplay policy
+      const p=vid.play();
+      if(p!==undefined){
+        p.then(()=>{
+          wrap.style.opacity='1'; // fade in when playing
+        }).catch(()=>{
+          wrap.style.display='none';
+        });
+      }else{
+        wrap.style.opacity='1';
+      }
+    }
+
+    if(vid.readyState>=3){
+      tryPlay();
+    }else{
+      vid.addEventListener('canplaythrough',tryPlay,{once:true});
+    }
+
     vid.addEventListener('error',()=>{
       wrap.style.display='none';
-      canvas.style.opacity='.5';
     });
-    // If video doesn't start in 3s, hide it and keep canvas
+
+    // Safety: if not playing after 5s, hide video wrap
     setTimeout(()=>{
-      if(vid.paused||vid.readyState<2){
-        wrap.style.display='none';
-        canvas.style.opacity='.5';
-      }
-    },3000);
+      if(vid.paused)wrap.style.display='none';
+    },5000);
   }
 })();
 
@@ -774,11 +789,7 @@ function applyHero(h){
   if(h.text)document.getElementById('hero-text').textContent=h.text;
   if(h.primaryCta){const e=document.getElementById('hero-cta1');e.textContent=h.primaryCta;if(h.primaryCtaLink)e.href=h.primaryCtaLink}
   if(h.secondaryCta){const e=document.getElementById('hero-cta2');e.textContent=h.secondaryCta;if(h.secondaryCtaLink)e.href=h.secondaryCtaLink}
-  if(h.videoUrl&&h.showVideo!==false){
-    const vid=document.getElementById('hero-video');
-    const src=vid.querySelector('source');
-    if(src){src.src=h.videoUrl; vid.load();}
-  }else if(h.showVideo===false){
+  if(h.showVideo===false){
     document.getElementById('hero-video-wrap').style.display='none';
   }
 }
