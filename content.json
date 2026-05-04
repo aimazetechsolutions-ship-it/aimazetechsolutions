@@ -1,7 +1,6 @@
 {
   "site": {
     "name": "AimAze Tech Solutions",
-    "tagline": "UAE + International ERP, Software & Digital Transformation Partner",
     "email": "info@aimazetechsolutions.com",
     "phone": "+971 XX XXX XXXX",
     "whatsapp": "",
@@ -15,14 +14,14 @@
     "headingFont": "Syne",
     "bodyFont": "Inter",
     "baseFontSize": "16",
-    "heroHeadingSize": "78",
+    "heroHeadingSize": "50",
     "heroSubSize": "52",
     "heroTextSize": "18",
     "sectionHeadingSize": "52",
     "cardTitleSize": "20",
     "cardTextSize": "15",
     "navFontSize": "14",
-    "heroHeadingWeight": "800",
+    "heroHeadingWeight": "600",
     "sectionHeadingWeight": "800",
     "cardTitleWeight": "700"
   },
@@ -35,73 +34,58 @@
     "primaryCtaLink": "contact.html",
     "secondaryCta": "Explore Odoo Services",
     "secondaryCtaLink": "odoo.html",
-    "videoUrl": "QyhwSYhX09s",
+    "videoUrl": "SZEflIVnhH8",
+    "videoNote": "YouTube video ID — change to any YouTube video ID you want as background",
     "showVideo": true
   },
   "stats": [
-    {
-      "number": "50",
-      "suffix": "+",
-      "label": "Projects Delivered"
-    },
-    {
-      "number": "10",
-      "suffix": "+",
-      "label": "Years Experience"
-    },
-    {
-      "number": "100",
-      "suffix": "%",
-      "label": "Client Satisfaction"
-    },
-    {
-      "number": "15",
-      "suffix": "+",
-      "label": "Modules Expertise"
-    }
+    { "number": "50", "suffix": "+", "label": "Projects Delivered" },
+    { "number": "10", "suffix": "+", "label": "Years Experience" },
+    { "number": "100", "suffix": "%", "label": "Client Satisfaction" },
+    { "number": "15", "suffix": "+", "label": "Modules Expertise" }
   ],
   "services": [
     {
       "icon": "📊",
+      "image": "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600",
       "title": "Odoo ERP Implementation",
       "text": "Module planning, configuration, migration, training and go-live support for CRM, sales, finance, HR, inventory and operations.",
-      "link": "odoo.html",
-      "image": "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600"
+      "link": "odoo.html"
     },
     {
       "icon": "⚙️",
+      "image": "https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=600",
       "title": "Odoo Customization",
       "text": "Custom workflows, dashboards, approvals, automated reports and business-specific modules built around your processes.",
-      "link": "services.html",
-      "image": "https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=600"
+      "link": "services.html"
     },
     {
       "icon": "📈",
+      "image": "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=600",
       "title": "CRM & Sales Automation",
       "text": "Lead management, pipeline stages, follow-ups, quotation workflow and full management visibility.",
-      "link": "services.html",
-      "image": "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=600"
+      "link": "services.html"
     },
     {
       "icon": "💰",
+      "image": "https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=600",
       "title": "Finance Dashboards",
       "text": "CFO dashboards, receivable tracking, margin reporting, VAT workflows and real-time KPI visibility.",
-      "link": "services.html",
-      "image": "https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=600"
+      "link": "services.html"
     },
     {
       "icon": "🌐",
+      "image": "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600",
       "title": "Custom Software & Websites",
       "text": "Professional business websites, portals, internal tools and web applications built for growth.",
-      "link": "services.html",
-      "image": "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600"
+      "link": "services.html"
     },
     {
       "icon": "🔧",
+      "image": "https://images.pexels.com/photos/3182781/pexels-photo-3182781.jpeg?auto=compress&cs=tinysrgb&w=600",
       "title": "IT Support & Digital Advisory",
       "text": "Process review, automation roadmaps, integration planning and long-term technology support.",
-      "link": "services.html",
-      "image": "https://images.pexels.com/photos/3182781/pexels-photo-3182781.jpeg?auto=compress&cs=tinysrgb&w=600"
+      "link": "services.html"
     }
   ],
   "why": {
@@ -109,45 +93,17 @@
     "text": "Our goal is to make technology simple, useful and measurable for management and operating teams.",
     "image": "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800",
     "points": [
-      {
-        "title": "Business-first approach",
-        "text": "We understand finance, controls, operations and management reporting — not only software screens."
-      },
-      {
-        "title": "Practical Odoo expertise",
-        "text": "We focus on the right configuration and customization for real workflows, not over-engineering."
-      },
-      {
-        "title": "Cost-effective delivery",
-        "text": "Open-source flexibility with professional implementation, training and long-term support."
-      },
-      {
-        "title": "Long-term partner",
-        "text": "We stay involved after launch for training, continuous improvements and optimization."
-      }
+      { "title": "Business-first approach", "text": "We understand finance, controls, operations and management reporting — not only software screens." },
+      { "title": "Practical Odoo expertise", "text": "We focus on the right configuration and customization for real workflows, not over-engineering." },
+      { "title": "Cost-effective delivery", "text": "Open-source flexibility with professional implementation, training and long-term support." },
+      { "title": "Long-term partner", "text": "We stay involved after launch for training, continuous improvements and optimization." }
     ]
   },
   "process": [
-    {
-      "step": "01",
-      "title": "Discover",
-      "text": "We study your current process, pain points, reports and required controls."
-    },
-    {
-      "step": "02",
-      "title": "Design",
-      "text": "We map the right Odoo modules, workflows, roles and dashboards for your needs."
-    },
-    {
-      "step": "03",
-      "title": "Implement",
-      "text": "We configure, customize, migrate data and test everything with your users."
-    },
-    {
-      "step": "04",
-      "title": "Train & Support",
-      "text": "We train your team and keep improving the system after go-live."
-    }
+    { "step": "01", "title": "Discover", "text": "We study your current process, pain points, reports and required controls." },
+    { "step": "02", "title": "Design", "text": "We map the right Odoo modules, workflows, roles and dashboards for your needs." },
+    { "step": "03", "title": "Implement", "text": "We configure, customize, migrate data and test everything with your users." },
+    { "step": "04", "title": "Train & Support", "text": "We train your team and keep improving the system after go-live." }
   ],
   "testimonials": [
     {
@@ -176,5 +132,18 @@
     "Professional Services",
     "Retail & E-commerce",
     "Finance & Operations"
-  ]
+  ],
+  "nav": {
+    "links": [
+      { "label": "Home", "url": "index.html" },
+      { "label": "About", "url": "about.html" },
+      { "label": "Services", "url": "services.html" },
+      { "label": "Odoo ERP", "url": "odoo.html" },
+      { "label": "Industries", "url": "industries.html" },
+      { "label": "Portfolio", "url": "portfolio.html" },
+      { "label": "Blog", "url": "blog.html" }
+    ],
+    "ctaLabel": "Contact Us",
+    "ctaLink": "contact.html"
+  }
 }
