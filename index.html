@@ -683,8 +683,8 @@ img{max-width:100%;display:block}
   </div>
 </footer>
 
-<!-- WHATSAPP -->
-<a class="whatsapp-float" href="contact.html" id="wa-btn" title="WhatsApp"><span class="wa-icon">☎</span><span>WhatsApp</span></a>
+<!-- PREMIUM WHATSAPP: enhanced by shared.js -->
+<a class="whatsapp-float" href="#" id="wa-btn" title="WhatsApp" aria-label="Open AimAze WhatsApp chat"><span class="wa-ring"></span><span class="wa-icon">💬</span><span class="wa-label">WhatsApp</span><small class="wa-mini-status">Online</small></a>
 
 <script>
 // ── LOAD CONTENT ──
@@ -834,10 +834,9 @@ function buildIndustries(industries){
 }
 
 function applyWhatsApp(site){
+  // Home page WhatsApp is controlled by shared.js premium live-chat system.
   const wa=document.getElementById('wa-btn');
-  if(site.whatsapp&&site.whatsapp!=='YOUR_WHATSAPP_NUMBER'){
-    wa.href='https://wa.me/'+site.whatsapp+'?text='+encodeURIComponent('Hello AimAze, I need information about Odoo ERP / software services.');
-  }
+  if(wa) wa.href='#';
 }
 
 // ── NAVBAR SCROLL ──
@@ -866,5 +865,6 @@ loadContent().then(()=>{
   setTimeout(revealEls,100);
 });
 </script>
+<script src="shared.js?v=13"></script>
 </body>
 </html>
