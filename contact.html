@@ -56,7 +56,12 @@
     <div class="contact-form reveal-left">
       <h2>Send an inquiry</h2>
       <p>We typically respond within a few hours on business days.</p>
-      <form id="contact-form">
+      <form id="contact-form" action="https://formsubmit.co/info@aimazetechsolutions.com" method="POST" data-netlify="true" name="AimAze Website Inquiry">
+        <input type="hidden" name="_subject" value="New Website Inquiry - AimAze Tech Solutions">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_next" value="https://aimazetechsolutions.com/thank-you.html">
+        <input type="hidden" name="form-name" value="AimAze Website Inquiry">
         <div class="form-grid">
           <div class="form-group"><label>Your Name *</label><input type="text" name="name" placeholder="John Smith" required></div>
           <div class="form-group"><label>Email *</label><input type="email" name="email" placeholder="you@company.com" required></div>

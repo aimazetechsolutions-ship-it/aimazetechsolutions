@@ -739,12 +739,22 @@ function applyHero(h){
     // Support custom YouTube video ID or full YouTube URL
     const iframe=document.getElementById('hero-yt');
     if(iframe){
-      let vid=h.videoUrl;
-      // Extract video ID if full URL given
-      const m=vid.match(/(?:v=|youtu\.be\/)([^&\s]+)/);
-      if(m)vid=m[1];
-      // Only update if it looks like a YouTube ID (11 chars) not a file path
-      if(vid&&vid.length===11&&!vid.includes('/')){
+      let raw=String(h.videoUrl||'').trim();
+      let vid=null;
+      if(/^[A-Za-z0-9_-]{11}$/.test(raw)){
+        vid=raw;
+      }else{
+        const patterns=[
+          /youtube\.com\/embed\/([A-Za-z0-9_-]{11})/,
+          /youtube\.com\/watch\?[^"'<>]*v=([A-Za-z0-9_-]{11})/,
+          /youtu\.be\/([A-Za-z0-9_-]{11})/,
+          /youtube\.com\/shorts\/([A-Za-z0-9_-]{11})/,
+          /playlist=([A-Za-z0-9_-]{11})/,
+          /src=["'][^"']*\/embed\/([A-Za-z0-9_-]{11})/
+        ];
+        for(const re of patterns){const m=raw.match(re);if(m&&m[1]){vid=m[1];break;}}
+      }
+      if(vid){
         iframe.src=`https://www.youtube.com/embed/${vid}?autoplay=1&mute=1&loop=1&playlist=${vid}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1`;
       }
     }

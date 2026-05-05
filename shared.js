@@ -115,13 +115,36 @@
   }
 
   // ── PAGE HERO VIDEO ──
-  // Detect current page name e.g. "about" from "about.html"
-  const pageName=location.pathname.split('/').pop().replace('.html','').toLowerCase()||'index';
+  // Accepts YouTube video IDs, normal URLs, Shorts URLs, embed URLs, or pasted iframe embed code.
+  function extractYouTubeId(input){
+    if(!input)return null;
+    const str=String(input).trim();
+    if(/^[A-Za-z0-9_-]{11}$/.test(str))return str;
 
-  // Pick video: use page-specific ID if set, else fall back to hero video ID
-  const isValidId=id=>id&&id.length===11&&!id.includes('/');
-  const pageVideoId=isValidId(pageVideos[pageName])?pageVideos[pageName]:null;
-  const heroVideoId=isValidId(hero.videoUrl)?hero.videoUrl:'SZEflIVnhH8';
+    const patterns=[
+      /youtube\.com\/embed\/([A-Za-z0-9_-]{11})/,
+      /youtube\.com\/watch\?[^"'<>]*v=([A-Za-z0-9_-]{11})/,
+      /youtu\.be\/([A-Za-z0-9_-]{11})/,
+      /youtube\.com\/shorts\/([A-Za-z0-9_-]{11})/,
+      /playlist=([A-Za-z0-9_-]{11})/,
+      /src=["'][^"']*\/embed\/([A-Za-z0-9_-]{11})/
+    ];
+    for(const re of patterns){
+      const m=str.match(re);
+      if(m&&m[1])return m[1];
+    }
+    return null;
+  }
+
+  // Detect current page name e.g. "about" from "about.html"
+  let pageName=location.pathname.split('/').pop().replace('.html','').toLowerCase();
+  if(!pageName||pageName==='index')pageName='home';
+
+  // Pick video: home uses hero.videoUrl; other pages use pageVideos[pageName].
+  // If a page-specific value is missing/invalid, it falls back to the home hero video.
+  const defaultHomeVideo='QyhwSYhX09s';
+  const heroVideoId=extractYouTubeId(hero.videoUrl)||defaultHomeVideo;
+  const pageVideoId=extractYouTubeId(pageVideos[pageName]);
   const videoId=pageVideoId||heroVideoId;
   const showVideo=hero.showVideo!==false;
 
@@ -131,7 +154,7 @@
     pageHero.innerHTML='';
 
     // 1 — YouTube video layer
-    if(showVideo){
+    if(showVideo&&videoId){
       const vdiv=document.createElement('div');
       vdiv.className='page-hero-video';
       vdiv.innerHTML=`<iframe
