@@ -73,29 +73,46 @@
     }catch(e){return true;}
   }
 
+  function injectWhatsappStyles(){
+    if(document.getElementById('aimaze-wa-v15-style')) return;
+    const st=document.createElement('style');
+    st.id='aimaze-wa-v15-style';
+    st.textContent=`
+      .whatsapp-float{position:fixed!important;right:24px!important;bottom:24px!important;z-index:99999!important;width:68px!important;height:68px!important;min-width:68px!important;max-width:68px!important;padding:0!important;border-radius:50%!important;background:radial-gradient(circle at 35% 28%,#45f38a 0%,#25d366 42%,#128c7e 100%)!important;color:#fff!important;display:flex!important;align-items:center!important;justify-content:center!important;box-shadow:0 22px 55px rgba(18,140,126,.38),0 8px 18px rgba(0,0,0,.16)!important;text-decoration:none!important;overflow:visible!important;animation:waRoundFloat 2.8s ease-in-out infinite!important;border:none!important;cursor:pointer!important}
+      .whatsapp-float:before{content:''!important;position:absolute!important;inset:-9px!important;border-radius:50%!important;border:2px solid rgba(37,211,102,.42)!important;animation:waRoundPulse 2.2s ease-out infinite!important;pointer-events:none!important}
+      .whatsapp-float:after{content:''!important;position:absolute!important;right:8px!important;top:8px!important;width:13px!important;height:13px!important;background:#22c55e!important;border:3px solid #fff!important;border-radius:50%!important;box-shadow:0 0 0 5px rgba(34,197,94,.18)!important}
+      .whatsapp-float .wa-icon{width:42px!important;height:42px!important;border-radius:50%!important;background:rgba(255,255,255,.96)!important;color:#12a85d!important;display:flex!important;align-items:center!important;justify-content:center!important;font-size:22px!important;line-height:1!important;box-shadow:0 8px 18px rgba(0,0,0,.14)!important}
+      .whatsapp-float .wa-icon svg{display:block!important}.whatsapp-float .wa-label,.whatsapp-float .wa-mini-status,.whatsapp-float .wa-ring,.whatsapp-float span:not(.wa-icon){display:none!important}.whatsapp-float:hover{transform:translateY(-5px) scale(1.07)!important;box-shadow:0 30px 75px rgba(18,140,126,.5),0 12px 24px rgba(0,0,0,.2)!important}
+      @keyframes waRoundFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}@keyframes waRoundPulse{0%{transform:scale(.9);opacity:.75}70%{transform:scale(1.45);opacity:0}100%{opacity:0}}
+      .wa-chat-popup{position:fixed!important;right:24px!important;bottom:104px!important;width:min(360px,calc(100vw - 32px))!important;background:#fff!important;border-radius:24px!important;box-shadow:0 30px 90px rgba(15,23,42,.28)!important;z-index:99998!important;overflow:hidden!important;opacity:0!important;transform:translateY(18px) scale(.96)!important;pointer-events:none!important;transition:.28s ease!important;border:1px solid rgba(15,23,42,.08)!important}.wa-chat-popup.open{opacity:1!important;transform:translateY(0) scale(1)!important;pointer-events:auto!important}
+      @media(max-width:640px){.whatsapp-float{right:16px!important;bottom:16px!important;width:62px!important;height:62px!important;min-width:62px!important;max-width:62px!important}.whatsapp-float .wa-icon{width:38px!important;height:38px!important}.wa-chat-popup{right:16px!important;bottom:94px!important;width:calc(100vw - 32px)!important}}
+    `;
+    document.head.appendChild(st);
+  }
+
   function ensureWhatsappChat(){
+    injectWhatsappStyles();
+    document.querySelectorAll('.whatsapp-float').forEach((el)=>{ if(el.id!=='wa-btn') el.remove(); });
     let float=document.getElementById('wa-btn');
     if(!float){
       float=document.createElement('a');
       float.id='wa-btn';
-      float.className='whatsapp-float';
       document.body.appendChild(float);
     }
+    float.className='whatsapp-float';
     float.href='#';
     float.innerHTML=`<span class="wa-icon" aria-hidden="true"><svg viewBox="0 0 32 32" width="24" height="24"><path fill="currentColor" d="M16 .5C7.5.5.7 7.3.7 15.7c0 2.7.7 5.2 2 7.4L.4 31.5l8.7-2.2c2.1 1.1 4.5 1.7 6.9 1.7 8.5 0 15.3-6.8 15.3-15.3S24.5.5 16 .5zm0 27.6c-2.3 0-4.6-.6-6.6-1.8l-.5-.3-5.2 1.3 1.4-5.1-.3-.5c-1.2-2-1.9-4.3-1.9-6.7C2.9 7.8 8.8 1.9 16 1.9s13.1 5.9 13.1 13.1S23.2 28.1 16 28.1zm7.2-9.7c-.4-.2-2.3-1.1-2.6-1.3-.3-.1-.5-.2-.7.2-.2.4-.8 1.3-1 1.5-.2.2-.4.3-.8.1-.4-.2-1.6-.6-3.1-2-.8-.7-1.4-1.6-1.6-1.9-.2-.4 0-.6.2-.8.2-.2.4-.5.6-.7.2-.2.3-.4.4-.6.1-.2 0-.5 0-.7 0-.2-.7-1.8-1-2.5-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.1-.9.5-.3.4-1.2 1.1-1.2 2.7s1.2 3.1 1.4 3.3c.2.2 2.3 3.6 5.6 5 .8.4 1.5.6 2 .8.8.2 1.5.2 2.1.1.6-.1 2.3-.9 2.6-1.7.3-.8.3-1.5.2-1.7-.1-.2-.3-.3-.7-.5z"/></svg></span><span class="wa-label">WhatsApp</span><small class="wa-mini-status">Online</small>`;
     float.setAttribute('aria-label','Open AimAze WhatsApp chat');
 
-    if(!document.getElementById('wa-chat-popup')){
-      const popup=document.createElement('div');
+    let popup=document.getElementById('wa-chat-popup');
+    if(!popup){
+      popup=document.createElement('div');
       popup.id='wa-chat-popup';
       popup.className='wa-chat-popup';
       popup.innerHTML=`
         <div class="wa-chat-head">
           <div class="wa-avatar">A</div>
-          <div>
-            <strong>AimAze Tech Solutions</strong>
-            <p id="wa-status-line"><span class="status-dot"></span><span id="wa-status-text">Online now</span></p>
-          </div>
+          <div><strong>AimAze Tech Solutions</strong><p id="wa-status-line"><span class="status-dot"></span><span id="wa-status-text">Online now</span></p></div>
           <button type="button" id="wa-close" aria-label="Close WhatsApp chat">×</button>
         </div>
         <div class="wa-chat-body">
@@ -110,7 +127,6 @@
       document.body.appendChild(popup);
     }
 
-    const popup=document.getElementById('wa-chat-popup');
     const statusText=document.getElementById('wa-status-text');
     const statusLine=document.getElementById('wa-status-line');
     const start=document.getElementById('wa-start-chat');
@@ -121,37 +137,22 @@
     const mini=float.querySelector('.wa-mini-status');
     if(mini) mini.textContent=online?'Online':'Offline';
     if(start){
-      if(waNumber){
-        start.href=waUrl;
-        start.target='_blank';
-        start.rel='noopener';
-        start.textContent='Start WhatsApp Chat';
-      }else{
-        start.href='contact.html';
-        start.removeAttribute('target');
-        start.textContent='WhatsApp activating soon — use inquiry form';
-      }
-      start.addEventListener('click',()=>trackEvent('whatsapp_popup_cta',waNumber?'whatsapp':'contact_form'));
+      if(waNumber){ start.href=waUrl; start.target='_blank'; start.rel='noopener'; start.textContent='Start WhatsApp Chat'; }
+      else { start.href='contact.html'; start.removeAttribute('target'); start.textContent='WhatsApp activating soon — use inquiry form'; }
     }
-    float.onclick=(e)=>{
+    float.onclick=null;
+    float.addEventListener('click',function(e){
       e.preventDefault();
       trackEvent('whatsapp_popup_open','floating_button');
       popup.classList.add('open');
       return false;
-    };
-    if(close){
-      close.addEventListener('click',()=>popup.classList.remove('open'));
-    }
+    });
+    if(close){ close.onclick=()=>popup.classList.remove('open'); }
     document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') popup.classList.remove('open'); });
-
     const direct=document.getElementById('wa-direct');
     if(direct){
       direct.href='#';
-      direct.addEventListener('click',(e)=>{
-        e.preventDefault();
-        trackEvent('whatsapp_popup_open','contact_page_card');
-        popup.classList.add('open');
-      });
+      direct.onclick=(e)=>{e.preventDefault();trackEvent('whatsapp_popup_open','contact_page_card');popup.classList.add('open');};
     }
   }
   ensureWhatsappChat();
