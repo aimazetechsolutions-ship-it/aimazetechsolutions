@@ -10,7 +10,7 @@ IMPORTANT: FormSubmit requires one-time activation. Submit one test inquiry afte
 2) WhatsApp
 - Rebuilt the floating WhatsApp button as an animated UAE-style pill button.
 - WhatsApp number is set in content.json under site.whatsapp.
-- Current value used: 971509768147. Change it if required.
+- Current value used: [WhatsApp number removed]. Change it if required.
 
 3) Phone
-- Current phone display: +971 50 976 8147. Change content.json if this is not the final company number.
+- Current phone display: [phone display removed]. Change content.json if this is not the final company number.

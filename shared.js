@@ -48,8 +48,8 @@
       `<a class="nav-cta" href="${nav.ctaLink||'contact.html'}">${nav.ctaLabel||'Contact Us'}</a>`;
   }
 
-  // ── WHATSAPP + BASIC CALL/LEAD TRACKING ──
-  const waMessage='Hello AimAze, I need Odoo ERP / software consultation for my business.';
+  // ── PREMIUM WHATSAPP LIVE CHAT + TRACKING ──
+  const waMessage='Hello AimAze, I need ERP / software consultation for my business.';
   function trackEvent(type, detail){
     try{
       const key='aimaze_lead_events';
@@ -60,12 +60,101 @@
   }
   window.aimazeTrackEvent=trackEvent;
 
-  const wa=document.getElementById('wa-btn');
-  const waDirect=document.getElementById('wa-direct');
   const waNumber=((site.whatsapp||'')+'').replace(/\D/g,'');
-  const waUrl='https://wa.me/'+waNumber+'?text='+encodeURIComponent(waMessage);
-  if(wa){wa.href=waUrl; wa.target='_blank'; wa.rel='noopener'; wa.setAttribute('aria-label','Chat with AimAze on WhatsApp'); wa.addEventListener('click',()=>trackEvent('whatsapp_click','floating_button'));}
-  if(waDirect){waDirect.href=waUrl; wa.target='_blank'; wa.rel='noopener'; wa.addEventListener('click',()=>trackEvent('whatsapp_click','contact_page'));}
+  const waUrl=waNumber ? ('https://wa.me/'+waNumber+'?text='+encodeURIComponent(waMessage)) : '';
+
+  function isAimazeOnline(){
+    try{
+      const parts=new Intl.DateTimeFormat('en-US',{timeZone:'Asia/Dubai',weekday:'short',hour:'2-digit',hour12:false}).formatToParts(new Date());
+      const day=(parts.find(p=>p.type==='weekday')||{}).value;
+      const hour=parseInt((parts.find(p=>p.type==='hour')||{}).value,10);
+      const workingDay=!['Sat','Sun'].includes(day);
+      return workingDay && hour>=9 && hour<18;
+    }catch(e){return true;}
+  }
+
+  function ensureWhatsappChat(){
+    let float=document.getElementById('wa-btn');
+    if(!float){
+      float=document.createElement('a');
+      float.id='wa-btn';
+      float.className='whatsapp-float';
+      document.body.appendChild(float);
+    }
+    float.href='#';
+    float.innerHTML=`<span class="wa-ring"></span><span class="wa-icon">💬</span><span class="wa-label">WhatsApp</span><small class="wa-mini-status">Online</small>`;
+    float.setAttribute('aria-label','Open AimAze WhatsApp chat');
+
+    if(!document.getElementById('wa-chat-popup')){
+      const popup=document.createElement('div');
+      popup.id='wa-chat-popup';
+      popup.className='wa-chat-popup';
+      popup.innerHTML=`
+        <div class="wa-chat-head">
+          <div class="wa-avatar">A</div>
+          <div>
+            <strong>AimAze Tech Solutions</strong>
+            <p id="wa-status-line"><span class="status-dot"></span><span id="wa-status-text">Online now</span></p>
+          </div>
+          <button type="button" id="wa-close" aria-label="Close WhatsApp chat">×</button>
+        </div>
+        <div class="wa-chat-body">
+          <div class="wa-msg wa-msg-in">Hello 👋</div>
+          <div class="wa-msg wa-msg-in">How can we help with Odoo ERP, automation, dashboards or website development?</div>
+          <div class="wa-typing" aria-label="Typing"><span></span><span></span><span></span></div>
+        </div>
+        <div class="wa-chat-actions">
+          <a href="${waUrl || 'contact.html'}" id="wa-start-chat" class="wa-start-chat">Start WhatsApp Chat</a>
+          <a href="contact.html" class="wa-secondary-chat">Send Inquiry Form</a>
+        </div>`;
+      document.body.appendChild(popup);
+    }
+
+    const popup=document.getElementById('wa-chat-popup');
+    const statusText=document.getElementById('wa-status-text');
+    const statusLine=document.getElementById('wa-status-line');
+    const start=document.getElementById('wa-start-chat');
+    const close=document.getElementById('wa-close');
+    const online=isAimazeOnline();
+    if(statusText) statusText.textContent=online?'Online now · UAE business hours':'Offline now · Leave a message';
+    if(statusLine) statusLine.classList.toggle('is-offline',!online);
+    const mini=float.querySelector('.wa-mini-status');
+    if(mini) mini.textContent=online?'Online':'Offline';
+    if(start){
+      if(waNumber){
+        start.href=waUrl;
+        start.target='_blank';
+        start.rel='noopener';
+        start.textContent='Start WhatsApp Chat';
+      }else{
+        start.href='contact.html';
+        start.removeAttribute('target');
+        start.textContent='WhatsApp activating soon — use inquiry form';
+      }
+      start.addEventListener('click',()=>trackEvent('whatsapp_popup_cta',waNumber?'whatsapp':'contact_form'));
+    }
+    float.addEventListener('click',(e)=>{
+      e.preventDefault();
+      trackEvent('whatsapp_popup_open','floating_button');
+      popup.classList.add('open');
+    });
+    if(close){
+      close.addEventListener('click',()=>popup.classList.remove('open'));
+    }
+    document.addEventListener('keydown',(e)=>{ if(e.key==='Escape') popup.classList.remove('open'); });
+
+    const direct=document.getElementById('wa-direct');
+    if(direct){
+      direct.href='#';
+      direct.addEventListener('click',(e)=>{
+        e.preventDefault();
+        trackEvent('whatsapp_popup_open','contact_page_card');
+        popup.classList.add('open');
+      });
+    }
+  }
+  ensureWhatsappChat();
+
   document.querySelectorAll('a[href^="tel:"]').forEach(a=>a.addEventListener('click',()=>trackEvent('call_click',a.getAttribute('href'))));
   document.querySelectorAll('a[href="contact.html"], .nav-cta, .btn-primary').forEach(a=>a.addEventListener('click',()=>trackEvent('cta_click',a.textContent.trim())));
 
