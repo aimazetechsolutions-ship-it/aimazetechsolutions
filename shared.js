@@ -10,6 +10,7 @@
   const theme=c.theme||{};
   const nav=c.nav||{};
   const hero=c.hero||{};
+  const pageVideos=c.pageVideos||{};
 
   // ── APPLY THEME ──
   const root=document.documentElement.style;
@@ -34,8 +35,12 @@
   // ── TOPBAR ──
   const topbar=document.getElementById('topbar');
   if(topbar){
-    topbar.innerHTML=`<span>${site.tagline||'UAE + International ERP, software and digital transformation partner'}</span>
-    <a href="contact.html">Book free process analysis</a>`;
+    if(site.showTopbar===false){
+      topbar.style.display='none';
+    } else {
+      topbar.innerHTML=`<span>${site.tagline||''}</span>
+      <a href="contact.html">Book free process analysis</a>`;
+    }
   }
 
   // ── NAV ──
@@ -101,15 +106,18 @@
   }
 
   // ── PAGE HERO VIDEO ──
-  // Automatically injects YouTube video into any .page-hero on inner pages
+  // Detect current page name e.g. "about" from "about.html"
+  const pageName=location.pathname.split('/').pop().replace('.html','').toLowerCase()||'index';
+
+  // Pick video: use page-specific ID if set, else fall back to hero video ID
+  const isValidId=id=>id&&id.length===11&&!id.includes('/');
+  const pageVideoId=isValidId(pageVideos[pageName])?pageVideos[pageName]:null;
+  const heroVideoId=isValidId(hero.videoUrl)?hero.videoUrl:'SZEflIVnhH8';
+  const videoId=pageVideoId||heroVideoId;
+  const showVideo=hero.showVideo!==false;
+
   const pageHero=document.querySelector('.page-hero');
   if(pageHero){
-    const videoId=
-      hero.videoUrl&&hero.videoUrl.length===11&&!hero.videoUrl.includes('/')?
-      hero.videoUrl:'SZEflIVnhH8';
-    const showVideo=hero.showVideo!==false;
-
-    // Save existing content
     const existingHTML=pageHero.innerHTML;
     pageHero.innerHTML='';
 
@@ -125,12 +133,12 @@
       pageHero.appendChild(vdiv);
     }
 
-    // 2 — Light overlay so text stays readable
+    // 2 — Subtle overlay
     const overlay=document.createElement('div');
     overlay.className='page-hero-overlay';
     pageHero.appendChild(overlay);
 
-    // 3 — Content (on top)
+    // 3 — Content on top
     const contentWrap=document.createElement('div');
     contentWrap.className='page-hero-content';
     contentWrap.innerHTML=existingHTML;

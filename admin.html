@@ -558,6 +558,30 @@ body{font-family:'Inter',sans-serif;background:#0f1117;color:#e2e8f0;min-height:
             <div class="form-group"><label>WhatsApp Number (e.g. 971501234567)</label><input type="text" id="site-whatsapp"></div>
             <div class="form-group"><label>Address</label><input type="text" id="site-address"></div>
           </div>
+          <div class="toggle-wrap" style="margin-top:16px">
+            <label class="toggle"><input type="checkbox" id="site-show-topbar"><span class="toggle-slider"></span></label>
+            <span class="toggle-label">Show top announcement bar</span>
+          </div>
+        </div>
+        <div class="panel-section">
+          <h3>🎬 Page Background Videos</h3>
+          <p style="color:#718096;font-size:13px;margin-bottom:20px">Set a different YouTube video ID for each page hero. Leave blank to use the same video as the homepage.</p>
+          <div class="form-row">
+            <div class="form-group"><label>About Page</label><input type="text" id="pv-about" placeholder="11-char YouTube ID"></div>
+            <div class="form-group"><label>Services Page</label><input type="text" id="pv-services" placeholder="11-char YouTube ID"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Odoo ERP Page</label><input type="text" id="pv-odoo" placeholder="11-char YouTube ID"></div>
+            <div class="form-group"><label>Industries Page</label><input type="text" id="pv-industries" placeholder="11-char YouTube ID"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Portfolio Page</label><input type="text" id="pv-portfolio" placeholder="11-char YouTube ID"></div>
+            <div class="form-group"><label>Blog Page</label><input type="text" id="pv-blog" placeholder="11-char YouTube ID"></div>
+          </div>
+          <div class="form-row single">
+            <div class="form-group"><label>Contact Page</label><input type="text" id="pv-contact" placeholder="11-char YouTube ID"></div>
+          </div>
+          <p style="color:#4a5568;font-size:12px;margin-top:8px">To find a YouTube ID: go to any YouTube video → copy the code after <strong>?v=</strong> in the URL (11 characters).</p>
         </div>
       </div>
 
@@ -712,6 +736,17 @@ function populateForms(){
   document.getElementById('site-phone').value=s.phone||'';
   document.getElementById('site-whatsapp').value=s.whatsapp||'';
   document.getElementById('site-address').value=s.address||'';
+  document.getElementById('site-show-topbar').checked=s.showTopbar!==false&&s.showTopbar!==undefined?true:false;
+
+  // Page videos
+  const pv=content.pageVideos||{};
+  document.getElementById('pv-about').value=pv.about||'';
+  document.getElementById('pv-services').value=pv.services||'';
+  document.getElementById('pv-odoo').value=pv.odoo||'';
+  document.getElementById('pv-industries').value=pv.industries||'';
+  document.getElementById('pv-portfolio').value=pv.portfolio||'';
+  document.getElementById('pv-blog').value=pv.blog||'';
+  document.getElementById('pv-contact').value=pv.contact||'';
 }
 
 // ── COLOR HELPERS ──
@@ -879,6 +914,16 @@ function collectContent(){
       phone:document.getElementById('site-phone').value,
       whatsapp:document.getElementById('site-whatsapp').value,
       address:document.getElementById('site-address').value,
+      showTopbar:document.getElementById('site-show-topbar').checked,
+    },
+    pageVideos:{
+      about:document.getElementById('pv-about').value,
+      services:document.getElementById('pv-services').value,
+      odoo:document.getElementById('pv-odoo').value,
+      industries:document.getElementById('pv-industries').value,
+      portfolio:document.getElementById('pv-portfolio').value,
+      blog:document.getElementById('pv-blog').value,
+      contact:document.getElementById('pv-contact').value,
     },
     theme:{
       primaryColor:document.getElementById('color-primary-text').value,
