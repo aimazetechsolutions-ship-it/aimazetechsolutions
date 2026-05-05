@@ -143,3 +143,6 @@ img{max-width:100%;display:block}
   .cta-banner{flex-direction:column;text-align:center}
 }
 @media(max-width:620px){.grid-2,.grid-3,.grid-4,.footer-grid{grid-template-columns:1fr}.page-hero h1{font-size:36px}}
+
+/* Enterprise upgrade */
+.trust-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:24px clamp(20px,6vw,90px);background:#f8fcfd;border-bottom:1px solid #e8f0f7}.trust-item{padding:18px;border-radius:16px;background:#fff;border:1px solid #e8f0f7;font-weight:800;color:#344154;text-align:center}.enterprise-note{padding:18px 22px;border-radius:18px;background:linear-gradient(135deg,rgba(39,199,215,.08),rgba(63,131,223,.08));border:1px solid rgba(39,199,215,.18);color:#344154}.security-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 13px;border-radius:999px;background:rgba(39,199,215,.12);color:var(--secondary);font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em}@media(max-width:900px){.trust-strip{grid-template-columns:1fr 1fr}}@media(max-width:620px){.trust-strip{grid-template-columns:1fr}}

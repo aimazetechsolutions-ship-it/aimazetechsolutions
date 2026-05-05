@@ -111,25 +111,6 @@
 <footer class="footer" id="footer"><div id="footer-inner"></div></footer>
 <a class="whatsapp-float" href="contact.html" id="wa-btn">💬</a>
 <script src="shared.js"></script>
-<script>
-document.getElementById('contact-form').addEventListener('submit',function(e){
-  e.preventDefault();
-  const f=new FormData(e.target);
-  const subject='Website Inquiry - '+(f.get('service')||'General');
-  const body=[
-    'Name: '+f.get('name'),
-    'Email: '+f.get('email'),
-    'Phone: '+f.get('phone'),
-    'Company: '+f.get('company'),
-    'Service: '+f.get('service'),
-    '',
-    f.get('message')
-  ].join('\n');
-  location.href='mailto:info@aimazetechsolutions.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
-  const s=document.getElementById('form-status');
-  s.style.display='block';s.style.color='#27c7d7';
-  s.textContent='✓ Opening your email client... We look forward to hearing from you!';
-});
-</script>
+<script src="lead-capture.js"></script>
 </body>
 </html>
