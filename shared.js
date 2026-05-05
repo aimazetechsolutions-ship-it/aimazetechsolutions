@@ -249,23 +249,30 @@
   function isVideoFile(str){return /\.(mp4|webm|mov)(\?|#|$)/i.test(String(str||''));}
   function resolveHeroVideo(value, fallback){
     const out={mp4:'', webm:'', poster:'', youtube:''};
-    const add=(v)=>{
+    const add=(v, allowOverride=false)=>{
       if(!v)return;
       if(typeof v==='object'){
-        out.mp4=v.mp4||v.videoMp4||out.mp4;
-        out.webm=v.webm||v.videoWebm||out.webm;
-        out.poster=v.poster||v.videoPoster||out.poster;
-        out.youtube=v.youtube||v.youtubeId||out.youtube;
-        if(v.url||v.videoUrl)add(v.url||v.videoUrl);
+        const mp4=v.mp4||v.videoMp4||'';
+        const webm=v.webm||v.videoWebm||'';
+        const poster=v.poster||v.videoPoster||'';
+        const youtube=v.youtube||v.youtubeId||'';
+        if(mp4 && (allowOverride || !out.mp4))out.mp4=mp4;
+        if(webm && (allowOverride || !out.webm))out.webm=webm;
+        if(poster && (allowOverride || !out.poster))out.poster=poster;
+        if(youtube && (allowOverride || !out.youtube))out.youtube=youtube;
+        if(v.url||v.videoUrl)add(v.url||v.videoUrl, allowOverride);
         return;
       }
       const str=String(v).trim();
       if(!str)return;
-      if(/\.webm(\?|#|$)/i.test(str))out.webm=str;
-      else if(isVideoFile(str))out.mp4=str;
-      else out.youtube=extractYouTubeId(str)||out.youtube;
+      if(/\.webm(\?|#|$)/i.test(str)){ if(allowOverride || !out.webm)out.webm=str; }
+      else if(isVideoFile(str)){ if(allowOverride || !out.mp4)out.mp4=str; }
+      else { const yt=extractYouTubeId(str); if(yt && (allowOverride || !out.youtube))out.youtube=yt; }
     };
-    add(value); add(fallback);
+    // Important: add the home fallback first, then override it with the current page video.
+    // Earlier versions added fallback last, causing home.mp4 to play on every page.
+    add(fallback);
+    add(value, true);
     return out;
   }
 

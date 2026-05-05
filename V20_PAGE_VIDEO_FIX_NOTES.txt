@@ -1,0 +1,27 @@
+V20 FIX - Page-specific MP4 videos
+
+Issue fixed:
+- Same home video was playing on every page.
+
+Cause:
+- shared.js was loading the selected page video first, but then adding the homepage fallback last.
+- Because fallback contained assets/videos/home.mp4, it overwrote about.mp4, services.mp4, odoo.mp4, etc.
+
+Fix:
+- shared.js now loads homepage fallback first and then overrides it with the current page video.
+- Script cache version updated to shared.js?v=20.
+
+Required file names in assets/videos/:
+- home.mp4
+- about.mp4
+- services.mp4
+- odoo.mp4
+- industries.mp4
+- portfolio.mp4
+- blog.mp4
+- contact.mp4
+
+After deployment:
+1. Push/upload all files including shared.js and content.json.
+2. Clear deploy cache if using Netlify.
+3. Hard refresh each page with Ctrl + Shift + R.
