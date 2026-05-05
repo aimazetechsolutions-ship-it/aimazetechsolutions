@@ -233,3 +233,9 @@ img{max-width:100%;display:block}
 @keyframes waRoundFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 @keyframes waRoundPulse{0%{transform:scale(.9);opacity:.75}70%{transform:scale(1.45);opacity:0}100%{opacity:0}}
 @media(max-width:640px){.whatsapp-float{right:16px!important;bottom:16px!important;width:62px!important;height:62px!important;min-width:62px!important;max-width:62px!important}.whatsapp-float .wa-icon{width:38px!important;height:38px!important}.wa-chat-popup{right:16px!important;bottom:94px!important;width:calc(100vw - 32px)!important}}
+
+
+/* V18 PREMIUM MP4 VIDEO BACKGROUNDS */
+.hero-video video,.page-hero-video video{position:absolute!important;top:50%!important;left:50%!important;width:100%!important;height:100%!important;object-fit:cover!important;transform:translate(-50%,-50%)!important;border:0!important;opacity:.9!important}
+.page-hero-video iframe{display:none!important}
+.hero-video iframe{display:none!important}

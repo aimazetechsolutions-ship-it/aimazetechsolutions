@@ -39,18 +39,54 @@
     "primaryCtaLink": "contact.html",
     "secondaryCta": "View Enterprise Services",
     "secondaryCtaLink": "odoo.html",
-    "videoUrl": "QyhwSYhX09s",
-    "showVideo": true
+    "videoUrl": "assets/videos/home.mp4",
+    "showVideo": true,
+    "videoMp4": "assets/videos/home.mp4",
+    "videoWebm": "",
+    "videoPoster": "assets/videos/home-poster.jpg"
   },
   "pageVideos": {
-    "note": "YouTube video ID for each page hero. 11-character ID from youtube.com/watch?v=XXXXXXXXXXX",
-    "about": "wAmbDCJocJM",
-    "services": "PfxLRA2bJ3A",
-    "odoo": "ZJthWmU3oPk",
-    "industries": "hVimVzgtD6w",
-    "portfolio": "dGcsHMXbSOA",
-    "blog": "ZJthWmU3oPk",
-    "contact": "SZEflIVnhH8"
+    "note": "Premium MP4 background videos. Upload optimized videos to assets/videos/. You may also use a full https MP4 URL. YouTube still works as fallback only.",
+    "home": {
+      "mp4": "assets/videos/home.mp4",
+      "webm": "",
+      "poster": "assets/videos/home-poster.jpg"
+    },
+    "about": {
+      "mp4": "assets/videos/about.mp4",
+      "webm": "",
+      "poster": "assets/videos/about-poster.jpg"
+    },
+    "services": {
+      "mp4": "assets/videos/services.mp4",
+      "webm": "",
+      "poster": "assets/videos/services-poster.jpg"
+    },
+    "odoo": {
+      "mp4": "assets/videos/odoo.mp4",
+      "webm": "",
+      "poster": "assets/videos/odoo-poster.jpg"
+    },
+    "industries": {
+      "mp4": "assets/videos/industries.mp4",
+      "webm": "",
+      "poster": "assets/videos/industries-poster.jpg"
+    },
+    "portfolio": {
+      "mp4": "assets/videos/portfolio.mp4",
+      "webm": "",
+      "poster": "assets/videos/portfolio-poster.jpg"
+    },
+    "blog": {
+      "mp4": "assets/videos/blog.mp4",
+      "webm": "",
+      "poster": "assets/videos/blog-poster.jpg"
+    },
+    "contact": {
+      "mp4": "assets/videos/contact.mp4",
+      "webm": "",
+      "poster": "assets/videos/contact-poster.jpg"
+    }
   },
   "stats": [
     {
@@ -76,42 +112,42 @@
   ],
   "services": [
     {
-      "icon": "📊",
+      "icon": "\ud83d\udcca",
       "image": "https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=600",
       "title": "Odoo ERP Implementation",
       "text": "Module planning, configuration, migration, training and go-live support for CRM, sales, finance, HR, inventory and operations.",
       "link": "odoo.html"
     },
     {
-      "icon": "⚙️",
+      "icon": "\u2699\ufe0f",
       "image": "https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=600",
       "title": "Odoo Customization",
       "text": "Custom workflows, dashboards, approvals, automated reports and business-specific modules built around your processes.",
       "link": "services.html"
     },
     {
-      "icon": "📈",
+      "icon": "\ud83d\udcc8",
       "image": "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=600",
       "title": "CRM & Sales Automation",
       "text": "Lead management, pipeline stages, follow-ups, quotation workflow and full management visibility.",
       "link": "services.html"
     },
     {
-      "icon": "💰",
+      "icon": "\ud83d\udcb0",
       "image": "https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=600",
       "title": "Finance Dashboards",
       "text": "CFO dashboards, receivable tracking, margin reporting, VAT workflows and real-time KPI visibility.",
       "link": "services.html"
     },
     {
-      "icon": "🌐",
+      "icon": "\ud83c\udf10",
       "image": "https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=600",
       "title": "Custom Software & Websites",
       "text": "Professional business websites, portals, internal tools and web applications built for growth.",
       "link": "services.html"
     },
     {
-      "icon": "🔧",
+      "icon": "\ud83d\udd27",
       "image": "https://images.pexels.com/photos/3182781/pexels-photo-3182781.jpeg?auto=compress&cs=tinysrgb&w=600",
       "title": "IT Support & Digital Advisory",
       "text": "Process review, automation roadmaps, integration planning and long-term technology support.",
@@ -120,7 +156,7 @@
   ],
   "why": {
     "heading": "Built for control, adoption and measurable business results.",
-    "text": "We combine ERP implementation with finance, operations and management reporting expertise, so the system is not only installed — it is used, controlled and improved after go-live.",
+    "text": "We combine ERP implementation with finance, operations and management reporting expertise, so the system is not only installed \u2014 it is used, controlled and improved after go-live.",
     "image": "https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800",
     "points": [
       {

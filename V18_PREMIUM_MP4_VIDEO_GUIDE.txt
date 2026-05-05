@@ -1,0 +1,55 @@
+AimAze Tech Solutions — V18 Premium MP4 Background Video Setup
+
+WHAT CHANGED
+- All pages now support premium self-hosted MP4/WebM video backgrounds.
+- YouTube is no longer required.
+- Home page and inner page heroes use <video autoplay muted loop playsinline>.
+- Videos fit the full hero area with object-fit: cover, so there should be no black gaps.
+
+WHERE TO ADD VIDEOS
+Upload your video files inside:
+assets/videos/
+
+Default filenames already configured in content.json:
+- Home: assets/videos/home.mp4
+- About: assets/videos/about.mp4
+- Services: assets/videos/services.mp4
+- Odoo ERP: assets/videos/odoo.mp4
+- Industries: assets/videos/industries.mp4
+- Portfolio: assets/videos/portfolio.mp4
+- Blog: assets/videos/blog.mp4
+- Contact: assets/videos/contact.mp4
+
+HOW TO CHANGE A VIDEO PATH
+Open content.json.
+For home page, edit:
+hero.videoMp4
+hero.videoPoster
+
+For other pages, edit:
+pageVideos.about.mp4
+pageVideos.services.mp4
+pageVideos.odoo.mp4
+pageVideos.industries.mp4
+pageVideos.portfolio.mp4
+pageVideos.blog.mp4
+pageVideos.contact.mp4
+
+You can use either local files like:
+assets/videos/home.mp4
+
+or a full MP4 URL like:
+https://your-cdn.com/videos/home.mp4
+
+RECOMMENDED VIDEO SETTINGS
+- MP4 H.264
+- 8–15 seconds loop
+- 1920x1080 maximum
+- No audio required
+- Compress each file below 3–5 MB if possible
+
+IMPORTANT DEPLOYMENT NOTE
+After uploading the ZIP, also upload the actual MP4 files into assets/videos/.
+The package includes the folder and README, but not real video files unless you add them.
+
+After deployment, clear cache and hard refresh using Ctrl + Shift + R.

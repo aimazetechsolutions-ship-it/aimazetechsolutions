@@ -228,13 +228,12 @@
     </div>`;
   }
 
-  // ── PAGE HERO VIDEO ──
-  // Accepts YouTube video IDs, normal URLs, Shorts URLs, embed URLs, or pasted iframe embed code.
+  // ── PREMIUM MP4 PAGE HERO VIDEO ──
+  // Supports: {mp4, webm, poster}, direct .mp4/.webm URL/path, and YouTube as fallback.
   function extractYouTubeId(input){
     if(!input)return null;
     const str=String(input).trim();
     if(/^[A-Za-z0-9_-]{11}$/.test(str))return str;
-
     const patterns=[
       /youtube\.com\/embed\/([A-Za-z0-9_-]{11})/,
       /youtube\.com\/watch\?[^"'<>]*v=([A-Za-z0-9_-]{11})/,
@@ -243,40 +242,67 @@
       /playlist=([A-Za-z0-9_-]{11})/,
       /src=["'][^"']*\/embed\/([A-Za-z0-9_-]{11})/
     ];
-    for(const re of patterns){
-      const m=str.match(re);
-      if(m&&m[1])return m[1];
-    }
+    for(const re of patterns){const m=str.match(re);if(m&&m[1])return m[1];}
     return null;
+  }
+
+  function isVideoFile(str){return /\.(mp4|webm|mov)(\?|#|$)/i.test(String(str||''));}
+  function resolveHeroVideo(value, fallback){
+    const out={mp4:'', webm:'', poster:'', youtube:''};
+    const add=(v)=>{
+      if(!v)return;
+      if(typeof v==='object'){
+        out.mp4=v.mp4||v.videoMp4||out.mp4;
+        out.webm=v.webm||v.videoWebm||out.webm;
+        out.poster=v.poster||v.videoPoster||out.poster;
+        out.youtube=v.youtube||v.youtubeId||out.youtube;
+        if(v.url||v.videoUrl)add(v.url||v.videoUrl);
+        return;
+      }
+      const str=String(v).trim();
+      if(!str)return;
+      if(/\.webm(\?|#|$)/i.test(str))out.webm=str;
+      else if(isVideoFile(str))out.mp4=str;
+      else out.youtube=extractYouTubeId(str)||out.youtube;
+    };
+    add(value); add(fallback);
+    return out;
+  }
+
+  function createVideoLayer(video){
+    const vdiv=document.createElement('div');
+    vdiv.className='page-hero-video';
+    if(video.mp4||video.webm){
+      const poster=video.poster?` poster="${video.poster}"`:'';
+      vdiv.innerHTML=`<video autoplay muted loop playsinline preload="metadata"${poster}>
+        ${video.webm?`<source src="${video.webm}" type="video/webm">`:''}
+        ${video.mp4?`<source src="${video.mp4}" type="video/mp4">`:''}
+      </video>`;
+    }else if(video.youtube){
+      const id=video.youtube;
+      vdiv.innerHTML=`<iframe
+        src="https://www.youtube.com/embed/${id}?autoplay=1&mute=1&loop=1&playlist=${id}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&fs=0"
+        allow="autoplay; encrypted-media" allowfullscreen loading="lazy"></iframe>`;
+    }
+    return vdiv;
   }
 
   // Detect current page name e.g. "about" from "about.html"
   let pageName=location.pathname.split('/').pop().replace('.html','').toLowerCase();
   if(!pageName||pageName==='index')pageName='home';
 
-  // Pick video: home uses hero.videoUrl; other pages use pageVideos[pageName].
-  // If a page-specific value is missing/invalid, it falls back to the home hero video.
-  const defaultHomeVideo='QyhwSYhX09s';
-  const heroVideoId=extractYouTubeId(hero.videoUrl)||defaultHomeVideo;
-  const pageVideoId=extractYouTubeId(pageVideos[pageName]);
-  const videoId=pageVideoId||heroVideoId;
   const showVideo=hero.showVideo!==false;
+  const fallbackHome={mp4:hero.videoMp4||hero.videoUrl||'', webm:hero.videoWebm||'', poster:hero.videoPoster||''};
+  const selectedVideo=resolveHeroVideo(pageVideos[pageName], fallbackHome);
 
   const pageHero=document.querySelector('.page-hero');
   if(pageHero){
     const existingHTML=pageHero.innerHTML;
     pageHero.innerHTML='';
 
-    // 1 — YouTube video layer
-    if(showVideo&&videoId){
-      const vdiv=document.createElement('div');
-      vdiv.className='page-hero-video';
-      vdiv.innerHTML=`<iframe
-        src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&fs=0"
-        allow="autoplay; encrypted-media"
-        allowfullscreen loading="lazy">
-      </iframe>`;
-      pageHero.appendChild(vdiv);
+    // 1 — MP4/WebM video layer. YouTube only works as fallback.
+    if(showVideo&&(selectedVideo.mp4||selectedVideo.webm||selectedVideo.youtube)){
+      pageHero.appendChild(createVideoLayer(selectedVideo));
     }
 
     // 2 — Subtle overlay

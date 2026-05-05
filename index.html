@@ -104,6 +104,14 @@ img{max-width:100%;display:block}
   transform-origin:center;
   border:none;opacity:.9;
 }
+.hero-video video{
+  position:absolute;
+  top:50%;left:50%;
+  width:100%;height:100%;
+  object-fit:cover;
+  transform:translate(-50%,-50%);
+  border:none;opacity:.9;
+}
 .hero-overlay{
   position:absolute;inset:0;z-index:1;
   background:linear-gradient(90deg,rgba(10,15,30,.72),rgba(10,15,30,.54) 48%,rgba(10,15,30,.64));
@@ -558,11 +566,10 @@ img{max-width:100%;display:block}
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-video" id="hero-video-wrap">
-    <iframe id="hero-yt"
-      src="https://www.youtube.com/embed/SZEflIVnhH8?autoplay=1&mute=1&loop=1&playlist=SZEflIVnhH8&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&enablejsapi=1"
-      allow="autoplay; encrypted-media"
-      allowfullscreen>
-    </iframe>
+    <video id="hero-bg-video" autoplay muted loop playsinline preload="metadata" poster="assets/videos/home-poster.jpg">
+      <source id="hero-bg-webm" src="" type="video/webm">
+      <source id="hero-bg-mp4" src="assets/videos/home.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-content">
@@ -756,28 +763,22 @@ function applyHero(h){
   if(h.showVideo===false){
     const w=document.getElementById('hero-video-wrap');
     if(w)w.style.display='none';
-  }else if(h.videoUrl){
-    // Support custom YouTube video ID or full YouTube URL
-    const iframe=document.getElementById('hero-yt');
-    if(iframe){
-      let raw=String(h.videoUrl||'').trim();
-      let vid=null;
-      if(/^[A-Za-z0-9_-]{11}$/.test(raw)){
-        vid=raw;
-      }else{
-        const patterns=[
-          /youtube\.com\/embed\/([A-Za-z0-9_-]{11})/,
-          /youtube\.com\/watch\?[^"'<>]*v=([A-Za-z0-9_-]{11})/,
-          /youtu\.be\/([A-Za-z0-9_-]{11})/,
-          /youtube\.com\/shorts\/([A-Za-z0-9_-]{11})/,
-          /playlist=([A-Za-z0-9_-]{11})/,
-          /src=["'][^"']*\/embed\/([A-Za-z0-9_-]{11})/
-        ];
-        for(const re of patterns){const m=raw.match(re);if(m&&m[1]){vid=m[1];break;}}
-      }
-      if(vid){
-        iframe.src=`https://www.youtube.com/embed/${vid}?autoplay=1&mute=1&loop=1&playlist=${vid}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1`;
-      }
+  }else{
+    const w=document.getElementById('hero-video-wrap');
+    if(w)w.style.display='block';
+    const video=document.getElementById('hero-bg-video');
+    const mp4=document.getElementById('hero-bg-mp4');
+    const webm=document.getElementById('hero-bg-webm');
+    if(video){
+      const mp4Src=h.videoMp4||h.videoUrl||'assets/videos/home.mp4';
+      const webmSrc=h.videoWebm||'';
+      const poster=h.videoPoster||'assets/videos/home-poster.jpg';
+      if(mp4)mp4.src=mp4Src;
+      if(webm)webm.src=webmSrc;
+      if(poster)video.setAttribute('poster',poster);
+      video.load();
+      const playPromise=video.play();
+      if(playPromise&&playPromise.catch)playPromise.catch(()=>{});
     }
   }
 }
@@ -886,6 +887,6 @@ loadContent().then(()=>{
   setTimeout(revealEls,100);
 });
 </script>
-<script src="shared.js?v=17"></script>
+<script src="shared.js?v=18"></script>
 </body>
 </html>
