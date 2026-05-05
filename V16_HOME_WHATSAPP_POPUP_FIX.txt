@@ -1,0 +1,14 @@
+V16 FIX - HOMEPAGE WHATSAPP POPUP
+
+Issue fixed:
+- Homepage WhatsApp chat box was showing unstyled/raw because homepage did not have the complete WhatsApp popup styling loaded.
+
+What changed:
+- shared.js now injects the complete premium WhatsApp widget styles itself.
+- It removes all old/duplicate WhatsApp buttons and chat boxes before creating the new one.
+- The same round animated button and styled chat popup now load on homepage and all inner pages.
+- Updated all pages to shared.js?v=16 to avoid browser cache.
+
+After deployment:
+- Use Netlify clear cache deploy if available.
+- Hard refresh homepage with Ctrl + Shift + R.
