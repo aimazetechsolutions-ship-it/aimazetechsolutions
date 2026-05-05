@@ -32,16 +32,8 @@
   if(theme.sectionHeadingWeight)root.setProperty('--section-h-weight',theme.sectionHeadingWeight);
   if(theme.cardTitleWeight)root.setProperty('--card-title-weight',theme.cardTitleWeight);
 
-  // ── TOPBAR ──
-  const topbar=document.getElementById('topbar');
-  if(topbar){
-    if(site.showTopbar===false){
-      topbar.remove();
-    } else {
-      topbar.innerHTML=`<span>${site.tagline||''}</span>
-      <a href="contact.html">Book free process analysis</a>`;
-    }
-  }
+  // ── TOPBAR REMOVED SITE-WIDE ──
+  document.querySelectorAll('.topbar,#topbar').forEach(el=>el.remove());
 
   // ── NAV ──
   const navLinks=document.getElementById('nav-links');
@@ -143,7 +135,7 @@
       const vdiv=document.createElement('div');
       vdiv.className='page-hero-video';
       vdiv.innerHTML=`<iframe
-        src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1"
+        src="https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&loop=1&playlist=${videoId}&controls=0&showinfo=0&rel=0&modestbranding=1&playsinline=1&disablekb=1&iv_load_policy=3&fs=0"
         allow="autoplay; encrypted-media"
         allowfullscreen loading="lazy">
       </iframe>`;

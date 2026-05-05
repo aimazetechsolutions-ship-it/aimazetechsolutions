@@ -88,7 +88,7 @@ img{max-width:100%;display:block}
   position:relative;min-height:calc(100vh - 80px);
   display:flex;align-items:center;
   overflow:hidden;padding:120px clamp(20px,6vw,90px) 80px;
-  background:url('https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1800') center center/cover no-repeat #101729;
+  background:#101729;
 }
 .hero-video{
   position:absolute;inset:-2px;z-index:0;pointer-events:none;overflow:hidden;background:transparent;
@@ -96,17 +96,17 @@ img{max-width:100%;display:block}
 .hero-video iframe{
   position:absolute;
   top:50%;left:50%;
-  width:max(100vw,177.78vh);
-  height:max(100vh,56.25vw);
-  min-width:100%;
-  min-height:100%;
-  transform:translate(-50%,-50%) scale(1.18);
+  width:max(120vw,213.33vh);
+  height:max(120vh,67.5vw);
+  min-width:120%;
+  min-height:120%;
+  transform:translate(-50%,-50%) scale(1.35);
   transform-origin:center;
-  border:none;opacity:.65;
+  border:none;opacity:.9;
 }
 .hero-overlay{
   position:absolute;inset:0;z-index:1;
-  background:linear-gradient(90deg,rgba(10,15,30,.82),rgba(10,15,30,.62) 48%,rgba(10,15,30,.74));
+  background:linear-gradient(90deg,rgba(10,15,30,.72),rgba(10,15,30,.54) 48%,rgba(10,15,30,.64));
 }
 .hero-content{position:relative;z-index:2;max-width:780px}
 .eyebrow{
@@ -511,10 +511,6 @@ img{max-width:100%;display:block}
 <body>
 
 <!-- TOPBAR -->
-<div class="topbar" id="topbar" style="display:none">
-  <span id="topbar-text">UAE + International ERP, software and digital transformation partner</span>
-  <a href="contact.html" id="topbar-link">Book free process analysis</a>
-</div>
 
 <!-- NAVBAR -->
 <nav class="navbar" id="navbar">
