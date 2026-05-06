@@ -19,15 +19,15 @@
     "headingFont": "Syne",
     "bodyFont": "Inter",
     "baseFontSize": "16",
-    "heroHeadingSize": "50",
-    "heroSubSize": "38",
-    "heroTextSize": "18",
-    "sectionHeadingSize": "52",
-    "cardTitleSize": "20",
+    "heroHeadingSize": "48",
+    "heroSubSize": "34",
+    "heroTextSize": "17",
+    "sectionHeadingSize": "40",
+    "cardTitleSize": "19",
     "cardTextSize": "15",
     "navFontSize": "14",
     "heroHeadingWeight": "700",
-    "sectionHeadingWeight": "700",
+    "sectionHeadingWeight": "800",
     "cardTitleWeight": "700"
   },
   "hero": {
@@ -97,26 +97,10 @@
     }
   },
   "stats": [
-    {
-      "number": "4",
-      "suffix": "",
-      "label": "Core ERP Capabilities"
-    },
-    {
-      "number": "6",
-      "suffix": "",
-      "label": "Enterprise Service Areas"
-    },
-    {
-      "number": "24",
-      "suffix": "/7",
-      "label": "Website Lead Capture"
-    },
-    {
-      "number": "5",
-      "suffix": "%",
-      "label": "UAE VAT Workflow Focus"
-    }
+    { "number": "50", "suffix": "+", "label": "Projects Delivered" },
+    { "number": "10", "suffix": "+", "label": "Years Experience" },
+    { "number": "100", "suffix": "%", "label": "Client Satisfaction" },
+    { "number": "15", "suffix": "+", "label": "Odoo Modules Expertise" }
   ],
   "services": [
     {

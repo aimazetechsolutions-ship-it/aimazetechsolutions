@@ -528,6 +528,17 @@ img{max-width:100%;display:block}
 @keyframes waRoundPulse{0%{transform:scale(.9);opacity:.75}70%{transform:scale(1.45);opacity:0}100%{opacity:0}}
 @media(max-width:640px){.whatsapp-float{right:16px!important;bottom:16px!important;width:62px!important;height:62px!important;min-width:62px!important;max-width:62px!important}.whatsapp-float .wa-icon{width:38px!important;height:38px!important}}
 
+
+/* V23 CFO-level homepage typography */
+.hero-content{max-width:860px !important;}
+.hero h1{font-size:clamp(42px,5.2vw,var(--hero-h-size,48px)) !important;line-height:1.06 !important;letter-spacing:-.03em !important;margin-bottom:14px !important;}
+.hero-sub{font-size:clamp(27px,3.1vw,var(--hero-sub-size,34px)) !important;line-height:1.15 !important;letter-spacing:-.025em !important;margin-bottom:24px !important;}
+.hero-text{font-size:var(--hero-text-size,17px) !important;line-height:1.72 !important;max-width:680px !important;}
+.section-head h2{font-size:clamp(28px,3.2vw,var(--section-h-size,40px)) !important;line-height:1.12 !important;}
+.service-card h3{font-size:var(--card-title-size,19px) !important;}
+.service-card p{font-size:var(--card-text-size,15px) !important;line-height:1.72 !important;}
+@media(max-width:620px){.hero h1{font-size:38px !important}.hero-sub{font-size:27px !important}.hero-text{font-size:16px !important}}
+
 </style>
 
 <script type="application/ld+json">
@@ -536,7 +547,7 @@ img{max-width:100%;display:block}
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"ProfessionalService","name":"AimAze Tech Solutions","areaServed":["United Arab Emirates","International"],"serviceType":["Odoo ERP Implementation","ERP Customization","CRM Automation","Finance Dashboards","Web Development"],"url":"https://www.aimazetechsolutions.com/"}
 </script>
-<link rel="stylesheet" href="whatsapp.css?v=20">
+<link rel="stylesheet" href="whatsapp.css?v=23">
 </head>
 <body>
 
@@ -887,6 +898,6 @@ loadContent().then(()=>{
   setTimeout(revealEls,100);
 });
 </script>
-<script src="shared.js?v=22"></script>
+<script src="shared.js?v=23"></script>
 </body>
 </html>
