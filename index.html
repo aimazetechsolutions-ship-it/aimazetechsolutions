@@ -9,6 +9,8 @@
 <meta property="og:image" content="assets/aimaze-coverpage.png">
 <link rel="icon" href="assets/aimaze-logo-transparent.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preload" as="video" href="assets/videos/home.mp4" type="video/mp4">
+<link rel="preload" as="image" href="assets/videos/home-poster.jpg">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap">
 <style>
 /* ── RESET & BASE ── */
@@ -577,9 +579,9 @@ img{max-width:100%;display:block}
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-video" id="hero-video-wrap">
-    <video id="hero-bg-video" autoplay muted loop playsinline preload="metadata" poster="assets/videos/home-poster.jpg">
-      <source id="hero-bg-webm" src="" type="video/webm">
-      <source id="hero-bg-mp4" src="assets/videos/home.mp4?v=22" type="video/mp4">
+    <video id="hero-bg-video" autoplay muted loop playsinline preload="auto" poster="assets/videos/home-poster.jpg">
+      <source id="hero-bg-webm" type="video/webm">
+      <source id="hero-bg-mp4" src="assets/videos/home.mp4" type="video/mp4">
     </video>
   </div>
   <div class="hero-overlay"></div>
@@ -784,10 +786,14 @@ function applyHero(h){
       const mp4Src=h.videoMp4||h.videoUrl||'assets/videos/home.mp4';
       const webmSrc=h.videoWebm||'';
       const poster=h.videoPoster||'assets/videos/home-poster.jpg';
-      if(mp4)mp4.src=mp4Src;
-      if(webm)webm.src=webmSrc;
-      if(poster)video.setAttribute('poster',poster);
-      video.load();
+      let changed=false;
+      if(mp4 && mp4.getAttribute('src')!==mp4Src){mp4.src=mp4Src;changed=true;}
+      if(webm){
+        if(webmSrc && webm.getAttribute('src')!==webmSrc){webm.src=webmSrc;changed=true;}
+        if(!webmSrc && webm.hasAttribute('src')){webm.removeAttribute('src');changed=true;}
+      }
+      if(poster && video.getAttribute('poster')!==poster)video.setAttribute('poster',poster);
+      if(changed)video.load();
       const playPromise=video.play();
       if(playPromise&&playPromise.catch)playPromise.catch(()=>{});
     }
@@ -901,3 +907,4 @@ loadContent().then(()=>{
 <script src="shared.js?v=23"></script>
 </body>
 </html>
+
