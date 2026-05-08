@@ -1,1 +1,0 @@
-V14 fixes homepage WhatsApp launcher so it opens the premium popup instead of redirecting to Contact. The WhatsApp launcher is now a round animated UAE-style button across all pages. No WhatsApp number is shown.

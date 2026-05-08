@@ -1,7 +1,0 @@
-V13 fix:
-- Homepage now loads the same shared premium WhatsApp live-chat popup as all inner pages.
-- Removed old homepage WhatsApp behavior that redirected to contact.html.
-- Homepage floating WhatsApp button now opens popup with online/offline status and typing indicator.
-- No visible WhatsApp number is shown.
-
-Deployment note: upload the full ZIP contents and hard refresh homepage (Ctrl+Shift+R) after deployment.

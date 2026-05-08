@@ -1,1 +1,0 @@
-V17 fix: Added external whatsapp.css and linked it to all pages. This ensures homepage WhatsApp popup receives the same styled chat box as inner pages even if injected CSS is blocked/cached. Deploy with Clear cache and deploy, then hard refresh homepage.
