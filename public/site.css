@@ -36,9 +36,12 @@ img{max-width:100%;display:block}
 .navbar.scrolled .nav-links a:hover{background:#f0f9ff;color:var(--secondary)}
 .nav-cta{padding:10px 20px!important;border-radius:10px!important;background:rgba(255,255,255,.2)!important;color:#fff!important;font-weight:700!important;border:1px solid rgba(255,255,255,.3);backdrop-filter:blur(10px)}
 .navbar.scrolled .nav-cta{background:var(--grad)!important;color:#fff!important;border:none!important}
-.hamburger{display:none;background:none;border:none;cursor:pointer;flex-direction:column;gap:5px;padding:4px}
+.hamburger{display:none;position:relative;z-index:260;background:none;border:none;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:40px;height:40px;padding:4px;border-radius:10px;touch-action:manipulation}
 .hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:.3s}
 .navbar.scrolled .hamburger span{background:var(--dark)}
+.hamburger.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.is-open span:nth-child(2){opacity:0}
+.hamburger.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 
 /* ── PAGE HERO ── */
 .page-hero{padding:150px clamp(20px,6vw,90px) 110px;background:#101729;position:relative;overflow:hidden;min-height:100vh;display:flex;align-items:center}
@@ -167,8 +170,8 @@ img{max-width:100%;display:block}
 /* ── RESPONSIVE ── */
 @media(max-width:1100px){.grid-4{grid-template-columns:repeat(2,1fr)}.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:900px){
-  .nav-links{display:none;position:absolute;top:80px;left:16px;right:16px;flex-direction:column;background:#fff;border-radius:18px;padding:16px;box-shadow:var(--shadow)}
-  .nav-links.open{display:flex}.nav-links a{color:var(--dark)!important}
+  .nav-links{display:none;position:absolute;top:80px;left:16px;right:16px;z-index:250;flex-direction:column;align-items:stretch;background:#fff;border-radius:18px;padding:16px;box-shadow:var(--shadow);max-height:calc(100vh - 110px);overflow:auto}
+  .nav-links.open{display:flex}.nav-links a{color:var(--dark)!important;text-align:center}
   .hamburger{display:flex}.split{grid-template-columns:1fr}.grid-3{grid-template-columns:1fr 1fr}
   .cta-banner{flex-direction:column;text-align:center}
   .trust-strip{grid-template-columns:1fr 1fr}

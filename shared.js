@@ -295,9 +295,31 @@
 
   // ── HAMBURGER ──
   const ham=document.getElementById('hamburger');
-  if(ham)ham.addEventListener('click',()=>{
-    document.getElementById('nav-links')?.classList.toggle('open');
-  });
+  const menu=document.getElementById('nav-links');
+  function setMobileMenu(open){
+    if(!ham || !menu)return;
+    menu.classList.toggle('open',open);
+    ham.classList.toggle('is-open',open);
+    ham.setAttribute('aria-expanded',open?'true':'false');
+  }
+  if(ham && menu){
+    ham.setAttribute('aria-controls','nav-links');
+    ham.setAttribute('aria-expanded','false');
+    ham.addEventListener('click',(event)=>{
+      event.preventDefault();
+      event.stopPropagation();
+      setMobileMenu(!menu.classList.contains('open'));
+    });
+    menu.addEventListener('click',(event)=>{
+      if(event.target.closest('a'))setMobileMenu(false);
+    });
+    document.addEventListener('click',(event)=>{
+      if(menu.classList.contains('open') && !event.target.closest('#navbar'))setMobileMenu(false);
+    });
+    window.addEventListener('resize',()=>{
+      if(window.innerWidth>900)setMobileMenu(false);
+    },{passive:true});
+  }
 
   // ── SCROLL REVEAL ──
   const reveal=()=>{
