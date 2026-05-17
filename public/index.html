@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#141126">
+    <title>PiBiz AI by AimAze</title>
+    <link rel="stylesheet" href="/styles.css">
+    <script src="https://sdk.minepi.com/pi-sdk.js"></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", function () {
+        if (window.Pi) window.Pi.init({ version: "2.0", sandbox: false });
+      });
+    </script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-block">
+          <img class="brand-logo" src="/aimaze-logo.png" alt="AimAze Tech Solutions logo">
+          <div>
+            <p class="eyebrow">AimAze Tech Solutions</p>
+            <h1>PiBiz AI</h1>
+            <div class="brand-links" aria-label="AimAze contact details">
+              <a href="mailto:info@aimazetechsolutions.com">info@aimazetechsolutions.com</a>
+              <a href="https://www.aimazetechsolutions.com" target="_blank" rel="noreferrer">www.aimazetechsolutions.com</a>
+            </div>
+          </div>
+        </div>
+        <button id="pi-login" class="icon-button" type="button" title="Pi login">
+          <span class="pi-mark">Pi</span>
+        </button>
+      </header>
+
+      <main>
+        <section class="workspace" aria-label="Business diagnostic workspace">
+          <div class="intro-panel">
+            <div>
+              <p class="eyebrow">AI ERP Advisor for Pi entrepreneurs</p>
+              <h2>Turn your Pi business into a smart ERP-powered business.</h2>
+              <p class="lede">Get an ERP readiness score, recommended Odoo modules, savings estimate, and a consultation path for AimAze services.</p>
+              <div class="metric-strip" aria-label="PiBiz AI activity counters">
+                <div>
+                  <strong id="customer-count">286+</strong>
+                  <span>businesses assessed</span>
+                </div>
+                <div>
+                  <strong id="consultation-count">94+</strong>
+                  <span>consultation requests</span>
+                </div>
+                <div>
+                  <strong id="country-count">197</strong>
+                  <span>countries supported</span>
+                </div>
+              </div>
+            </div>
+            <div id="auth-card" class="auth-card">
+              <span class="status-dot"></span>
+              <div>
+                <strong id="auth-title">Local preview mode</strong>
+                <p id="auth-copy">Open in Pi Browser and sign in before activating Pi payments.</p>
+              </div>
+            </div>
+          </div>
+
+          <form id="diagnostic-form" class="diagnostic-form">
+            <section class="form-section">
+              <div class="section-heading">
+                <span>1</span>
+                <div>
+                  <h3>Business Profile</h3>
+                  <p>Basic details for report personalization and lead quality.</p>
+                </div>
+              </div>
+
+              <div class="field-grid">
+                <label>
+                  Business type
+                  <select id="business-type" name="businessType"></select>
+                </label>
+                <label id="other-business-field" class="hidden">
+                  Mention business type
+                  <input id="other-business-type" name="otherBusinessType" placeholder="Clinic, salon, workshop, school, logistics..." autocomplete="organization-title">
+                </label>
+                <label>
+                  Business size
+                  <select name="businessSize">
+                    <option value="Solo or micro team">Solo or micro team</option>
+                    <option value="2-10 staff">2-10 staff</option>
+                    <option value="11-50 staff">11-50 staff</option>
+                    <option value="51+ staff">51+ staff</option>
+                  </select>
+                </label>
+                <label>
+                  Country
+                  <input id="country-input" name="country" list="country-options" autocomplete="country-name" placeholder="Search country...">
+                  <datalist id="country-options"></datalist>
+                </label>
+                <label>
+                  Monthly revenue range
+                  <select name="revenueRange">
+                    <option value="Not shared">Prefer not to share</option>
+                    <option value="Under USD 5k">Under USD 5k</option>
+                    <option value="USD 5k-25k">USD 5k-25k</option>
+                    <option value="USD 25k-100k">USD 25k-100k</option>
+                    <option value="USD 100k+">USD 100k+</option>
+                  </select>
+                </label>
+              </div>
+            </section>
+
+            <section class="form-section">
+              <div class="section-heading">
+                <span>2</span>
+                <div>
+                  <h3>Operations Questionnaire</h3>
+                  <p id="questionnaire-subtitle">Answer the checks for your selected industry.</p>
+                </div>
+              </div>
+              <div id="question-list" class="question-list"></div>
+            </section>
+
+            <section class="form-section">
+              <div class="section-heading">
+                <span>3</span>
+                <div>
+                  <h3>Growth Goals</h3>
+                  <p>Select the services you want AimAze to help with.</p>
+                </div>
+              </div>
+              <div id="goal-list" class="chip-grid"></div>
+            </section>
+
+            <section class="form-section">
+              <div class="section-heading">
+                <span>4</span>
+                <div>
+                  <h3>Contact Details</h3>
+                  <p>Used only for consultation follow-up and your report record.</p>
+                </div>
+              </div>
+              <div class="field-grid">
+                <label>
+                  Your name
+                  <input name="name" autocomplete="name" placeholder="Full name" required>
+                </label>
+                <label>
+                  Business name
+                  <input name="businessName" autocomplete="organization" placeholder="Company or shop name" required>
+                </label>
+                <label>
+                  WhatsApp number
+                  <input name="whatsapp" autocomplete="tel" inputmode="tel" placeholder="+971..." required minlength="7">
+                </label>
+                <label>
+                  Email
+                  <input name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+                </label>
+              </div>
+            </section>
+
+            <div class="action-row">
+              <button class="primary-button" type="submit">Generate Free ERP Report</button>
+              <button id="reset-button" class="secondary-button" type="button">Reset</button>
+            </div>
+          </form>
+        </section>
+
+        <aside class="report-panel" aria-label="Generated report">
+          <div class="report-header">
+            <p class="eyebrow">Free AI report</p>
+            <h2 id="report-title">Your ERP report will appear here.</h2>
+          </div>
+
+          <div id="report-empty" class="empty-report">
+            <p>Choose your business type and complete the questionnaire to generate a practical Odoo ERP roadmap.</p>
+          </div>
+
+          <div id="report-content" class="report-content hidden">
+            <div class="score-strip">
+              <div>
+                <span id="health-score">0</span>
+                <small>Business health</small>
+              </div>
+              <div>
+                <span id="erp-score">0</span>
+                <small>ERP readiness</small>
+              </div>
+            </div>
+
+            <section>
+              <h3>Key Weaknesses</h3>
+              <ul id="weakness-list"></ul>
+            </section>
+
+            <section>
+              <h3>Recommended Odoo Modules</h3>
+              <div id="module-list" class="module-list"></div>
+            </section>
+
+            <section>
+              <h3>Estimated Monthly Savings</h3>
+              <p id="savings-copy"></p>
+            </section>
+
+            <section>
+              <h3>30/60/90 Day Plan</h3>
+              <ol id="roadmap-list"></ol>
+            </section>
+
+            <div class="cta-stack">
+              <button id="consultation-button" class="primary-button" type="button">Book Free AimAze Consultation</button>
+              <a id="fallback-contact-link" class="secondary-button link-button hidden" href="#" target="_blank" rel="noreferrer">Open Email Backup</a>
+              <button id="premium-button" class="secondary-button" type="button">Unlock Premium Pi Report</button>
+            </div>
+
+            <div id="consultation-status" class="payment-status hidden"></div>
+            <div id="payment-status" class="payment-status hidden"></div>
+          </div>
+        </aside>
+      </main>
+    </div>
+
+    <script src="/app.js?v=20260517-country-picker"></script>
+  </body>
+</html>

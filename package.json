@@ -1,0 +1,19 @@
+{
+  "name": "pibiz-ai-by-aimaze",
+  "version": "1.0.0",
+  "description": "PiBiz AI by AimAze - AI ERP advisor and lead capture app for Pi Browser.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "pi-network",
+    "pi-browser",
+    "odoo",
+    "erp",
+    "aimaze"
+  ],
+  "author": "AimAze",
+  "license": "UNLICENSED"
+}
