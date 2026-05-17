@@ -1,0 +1,702 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>AimAze Admin Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Inter',sans-serif;background:#0b0f1a;color:#e2e8f0;min-height:100vh}
+
+/* LOGIN */
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:20px}
+.login-card{background:#141824;border:1px solid #1e2736;border-radius:24px;padding:48px;width:100%;max-width:420px;text-align:center}
+.login-logo{font-size:40px;margin-bottom:20px}
+.login-card h1{font-size:22px;font-weight:700;margin-bottom:6px;color:#fff}
+.login-card p{color:#64748b;margin-bottom:32px;font-size:14px}
+.login-card input{width:100%;padding:14px 16px;border-radius:12px;background:#0b0f1a;border:1px solid #1e2736;color:#fff;font-size:15px;margin-bottom:12px;outline:none;font-family:inherit;transition:.2s}
+.login-card input:focus{border-color:#27c7d7}
+.login-btn{width:100%;padding:14px;border-radius:12px;border:none;background:linear-gradient(135deg,#27c7d7,#3f83df);color:#fff;font-weight:700;font-size:15px;cursor:pointer;font-family:inherit;transition:.2s}
+.login-btn:hover{opacity:.9;transform:translateY(-1px)}
+.login-error{color:#f87171;font-size:13px;margin-top:10px;display:none}
+.login-hint{color:#334155;font-size:12px;margin-top:20px}
+.login-hint strong{color:#475569}
+
+/* ADMIN LAYOUT */
+#admin-screen{display:none}
+.admin-layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+
+/* SIDEBAR */
+.sidebar{background:#141824;border-right:1px solid #1e2736;padding:0;position:sticky;top:0;height:100vh;overflow-y:auto;display:flex;flex-direction:column}
+.sidebar-brand{padding:24px;border-bottom:1px solid #1e2736}
+.sidebar-brand h2{font-size:16px;font-weight:700;color:#fff}
+.sidebar-brand p{font-size:12px;color:#475569;margin-top:2px}
+.sidebar-section-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:#334155;padding:16px 24px 6px}
+.sidebar-btn{display:flex;align-items:center;gap:10px;width:100%;padding:10px 16px;margin:1px 8px;width:calc(100% - 16px);border-radius:10px;border:none;background:none;color:#94a3b8;font-size:14px;font-weight:500;cursor:pointer;transition:.2s;text-align:left;font-family:inherit}
+.sidebar-btn:hover{background:#1e2736;color:#fff}
+.sidebar-btn.active{background:rgba(39,199,215,.12);color:#27c7d7;font-weight:600}
+.sidebar-btn .icon{font-size:16px;width:20px;text-align:center;flex-shrink:0}
+.sidebar-footer{padding:20px 16px;margin-top:auto;border-top:1px solid #1e2736}
+.logout-btn{width:100%;padding:10px;border-radius:10px;border:1px solid #1e2736;background:none;color:#64748b;font-size:13px;cursor:pointer;font-family:inherit;transition:.2s}
+.logout-btn:hover{border-color:#f87171;color:#f87171}
+
+/* MAIN */
+.admin-main{display:flex;flex-direction:column;min-height:100vh}
+.admin-header{background:#141824;border-bottom:1px solid #1e2736;padding:18px 28px;display:flex;justify-content:space-between;align-items:center;position:sticky;top:0;z-index:10}
+.admin-header h1{font-size:18px;font-weight:700;color:#fff}
+.header-right{display:flex;gap:10px;align-items:center}
+.status-badge{padding:5px 12px;border-radius:999px;font-size:12px;font-weight:600}
+.status-saved{background:rgba(34,197,94,.12);color:#4ade80}
+.status-saving{background:rgba(251,191,36,.12);color:#fbbf24}
+.status-error{background:rgba(248,113,113,.12);color:#f87171}
+.preview-btn{padding:9px 16px;border-radius:8px;border:1px solid #1e2736;background:none;color:#94a3b8;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:.2s}
+.preview-btn:hover{border-color:#27c7d7;color:#27c7d7}
+.save-btn{padding:10px 20px;border-radius:8px;border:none;background:linear-gradient(135deg,#27c7d7,#3f83df);color:#fff;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;display:flex;align-items:center;gap:6px;transition:.2s}
+.save-btn:hover{opacity:.9;transform:translateY(-1px)}
+.save-btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+
+/* PANELS */
+.panel-wrap{padding:28px;flex:1}
+.panel{display:none}
+.panel.active{display:block}
+.panel-section{background:#141824;border:1px solid #1e2736;border-radius:16px;padding:24px;margin-bottom:20px}
+.panel-section h3{font-size:15px;font-weight:700;color:#fff;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid #1e2736}
+
+/* FORM */
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
+.form-row.single{grid-template-columns:1fr}
+.form-row.triple{grid-template-columns:1fr 1fr 1fr}
+.form-group{display:flex;flex-direction:column;gap:6px}
+.form-group label{font-size:11px;font-weight:700;color:#64748b;text-transform:uppercase;letter-spacing:.06em}
+.form-group input,.form-group textarea,.form-group select{padding:11px 14px;border-radius:10px;background:#0b0f1a;border:1px solid #1e2736;color:#e2e8f0;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:.2s;width:100%}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:#27c7d7}
+.form-group textarea{resize:vertical;min-height:80px}
+.form-hint{font-size:11px;color:#475569;margin-top:4px}
+
+/* COLOR ROW */
+.color-row{display:flex;align-items:center;gap:10px}
+.color-row input[type=color]{width:44px;height:40px;padding:2px;border-radius:8px;cursor:pointer;border:1px solid #1e2736;background:#0b0f1a;flex-shrink:0}
+.color-row input[type=text]{flex:1}
+
+/* ARRAY ITEMS */
+.array-item{background:#0b0f1a;border:1px solid #1e2736;border-radius:12px;padding:16px;margin-bottom:10px}
+.array-item-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px}
+.array-item-title{font-size:13px;font-weight:600;color:#94a3b8}
+.btn-danger{padding:5px 10px;border-radius:6px;border:none;font-size:12px;font-weight:600;cursor:pointer;background:rgba(248,113,113,.12);color:#f87171;font-family:inherit;transition:.2s}
+.btn-danger:hover{background:rgba(248,113,113,.22)}
+.btn-add{width:100%;padding:11px;border-radius:10px;border:1px dashed #1e2736;background:transparent;color:#475569;font-size:13px;font-weight:600;cursor:pointer;font-family:inherit;transition:.2s;margin-top:6px}
+.btn-add:hover{border-color:#27c7d7;color:#27c7d7}
+
+/* TOGGLE */
+.toggle-wrap{display:flex;align-items:center;gap:12px;margin-top:8px}
+.toggle{position:relative;width:44px;height:24px;flex-shrink:0}
+.toggle input{opacity:0;width:0;height:0}
+.toggle-slider{position:absolute;inset:0;background:#1e2736;border-radius:999px;cursor:pointer;transition:.3s}
+.toggle-slider:before{content:'';position:absolute;height:18px;width:18px;left:3px;bottom:3px;background:#fff;border-radius:50%;transition:.3s}
+.toggle input:checked+.toggle-slider{background:#27c7d7}
+.toggle input:checked+.toggle-slider:before{transform:translateX(20px)}
+.toggle-label{font-size:14px;color:#94a3b8}
+
+/* FONT PREVIEW */
+.font-preview{margin-top:12px;padding:16px;border-radius:10px;background:#0b0f1a;border:1px solid #1e2736}
+.font-preview p{font-size:11px;color:#475569;margin-bottom:8px;text-transform:uppercase;letter-spacing:.06em}
+.font-preview-text{font-size:22px;font-weight:700;color:#fff}
+
+/* GITHUB MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.modal-overlay.show{display:flex}
+.modal{background:#141824;border:1px solid #1e2736;border-radius:20px;padding:36px;width:100%;max-width:500px}
+.modal h2{font-size:20px;font-weight:700;color:#fff;margin-bottom:8px}
+.modal p{color:#64748b;font-size:14px;margin-bottom:20px}
+.publish-status{padding:16px;border-radius:12px;background:#0b0f1a;border:1px solid #1e2736;font-size:14px;color:#4ade80;min-height:80px;margin-bottom:16px;line-height:1.7}
+.modal-close{padding:10px 20px;border-radius:8px;border:1px solid #1e2736;background:none;color:#94a3b8;font-size:14px;font-weight:600;cursor:pointer;font-family:inherit}
+
+/* GITHUB HELP BOX */
+.gh-help{background:#0b0f1a;border:1px solid #1e2736;border-radius:10px;padding:14px;font-size:12px;color:#64748b;line-height:1.8;margin-bottom:16px}
+.gh-help strong{color:#94a3b8}
+.gh-help a{color:#27c7d7}
+</style>
+</head>
+<body>
+
+<!-- ── LOGIN ── -->
+<div id="login-screen">
+  <div class="login-card">
+    <div class="login-logo">⚡</div>
+    <h1>AimAze Admin Panel</h1>
+    <p>Enter your password to manage website content</p>
+    <input type="password" id="pwd" placeholder="Admin password" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="login-btn" onclick="doLogin()">Login →</button>
+    <p class="login-error" id="login-error">Incorrect password. Please try again.</p>
+    <p class="login-hint">Default: <strong>AimAze@2026!</strong></p>
+  </div>
+</div>
+
+<!-- ── ADMIN ── -->
+<div id="admin-screen">
+<div class="admin-layout">
+
+  <!-- SIDEBAR -->
+  <div class="sidebar">
+    <div class="sidebar-brand">
+      <h2>⚡ AimAze Admin</h2>
+      <p>Website Control Panel</p>
+    </div>
+    <div class="sidebar-section-title">Content</div>
+    <button class="sidebar-btn active" onclick="showPanel('hero')" id="btn-hero"><span class="icon">🏠</span>Hero Section</button>
+    <button class="sidebar-btn" onclick="showPanel('stats')" id="btn-stats"><span class="icon">📊</span>Stats Bar</button>
+    <button class="sidebar-btn" onclick="showPanel('services')" id="btn-services"><span class="icon">⚙️</span>Services</button>
+    <button class="sidebar-btn" onclick="showPanel('why')" id="btn-why"><span class="icon">✅</span>Why AimAze</button>
+    <button class="sidebar-btn" onclick="showPanel('process')" id="btn-process"><span class="icon">🔄</span>Process Steps</button>
+    <button class="sidebar-btn" onclick="showPanel('testimonials')" id="btn-testimonials"><span class="icon">💬</span>Testimonials</button>
+    <button class="sidebar-btn" onclick="showPanel('industries')" id="btn-industries"><span class="icon">🏢</span>Industries</button>
+    <div class="sidebar-section-title">Design</div>
+    <button class="sidebar-btn" onclick="showPanel('theme')" id="btn-theme"><span class="icon">🎨</span>Colors & Fonts</button>
+    <div class="sidebar-section-title">Settings</div>
+    <button class="sidebar-btn" onclick="showPanel('site')" id="btn-site"><span class="icon">🌐</span>Site Info & Videos</button>
+    <button class="sidebar-btn" onclick="showPanel('github')" id="btn-github"><span class="icon">🔗</span>GitHub Publish</button>
+    <div class="sidebar-footer">
+      <button class="logout-btn" onclick="doLogout()">Logout</button>
+    </div>
+  </div>
+
+  <!-- MAIN -->
+  <div class="admin-main">
+    <div class="admin-header">
+      <h1 id="panel-title">Hero Section</h1>
+      <div class="header-right">
+        <span class="status-badge status-saved" id="status-badge">Saved</span>
+        <button class="preview-btn" onclick="window.open('index.html','_blank')">👁 Preview</button>
+        <button class="save-btn" id="save-btn" onclick="saveToGitHub()">💾 Save & Publish</button>
+      </div>
+    </div>
+
+    <div class="panel-wrap">
+
+      <!-- HERO -->
+      <div class="panel active" id="panel-hero">
+        <div class="panel-section">
+          <h3>Hero Text Content</h3>
+          <div class="form-row single"><div class="form-group"><label>Eyebrow Tag</label><input type="text" id="hero-eyebrow"></div></div>
+          <div class="form-row single"><div class="form-group"><label>Main Heading</label><input type="text" id="hero-heading"></div></div>
+          <div class="form-row single"><div class="form-group"><label>Sub Heading</label><input type="text" id="hero-sub"></div></div>
+          <div class="form-row single"><div class="form-group"><label>Description</label><textarea id="hero-text"></textarea></div></div>
+          <div class="form-row">
+            <div class="form-group"><label>Primary Button Text</label><input type="text" id="hero-cta1-text"></div>
+            <div class="form-group"><label>Primary Button Link</label><input type="text" id="hero-cta1-link"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Secondary Button Text</label><input type="text" id="hero-cta2-text"></div>
+            <div class="form-group"><label>Secondary Button Link</label><input type="text" id="hero-cta2-link"></div>
+          </div>
+        </div>
+        <div class="panel-section">
+          <h3>Homepage Background Video</h3>
+          <div class="form-row single"><div class="form-group"><label>Video File Path</label><input type="text" id="hero-video" placeholder="assets/videos/home.mp4"><p class="form-hint">Relative path to video file uploaded in your GitHub assets/videos/ folder</p></div></div>
+          <div class="form-row single"><div class="form-group"><label>Poster Image (shown while video loads)</label><input type="text" id="hero-poster" placeholder="assets/videos/home-poster.jpg"></div></div>
+          <div class="toggle-wrap">
+            <label class="toggle"><input type="checkbox" id="hero-show-video" checked><span class="toggle-slider"></span></label>
+            <span class="toggle-label">Show background video</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATS -->
+      <div class="panel" id="panel-stats">
+        <div class="panel-section">
+          <h3>Stats / Counter Bar</h3>
+          <div id="stats-editor"></div>
+          <button class="btn-add" onclick="addStat()">+ Add Stat</button>
+        </div>
+      </div>
+
+      <!-- SERVICES -->
+      <div class="panel" id="panel-services">
+        <div class="panel-section">
+          <h3>Service Cards</h3>
+          <div id="services-editor"></div>
+          <button class="btn-add" onclick="addService()">+ Add Service</button>
+        </div>
+      </div>
+
+      <!-- WHY -->
+      <div class="panel" id="panel-why">
+        <div class="panel-section">
+          <h3>Why AimAze Section</h3>
+          <div class="form-row single"><div class="form-group"><label>Heading</label><input type="text" id="why-heading"></div></div>
+          <div class="form-row single"><div class="form-group"><label>Description</label><textarea id="why-text"></textarea></div></div>
+          <div class="form-row single"><div class="form-group"><label>Image URL</label><input type="text" id="why-image" placeholder="https://...jpg"></div></div>
+        </div>
+        <div class="panel-section">
+          <h3>Key Points</h3>
+          <div id="why-editor"></div>
+          <button class="btn-add" onclick="addWhyPoint()">+ Add Point</button>
+        </div>
+      </div>
+
+      <!-- PROCESS -->
+      <div class="panel" id="panel-process">
+        <div class="panel-section">
+          <h3>Process Steps</h3>
+          <div id="process-editor"></div>
+          <button class="btn-add" onclick="addProcess()">+ Add Step</button>
+        </div>
+      </div>
+
+      <!-- TESTIMONIALS -->
+      <div class="panel" id="panel-testimonials">
+        <div class="panel-section">
+          <h3>Client Testimonials</h3>
+          <p class="form-hint" style="margin-bottom:14px">Only add real verified client quotes before publishing.</p>
+          <div id="testimonials-editor"></div>
+          <button class="btn-add" onclick="addTestimonial()">+ Add Testimonial</button>
+        </div>
+      </div>
+
+      <!-- INDUSTRIES -->
+      <div class="panel" id="panel-industries">
+        <div class="panel-section">
+          <h3>Industries List</h3>
+          <p class="form-hint" style="margin-bottom:12px">One industry per line</p>
+          <div class="form-group"><textarea id="industries-list" style="min-height:180px"></textarea></div>
+        </div>
+      </div>
+
+      <!-- THEME -->
+      <div class="panel" id="panel-theme">
+        <div class="panel-section">
+          <h3>Brand Colors</h3>
+          <div class="form-row triple">
+            <div class="form-group"><label>Primary</label><div class="color-row"><input type="color" id="c-primary" oninput="syncColor('primary')"><input type="text" id="c-primary-t" oninput="syncColorText('primary')" placeholder="#27c7d7"></div></div>
+            <div class="form-group"><label>Secondary</label><div class="color-row"><input type="color" id="c-secondary" oninput="syncColor('secondary')"><input type="text" id="c-secondary-t" oninput="syncColorText('secondary')" placeholder="#3f83df"></div></div>
+            <div class="form-group"><label>Accent</label><div class="color-row"><input type="color" id="c-accent" oninput="syncColor('accent')"><input type="text" id="c-accent-t" oninput="syncColorText('accent')" placeholder="#ff8847"></div></div>
+          </div>
+          <div class="form-row single" style="margin-top:8px">
+            <div class="form-group"><label>Dark / Background</label><div class="color-row"><input type="color" id="c-dark" oninput="syncColor('dark')"><input type="text" id="c-dark-t" oninput="syncColorText('dark')" placeholder="#101729"></div></div>
+          </div>
+        </div>
+        <div class="panel-section">
+          <h3>Fonts</h3>
+          <div class="form-row">
+            <div class="form-group"><label>Heading Font</label>
+              <select id="heading-font" onchange="updateFontPreview()">
+                <option value="Syne">Syne — Bold & Modern</option>
+                <option value="Poppins">Poppins — Clean & Round</option>
+                <option value="Montserrat">Montserrat — Professional</option>
+                <option value="Raleway">Raleway — Elegant</option>
+                <option value="Space Grotesk">Space Grotesk — Tech</option>
+                <option value="Outfit">Outfit — Friendly</option>
+                <option value="Bebas Neue">Bebas Neue — Bold Impact</option>
+                <option value="Oswald">Oswald — Strong</option>
+                <option value="Playfair Display">Playfair Display — Serif</option>
+                <option value="DM Sans">DM Sans — Minimal</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Body Font</label>
+              <select id="body-font">
+                <option value="Inter">Inter — Default</option>
+                <option value="DM Sans">DM Sans</option>
+                <option value="Nunito">Nunito</option>
+                <option value="Lato">Lato</option>
+                <option value="Roboto">Roboto</option>
+                <option value="Open Sans">Open Sans</option>
+              </select>
+            </div>
+          </div>
+          <div class="font-preview"><p>Heading Preview</p><div class="font-preview-text" id="font-preview-text">AimAze Tech Solutions</div></div>
+        </div>
+        <div class="panel-section">
+          <h3>Font Sizes (px)</h3>
+          <div class="form-row triple">
+            <div class="form-group"><label>Hero Heading</label><input type="number" id="hero-h-size" min="28" max="100" placeholder="48"><p class="form-hint">Default: 48px</p></div>
+            <div class="form-group"><label>Hero Sub</label><input type="number" id="hero-sub-size" min="18" max="60" placeholder="34"><p class="form-hint">Default: 34px</p></div>
+            <div class="form-group"><label>Hero Text</label><input type="number" id="hero-text-size" min="12" max="24" placeholder="17"><p class="form-hint">Default: 17px</p></div>
+          </div>
+          <div class="form-row triple">
+            <div class="form-group"><label>Section Heading</label><input type="number" id="section-h-size" min="20" max="70" placeholder="40"><p class="form-hint">Default: 40px</p></div>
+            <div class="form-group"><label>Card Title</label><input type="number" id="card-title-size" min="12" max="30" placeholder="19"><p class="form-hint">Default: 19px</p></div>
+            <div class="form-group"><label>Card Text</label><input type="number" id="card-text-size" min="10" max="20" placeholder="15"><p class="form-hint">Default: 15px</p></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Hero Heading Weight</label>
+              <select id="hero-h-weight">
+                <option value="400">400 Regular</option><option value="600">600 Semibold</option>
+                <option value="700">700 Bold</option><option value="800">800 Extra Bold</option><option value="900">900 Black</option>
+              </select>
+            </div>
+            <div class="form-group"><label>Section Heading Weight</label>
+              <select id="section-h-weight">
+                <option value="600">600 Semibold</option><option value="700">700 Bold</option>
+                <option value="800">800 Extra Bold</option><option value="900">900 Black</option>
+              </select>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SITE INFO & VIDEOS -->
+      <div class="panel" id="panel-site">
+        <div class="panel-section">
+          <h3>Company Information</h3>
+          <div class="form-row"><div class="form-group"><label>Company Name</label><input type="text" id="site-name"></div><div class="form-group"><label>Tagline</label><input type="text" id="site-tagline"></div></div>
+          <div class="form-row"><div class="form-group"><label>Email</label><input type="email" id="site-email"></div><div class="form-group"><label>Phone</label><input type="text" id="site-phone"></div></div>
+          <div class="form-row"><div class="form-group"><label>WhatsApp (e.g. 971501234567)</label><input type="text" id="site-whatsapp"></div><div class="form-group"><label>Address</label><input type="text" id="site-address"></div></div>
+        </div>
+        <div class="panel-section">
+          <h3>Footer Social Icon Links</h3>
+          <p class="form-hint" style="margin-bottom:16px">These URLs control the LinkedIn, Facebook and Instagram icons shown in the website footer. Leave a field blank or use # if you do not want that icon to open a page yet.</p>
+          <div class="form-row triple">
+            <div class="form-group"><label>LinkedIn Icon URL</label><input type="url" id="site-linkedin" placeholder="https://linkedin.com/company/aimaze-tech-solutions"></div>
+            <div class="form-group"><label>Facebook Icon URL</label><input type="url" id="site-facebook" placeholder="https://facebook.com/aimazetechsolutions"></div>
+            <div class="form-group"><label>Instagram Icon URL</label><input type="url" id="site-instagram" placeholder="https://instagram.com/aimazetechsolutions"></div>
+          </div>
+        </div>
+        <div class="panel-section">
+          <h3>🎬 Page Background Videos</h3>
+          <p class="form-hint" style="margin-bottom:16px">Upload MP4 files to GitHub in <strong>assets/videos/</strong> folder, then enter the filename path here. Each page has its own video.</p>
+          <div class="form-row">
+            <div class="form-group"><label>About Page</label><input type="text" id="pv-about" placeholder="assets/videos/about.mp4"></div>
+            <div class="form-group"><label>Services Page</label><input type="text" id="pv-services" placeholder="assets/videos/services.mp4"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Odoo ERP Page</label><input type="text" id="pv-odoo" placeholder="assets/videos/odoo.mp4"></div>
+            <div class="form-group"><label>Industries Page</label><input type="text" id="pv-industries" placeholder="assets/videos/industries.mp4"></div>
+          </div>
+          <div class="form-row">
+            <div class="form-group"><label>Portfolio Page</label><input type="text" id="pv-portfolio" placeholder="assets/videos/portfolio.mp4"></div>
+            <div class="form-group"><label>Blog Page</label><input type="text" id="pv-blog" placeholder="assets/videos/blog.mp4"></div>
+          </div>
+          <div class="form-row single">
+            <div class="form-group"><label>Contact Page</label><input type="text" id="pv-contact" placeholder="assets/videos/contact.mp4"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- GITHUB -->
+      <div class="panel" id="panel-github">
+        <div class="panel-section">
+          <h3>GitHub Auto-Publish</h3>
+          <p style="color:#64748b;font-size:14px;margin-bottom:18px">Changes save to GitHub → Cloudflare auto-deploys your live site in 1–2 minutes.</p>
+          <div class="gh-help">
+            <strong>How to get a GitHub Token:</strong><br>
+            1. Go to <a href="https://github.com/settings/tokens/new" target="_blank">github.com/settings/tokens/new</a><br>
+            2. Name it "AimAze Admin" · Expiration: No expiration<br>
+            3. Check ✅ <strong>repo</strong> scope · Click Generate token<br>
+            4. Copy the token (starts with ghp_) and paste below
+          </div>
+          <div class="form-row single"><div class="form-group"><label>GitHub Personal Access Token</label><input type="password" id="gh-token" placeholder="ghp_xxxxxxxxxxxxxxxxxxxx"></div></div>
+          <div class="form-row">
+            <div class="form-group"><label>GitHub Username</label><input type="text" id="gh-user" placeholder="aimazetechsolutions-ship-it"></div>
+            <div class="form-group"><label>Repository Name</label><input type="text" id="gh-repo" placeholder="aimazetechsolutions"></div>
+          </div>
+          <div class="form-row single"><div class="form-group"><label>Branch</label><input type="text" id="gh-branch" placeholder="main"></div></div>
+          <button class="save-btn" style="margin-top:4px" onclick="saveGitHubSettings()">💾 Save GitHub Settings</button>
+          <p id="gh-msg" style="margin-top:12px;font-size:13px;color:#4ade80"></p>
+        </div>
+        <div class="panel-section">
+          <h3>Change Admin Password</h3>
+          <div class="form-row">
+            <div class="form-group"><label>New Password</label><input type="password" id="new-pwd" placeholder="Enter new password"></div>
+            <div class="form-group"><label>Confirm Password</label><input type="password" id="confirm-pwd" placeholder="Confirm new password"></div>
+          </div>
+          <button class="save-btn" style="margin-top:4px" onclick="changePassword()">🔒 Update Password</button>
+          <p id="pwd-msg" style="margin-top:12px;font-size:13px"></p>
+        </div>
+      </div>
+
+    </div><!-- /panel-wrap -->
+  </div><!-- /admin-main -->
+</div><!-- /admin-layout -->
+</div><!-- /admin-screen -->
+
+<!-- PUBLISH MODAL -->
+<div class="modal-overlay" id="pub-modal">
+  <div class="modal">
+    <h2>🚀 Publishing to GitHub</h2>
+    <p>Committing content.json to your repo. Cloudflare will redeploy in 1–2 minutes.</p>
+    <div class="publish-status" id="pub-status">Connecting...</div>
+    <button class="modal-close" onclick="closeModal()">Close</button>
+  </div>
+</div>
+
+<script>
+// ── AUTH ──
+const DEFAULT_PWD = 'AimAze@2026!';
+function getStoredPwd(){ return localStorage.getItem('aimaze_admin_pwd') || DEFAULT_PWD; }
+function doLogin(){
+  const v = document.getElementById('pwd').value;
+  const err = document.getElementById('login-error');
+  if(v === getStoredPwd()){
+    err.style.display='none';
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('admin-screen').style.display='block';
+    loadAll();
+  } else {
+    err.style.display='block';
+    document.getElementById('pwd').value='';
+  }
+}
+function doLogout(){
+  document.getElementById('login-screen').style.display='flex';
+  document.getElementById('admin-screen').style.display='none';
+  document.getElementById('pwd').value='';
+}
+document.getElementById('pwd').addEventListener('keydown',e=>{ if(e.key==='Enter') doLogin(); });
+
+function changePassword(){
+  const np = document.getElementById('new-pwd').value;
+  const cp = document.getElementById('confirm-pwd').value;
+  const msg = document.getElementById('pwd-msg');
+  if(!np || np.length < 8){ msg.style.color='#f87171'; msg.textContent='Password must be at least 8 characters.'; return; }
+  if(np !== cp){ msg.style.color='#f87171'; msg.textContent='Passwords do not match.'; return; }
+  localStorage.setItem('aimaze_admin_pwd', np);
+  msg.style.color='#4ade80'; msg.textContent='✅ Password updated successfully.';
+  document.getElementById('new-pwd').value='';
+  document.getElementById('confirm-pwd').value='';
+}
+
+// ── PANEL NAV ──
+const panelLabels = { hero:'Hero Section', stats:'Stats Bar', services:'Services', why:'Why AimAze', process:'Process Steps', testimonials:'Testimonials', industries:'Industries', theme:'Colors & Fonts', site:'Site Info & Videos', github:'GitHub Publish' };
+function showPanel(name){
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.sidebar-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('panel-'+name).classList.add('active');
+  document.getElementById('btn-'+name).classList.add('active');
+  document.getElementById('panel-title').textContent = panelLabels[name]||name;
+}
+
+// ── STATE ──
+let C = {};
+
+async function loadAll(){
+  try{ const r=await fetch('content.json?v='+Date.now()); C=await r.json(); } catch(e){ C={}; }
+  populateForms();
+  loadGitHubSettings();
+}
+
+function populateForms(){
+  const h=C.hero||{}, t=C.theme||{}, s=C.site||{}, pv=C.pageVideos||{};
+  // Hero
+  setV('hero-eyebrow', h.eyebrow||'');
+  setV('hero-heading', h.heading||'');
+  setV('hero-sub', h.subheading||'');
+  setV('hero-text', h.text||'');
+  setV('hero-cta1-text', h.primaryCta||'');
+  setV('hero-cta1-link', h.primaryCtaLink||'contact.html');
+  setV('hero-cta2-text', h.secondaryCta||'');
+  setV('hero-cta2-link', h.secondaryCtaLink||'odoo.html');
+  setV('hero-video', h.videoMp4||h.videoUrl||'assets/videos/home.mp4');
+  setV('hero-poster', h.videoPoster||'assets/videos/home-poster.jpg');
+  document.getElementById('hero-show-video').checked = h.showVideo!==false;
+  // Stats
+  buildEditor('stats-editor', C.stats||[], renderStat);
+  // Services
+  buildEditor('services-editor', C.services||[], renderService);
+  // Why
+  setV('why-heading', (C.why||{}).heading||'');
+  setV('why-text', (C.why||{}).text||'');
+  setV('why-image', (C.why||{}).image||'');
+  buildEditor('why-editor', (C.why||{}).points||[], renderWhyPoint);
+  // Process
+  buildEditor('process-editor', C.process||[], renderProcess);
+  // Testimonials
+  buildEditor('testimonials-editor', C.testimonials||[], renderTestimonial);
+  // Industries
+  document.getElementById('industries-list').value=(C.industries||[]).join('\n');
+  // Theme colors
+  setColor('primary', t.primaryColor||'#27c7d7');
+  setColor('secondary', t.secondaryColor||'#3f83df');
+  setColor('accent', t.accentColor||'#ff8847');
+  setColor('dark', t.darkColor||'#101729');
+  setV('heading-font', t.headingFont||'Syne');
+  setV('body-font', t.bodyFont||'Inter');
+  setV('hero-h-size', t.heroHeadingSize||'48');
+  setV('hero-sub-size', t.heroSubSize||'34');
+  setV('hero-text-size', t.heroTextSize||'17');
+  setV('section-h-size', t.sectionHeadingSize||'40');
+  setV('card-title-size', t.cardTitleSize||'19');
+  setV('card-text-size', t.cardTextSize||'15');
+  setSelectV('hero-h-weight', t.heroHeadingWeight||'700');
+  setSelectV('section-h-weight', t.sectionHeadingWeight||'800');
+  // Site
+  setV('site-name', s.name||'');
+  setV('site-tagline', s.tagline||'');
+  setV('site-email', s.email||'');
+  setV('site-phone', s.phone||'');
+  setV('site-whatsapp', s.whatsapp||'');
+  setV('site-address', s.address||'');
+  setV('site-linkedin', s.linkedin||'');
+  setV('site-facebook', s.facebook||'');
+  setV('site-instagram', s.instagram||'');
+  // Page videos
+  const pvPages=['about','services','odoo','industries','portfolio','blog','contact'];
+  pvPages.forEach(p=>{ const cfg=pv[p]||{}; setV('pv-'+p, typeof cfg==='string'?cfg:(cfg.mp4||'')); });
+}
+
+function setV(id, val){ const el=document.getElementById(id); if(el) el.value=val||''; }
+function setSelectV(id, val){ const el=document.getElementById(id); if(el) el.value=val; }
+function setColor(name, val){
+  const c=document.getElementById('c-'+name); if(c) c.value=val;
+  const t=document.getElementById('c-'+name+'-t'); if(t) t.value=val;
+}
+function syncColor(name){ const v=document.getElementById('c-'+name).value; document.getElementById('c-'+name+'-t').value=v; }
+function syncColorText(name){ const v=document.getElementById('c-'+name+'-t').value; if(/^#[0-9a-f]{6}$/i.test(v)) document.getElementById('c-'+name).value=v; }
+function updateFontPreview(){ document.getElementById('font-preview-text').style.fontFamily=document.getElementById('heading-font').value; }
+
+// ── ARRAY EDITORS ──
+function buildEditor(id, items, renderFn){ document.getElementById(id).innerHTML=items.map((item,i)=>renderFn(item,i)).join(''); }
+
+function renderStat(s,i){ return `<div class="array-item"><div class="array-item-header"><span class="array-item-title">Stat ${i+1}</span><button class="btn-danger" onclick="removeStat(${i})">Remove</button></div><div class="form-row triple"><div class="form-group"><label>Number</label><input type="text" id="s-num-${i}" value="${s.number||''}"></div><div class="form-group"><label>Suffix (+, %, etc)</label><input type="text" id="s-suf-${i}" value="${s.suffix||''}"></div><div class="form-group"><label>Label</label><input type="text" id="s-lbl-${i}" value="${s.label||''}"></div></div></div>`; }
+function renderService(s,i){ return `<div class="array-item"><div class="array-item-header"><span class="array-item-title">Service ${i+1}: ${s.title||''}</span><button class="btn-danger" onclick="removeService(${i})">Remove</button></div><div class="form-row"><div class="form-group"><label>Icon (emoji)</label><input type="text" id="sv-icon-${i}" value="${s.icon||''}"></div><div class="form-group"><label>Page Link</label><input type="text" id="sv-link-${i}" value="${s.link||'services.html'}"></div></div><div class="form-row single"><div class="form-group"><label>Title</label><input type="text" id="sv-title-${i}" value="${s.title||''}"></div></div><div class="form-row single"><div class="form-group"><label>Description</label><textarea id="sv-text-${i}">${s.text||''}</textarea></div></div><div class="form-row single"><div class="form-group"><label>Image URL</label><input type="text" id="sv-img-${i}" value="${s.image||''}" placeholder="https://...jpg or assets/...jpg">${s.image?`<img src="${s.image}" style="margin-top:8px;width:100%;height:100px;object-fit:cover;border-radius:8px" alt="preview">`:''}</div></div></div>`; }
+function renderWhyPoint(p,i){ return `<div class="array-item"><div class="array-item-header"><span class="array-item-title">Point ${i+1}</span><button class="btn-danger" onclick="removeWhyPoint(${i})">Remove</button></div><div class="form-row single"><div class="form-group"><label>Title</label><input type="text" id="wp-title-${i}" value="${p.title||''}"></div></div><div class="form-row single"><div class="form-group"><label>Text</label><textarea id="wp-text-${i}">${p.text||''}</textarea></div></div></div>`; }
+function renderProcess(p,i){ return `<div class="array-item"><div class="array-item-header"><span class="array-item-title">Step ${i+1}</span><button class="btn-danger" onclick="removeProcess(${i})">Remove</button></div><div class="form-row"><div class="form-group"><label>Step #</label><input type="text" id="pr-step-${i}" value="${p.step||''}"></div><div class="form-group"><label>Title</label><input type="text" id="pr-title-${i}" value="${p.title||''}"></div></div><div class="form-row single"><div class="form-group"><label>Description</label><textarea id="pr-text-${i}">${p.text||''}</textarea></div></div></div>`; }
+function renderTestimonial(t,i){ return `<div class="array-item"><div class="array-item-header"><span class="array-item-title">Testimonial ${i+1}</span><button class="btn-danger" onclick="removeTestimonial(${i})">Remove</button></div><div class="form-row"><div class="form-group"><label>Client Name</label><input type="text" id="te-name-${i}" value="${t.name||''}"></div><div class="form-group"><label>Role / Company</label><input type="text" id="te-role-${i}" value="${t.role||''}"></div></div><div class="form-row single"><div class="form-group"><label>Testimonial Text</label><textarea id="te-text-${i}">${t.text||''}</textarea></div></div></div>`; }
+
+function addStat(){ C.stats=C.stats||[]; C.stats.push({number:'0',suffix:'+',label:'New Stat'}); buildEditor('stats-editor',C.stats,renderStat); }
+function removeStat(i){ C.stats.splice(i,1); buildEditor('stats-editor',C.stats,renderStat); }
+function addService(){ C.services=C.services||[]; C.services.push({icon:'⭐',title:'New Service',text:'Description',link:'services.html',image:''}); buildEditor('services-editor',C.services,renderService); }
+function removeService(i){ C.services.splice(i,1); buildEditor('services-editor',C.services,renderService); }
+function addWhyPoint(){ if(!C.why) C.why={}; C.why.points=C.why.points||[]; C.why.points.push({title:'New Point',text:''}); buildEditor('why-editor',C.why.points,renderWhyPoint); }
+function removeWhyPoint(i){ C.why.points.splice(i,1); buildEditor('why-editor',C.why.points,renderWhyPoint); }
+function addProcess(){ C.process=C.process||[]; C.process.push({step:'0'+(C.process.length+1),title:'New Step',text:''}); buildEditor('process-editor',C.process,renderProcess); }
+function removeProcess(i){ C.process.splice(i,1); buildEditor('process-editor',C.process,renderProcess); }
+function addTestimonial(){ C.testimonials=C.testimonials||[]; C.testimonials.push({name:'Client Name',role:'Company',text:'',rating:5}); buildEditor('testimonials-editor',C.testimonials,renderTestimonial); }
+function removeTestimonial(i){ C.testimonials.splice(i,1); buildEditor('testimonials-editor',C.testimonials,renderTestimonial); }
+
+// ── COLLECT ──
+function gV(id){ const el=document.getElementById(id); return el?el.value.trim():''; }
+function collectContent(){
+  const n=C.stats?C.stats.length:0;
+  const stats=[];
+  for(let i=0;i<n;i++){ const el=document.getElementById('s-num-'+i); if(el) stats.push({number:gV('s-num-'+i),suffix:gV('s-suf-'+i),label:gV('s-lbl-'+i)}); }
+
+  const ns=C.services?C.services.length:0;
+  const services=[];
+  for(let i=0;i<ns;i++){ const el=document.getElementById('sv-title-'+i); if(el) services.push({icon:gV('sv-icon-'+i),title:gV('sv-title-'+i),text:gV('sv-text-'+i),link:gV('sv-link-'+i),image:gV('sv-img-'+i)}); }
+
+  const wp=(C.why&&C.why.points)||[];
+  const whyPoints=[];
+  for(let i=0;i<wp.length;i++){ const el=document.getElementById('wp-title-'+i); if(el) whyPoints.push({title:gV('wp-title-'+i),text:gV('wp-text-'+i)}); }
+
+  const np=C.process?C.process.length:0;
+  const process=[];
+  for(let i=0;i<np;i++){ const el=document.getElementById('pr-title-'+i); if(el) process.push({step:gV('pr-step-'+i),title:gV('pr-title-'+i),text:gV('pr-text-'+i)}); }
+
+  const nt=C.testimonials?C.testimonials.length:0;
+  const testimonials=[];
+  for(let i=0;i<nt;i++){ const el=document.getElementById('te-name-'+i); if(el) testimonials.push({name:gV('te-name-'+i),role:gV('te-role-'+i),text:gV('te-text-'+i),rating:5}); }
+
+  const industries=document.getElementById('industries-list').value.split('\n').map(s=>s.trim()).filter(Boolean);
+
+  const pvPages=['about','services','odoo','industries','portfolio','blog','contact'];
+  const pageVideos={note:'MP4 video paths for each page hero. Upload files to assets/videos/ in GitHub.'};
+  pvPages.forEach(p=>{
+    const existing=C.pageVideos&&C.pageVideos[p]||{};
+    const mp4=gV('pv-'+p)||(typeof existing==='object'?existing.mp4:existing)||`assets/videos/${p}.mp4`;
+    pageVideos[p]={mp4, webm:typeof existing==='object'?existing.webm||'':'', poster:typeof existing==='object'?existing.poster||`assets/videos/${p}-poster.jpg`:`assets/videos/${p}-poster.jpg`};
+  });
+
+  const mp4Path=gV('hero-video')||'assets/videos/home.mp4';
+  pageVideos.home={mp4:mp4Path,webm:'',poster:gV('hero-poster')||'assets/videos/home-poster.jpg'};
+
+  return{
+    site:{
+      name:gV('site-name'),tagline:gV('site-tagline'),email:gV('site-email'),
+      phone:gV('site-phone'),whatsapp:gV('site-whatsapp'),address:gV('site-address'),
+      showTopbar:false,linkedin:gV('site-linkedin'),facebook:gV('site-facebook'),instagram:gV('site-instagram')
+    },
+    theme:{
+      primaryColor:gV('c-primary-t'),secondaryColor:gV('c-secondary-t'),
+      accentColor:gV('c-accent-t'),darkColor:gV('c-dark-t'),
+      headingFont:gV('heading-font'),bodyFont:gV('body-font'),
+      baseFontSize:'16',
+      heroHeadingSize:gV('hero-h-size')||'48',heroSubSize:gV('hero-sub-size')||'34',
+      heroTextSize:gV('hero-text-size')||'17',sectionHeadingSize:gV('section-h-size')||'40',
+      cardTitleSize:gV('card-title-size')||'19',cardTextSize:gV('card-text-size')||'15',
+      navFontSize:'14',heroHeadingWeight:gV('hero-h-weight')||'700',
+      sectionHeadingWeight:gV('section-h-weight')||'800',cardTitleWeight:'700'
+    },
+    hero:{
+      eyebrow:gV('hero-eyebrow'),heading:gV('hero-heading'),subheading:gV('hero-sub'),
+      text:gV('hero-text'),primaryCta:gV('hero-cta1-text'),primaryCtaLink:gV('hero-cta1-link'),
+      secondaryCta:gV('hero-cta2-text'),secondaryCtaLink:gV('hero-cta2-link'),
+      videoUrl:mp4Path,videoMp4:mp4Path,videoWebm:'',
+      videoPoster:gV('hero-poster')||'assets/videos/home-poster.jpg',
+      showVideo:document.getElementById('hero-show-video').checked
+    },
+    stats, services,
+    why:{heading:gV('why-heading'),text:gV('why-text'),image:gV('why-image'),points:whyPoints},
+    process, testimonials, industries, pageVideos,
+    nav:C.nav||{}
+  };
+}
+
+// ── GITHUB ──
+function saveGitHubSettings(){
+  localStorage.setItem('gh_token',gV('gh-token'));
+  localStorage.setItem('gh_user',gV('gh-user'));
+  localStorage.setItem('gh_repo',gV('gh-repo'));
+  localStorage.setItem('gh_branch',gV('gh-branch')||'main');
+  document.getElementById('gh-msg').textContent='✅ GitHub settings saved.';
+}
+function loadGitHubSettings(){
+  setV('gh-token',localStorage.getItem('gh_token')||'');
+  setV('gh-user',localStorage.getItem('gh_user')||'');
+  setV('gh-repo',localStorage.getItem('gh_repo')||'');
+  setV('gh-branch',localStorage.getItem('gh_branch')||'main');
+}
+
+async function saveToGitHub(){
+  const token=localStorage.getItem('gh_token');
+  const user=localStorage.getItem('gh_user');
+  const repo=localStorage.getItem('gh_repo');
+  const branch=localStorage.getItem('gh_branch')||'main';
+  if(!token||!user||!repo){ alert('⚠️ Please set GitHub settings first (GitHub Publish tab)'); showPanel('github'); return; }
+
+  const badge=document.getElementById('status-badge');
+  const btn=document.getElementById('save-btn');
+  badge.className='status-badge status-saving'; badge.textContent='Saving...';
+  btn.disabled=true;
+
+  const newContent=collectContent();
+  C=newContent;
+  const json=JSON.stringify(newContent,null,2);
+  const encoded=btoa(unescape(encodeURIComponent(json)));
+
+  document.getElementById('pub-modal').classList.add('show');
+  const status=document.getElementById('pub-status');
+  status.textContent='⏳ Connecting to GitHub...';
+
+  try{
+    const getRes=await fetch(`https://api.github.com/repos/${user}/${repo}/contents/content.json`,{
+      headers:{'Authorization':'token '+token,'Accept':'application/vnd.github.v3+json'}
+    });
+    let sha='';
+    if(getRes.ok){ const d=await getRes.json(); sha=d.sha; }
+    status.textContent='⏳ Committing changes...';
+    const putRes=await fetch(`https://api.github.com/repos/${user}/${repo}/contents/content.json`,{
+      method:'PUT',
+      headers:{'Authorization':'token '+token,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},
+      body:JSON.stringify({message:'Admin: update content.json',content:encoded,sha:sha||undefined,branch})
+    });
+    if(putRes.ok){
+      status.innerHTML='✅ <strong>Published successfully!</strong><br><br>Cloudflare Pages will redeploy your website in 1–2 minutes.<br><br><a href="https://www.aimazetechsolutions.com" target="_blank" style="color:#27c7d7">View live site →</a>';
+      badge.className='status-badge status-saved'; badge.textContent='Published ✓';
+    } else {
+      const err=await putRes.json();
+      status.innerHTML='❌ Error: '+(err.message||'Unknown error')+'<br><br>Check your GitHub token has <strong>repo</strong> scope.';
+      badge.className='status-badge status-error'; badge.textContent='Error';
+    }
+  } catch(e){
+    status.innerHTML='❌ Network error: '+e.message;
+    badge.className='status-badge status-error'; badge.textContent='Error';
+  }
+  btn.disabled=false;
+}
+
+function closeModal(){ document.getElementById('pub-modal').classList.remove('show'); }
+</script>
+</body>
+</html>

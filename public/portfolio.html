@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Portfolio | AimAze Tech Solutions</title>
+<meta name="description" content="Project examples, ERP implementations, dashboards and digital transformation work by AimAze Tech Solutions.">
+<link rel="icon" href="assets/aimaze-logo-transparent.png">
+<link rel="stylesheet" href="site.css?v=15">
+<style>
+.portfolio-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.portfolio-card{border-radius:26px;overflow:hidden;border:1px solid #e8f0f7;background:#fff;box-shadow:0 20px 60px rgba(16,23,41,.06);transition:.35s;display:flex;flex-direction:column}
+.portfolio-card:hover{transform:translateY(-8px);box-shadow:var(--shadow);border-color:rgba(39,199,215,.3)}
+.portfolio-card.wide{grid-column:span 2}
+.p-thumb{height:230px;display:flex;align-items:center;justify-content:center;font-size:72px;position:relative}
+.p-badge{position:absolute;top:18px;right:18px;padding:6px 14px;border-radius:999px;background:rgba(255,255,255,.2);color:#fff;font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;backdrop-filter:blur(8px);border:1px solid rgba(255,255,255,.2)}
+.p-body{padding:32px;flex:1;display:flex;flex-direction:column}
+.p-tag{display:inline-block;padding:4px 12px;border-radius:999px;background:rgba(39,199,215,.1);color:var(--secondary);font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-bottom:14px}
+.p-body h3{font-family:var(--heading-font);font-size:22px;font-weight:800;line-height:1.25;margin-bottom:12px}
+.p-body p{color:#6d7789;font-size:15px;line-height:1.65;flex:1}
+.p-pills{display:flex;gap:8px;flex-wrap:wrap;margin-top:18px}
+.pill{padding:5px 12px;border-radius:999px;border:1px solid #e8f0f7;font-size:12px;font-weight:700;color:#6d7789}
+.p-results{display:flex;gap:28px;margin-top:20px;padding-top:20px;border-top:1px solid #e8f0f7}
+.result-item strong{display:block;font-family:var(--heading-font);font-size:24px;font-weight:800;color:var(--secondary)}
+.result-item span{font-size:12px;color:#a0aec0;font-weight:600}
+@media(max-width:900px){.portfolio-grid{grid-template-columns:1fr}.portfolio-card.wide{grid-column:span 1}}
+</style>
+<link rel="stylesheet" href="whatsapp.css?v=23">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <a class="brand" href="index.html"><img src="assets/aimaze-logo-transparent.png" alt="AimAze"><span class="brand-name">AimAze Tech Solutions</span></a>
+  <div class="nav-links" id="nav-links"></div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="page-hero">
+  <p class="eyebrow">Our Work</p>
+  <h1>Project examples and solution capabilities.</h1>
+  <p>ERP implementations, finance dashboards, business websites, automations and digital transformation work for UAE and international clients.</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="contact.html">Start Your Project</a>
+    <a class="btn btn-secondary" href="services.html">View Services</a>
+  </div>
+</section>
+
+<section class="section light">
+  <div class="portfolio-grid">
+    <article class="portfolio-card wide reveal">
+      <div class="p-thumb" style="background:linear-gradient(135deg,#27c7d7,#3f83df,#7c3aed)">📊<span class="p-badge">Odoo ERP</span></div>
+      <div class="p-body">
+        <span class="p-tag">Trading & Distribution</span>
+        <h3>Full Odoo ERP Implementation — UAE Trading Company</h3>
+        <p>End-to-end Odoo implementation covering CRM, sales, purchase, inventory, accounting and HR. Migrated from manual spreadsheets to a fully integrated system with live management dashboards and UAE VAT-compliant invoicing.</p>
+        <div class="p-pills"><span class="pill">Odoo CRM</span><span class="pill">Inventory</span><span class="pill">Accounting</span><span class="pill">HR</span><span class="pill">VAT</span><span class="pill">Data Migration</span></div>
+        <div class="p-results">
+          <div class="result-item"><strong>100%</strong><span>Manual process eliminated</span></div>
+          <div class="result-item"><strong>3 weeks</strong><span>Go-live timeline</span></div>
+          <div class="result-item"><strong>5 modules</strong><span>Integrated</span></div>
+        </div>
+      </div>
+    </article>
+    <article class="portfolio-card reveal delay-1">
+      <div class="p-thumb" style="background:linear-gradient(135deg,#ff8847,#7c3aed)">💰<span class="p-badge">Finance</span></div>
+      <div class="p-body">
+        <span class="p-tag">Hospitality</span>
+        <h3>Hotel Operations & Finance Dashboard Automation</h3>
+        <p>Custom Odoo dashboard for room revenue, F&B sales, occupancy, receivables, supplier costs and department-level performance reporting for hotel management.</p>
+        <div class="p-pills"><span class="pill">Odoo Accounting</span><span class="pill">Custom Dashboard</span><span class="pill">Automation</span></div>
+        <div class="p-results">
+          <div class="result-item"><strong>Zero</strong><span>Manual reporting</span></div>
+          <div class="result-item"><strong>Daily</strong><span>Live KPI visibility</span></div>
+        </div>
+      </div>
+    </article>
+    <article class="portfolio-card reveal delay-2">
+      <div class="p-thumb" style="background:linear-gradient(135deg,#3f83df,#27c7d7)">🌐<span class="p-badge">Website</span></div>
+      <div class="p-body">
+        <span class="p-tag">Real Estate</span>
+        <h3>Business Website & CRM Integration — Real Estate Agency</h3>
+        <p>Professional website with property listings, lead capture forms and direct Odoo CRM integration. Every inquiry auto-creates a CRM lead with source tracking.</p>
+        <div class="p-pills"><span class="pill">Web Development</span><span class="pill">Odoo CRM</span><span class="pill">Lead Capture</span></div>
+        <div class="p-results">
+          <div class="result-item"><strong>100%</strong><span>Leads in CRM</span></div>
+          <div class="result-item"><strong>Auto</strong><span>Follow-up workflows</span></div>
+        </div>
+      </div>
+    </article>
+    <article class="portfolio-card reveal delay-1">
+      <div class="p-thumb" style="background:linear-gradient(135deg,#7c3aed,#ff8847)">✈️<span class="p-badge">Travel</span></div>
+      <div class="p-body">
+        <span class="p-tag">Travel & Tourism</span>
+        <h3>Odoo CRM & Sales Pipeline — Travel Agency</h3>
+        <p>Custom CRM pipeline for travel package sales with quotation templates, follow-up automation, supplier cost tracking and profit per booking visibility.</p>
+        <div class="p-pills"><span class="pill">Odoo CRM</span><span class="pill">Custom Quotations</span><span class="pill">Profit Tracking</span></div>
+        <div class="p-results">
+          <div class="result-item"><strong>40%</strong><span>Faster quoting</span></div>
+          <div class="result-item"><strong>Full</strong><span>Pipeline visibility</span></div>
+        </div>
+      </div>
+    </article>
+    <article class="portfolio-card wide reveal">
+      <div class="p-thumb" style="background:linear-gradient(135deg,#3f83df,#7c3aed,#ff8847);height:160px">🔄<span class="p-badge">Automation</span></div>
+      <div class="p-body">
+        <span class="p-tag">Retail & E-commerce</span>
+        <h3>Workflow Automation & Approval Flows — Retail Group</h3>
+        <p>Automated purchase approval workflows, low-stock alerts, reorder rules and supplier payment reminders. Reduced manual follow-up across procurement and finance teams significantly.</p>
+        <div class="p-pills"><span class="pill">Odoo Inventory</span><span class="pill">Purchase</span><span class="pill">Approval Flows</span><span class="pill">Automation</span></div>
+        <div class="p-results">
+          <div class="result-item"><strong>Zero</strong><span>Missed reorders</span></div>
+          <div class="result-item"><strong>Auto</strong><span>Approval routing</span></div>
+          <div class="result-item"><strong>Hours saved</strong><span>Per week</span></div>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<div class="cta-banner reveal">
+  <div><h2>Want results like these for your business?</h2><p>Book a free process analysis and we will map out the right solution.</p></div>
+  <a class="btn-white" href="contact.html">Book Free Consultation</a>
+</div>
+
+<footer class="footer" id="footer"><div id="footer-inner"></div></footer>
+<script src="shared.js?v=23"></script>
+</body>
+</html>

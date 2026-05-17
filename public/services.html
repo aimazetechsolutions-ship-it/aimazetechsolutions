@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ERP & Software Services | AimAze Tech Solutions</title>
+<meta name="description" content="Odoo ERP, CRM, software, finance dashboards, websites and IT services for UAE and international businesses.">
+<link rel="icon" href="assets/aimaze-logo-transparent.png">
+<link rel="stylesheet" href="site.css?v=15">
+<style>
+.service-detail{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center;padding:80px clamp(20px,6vw,90px)}
+.service-detail:nth-child(even){direction:rtl}
+.service-detail>*{direction:ltr}
+.service-detail-visual{border-radius:28px;overflow:hidden;position:relative}
+.service-detail-visual img{width:100%;height:420px;object-fit:cover}
+.service-detail-overlay{position:absolute;inset:0;background:var(--grad);opacity:.15}
+.service-icon-large{position:absolute;top:28px;left:28px;width:64px;height:64px;border-radius:18px;background:rgba(255,255,255,.95);display:flex;align-items:center;justify-content:center;font-size:30px;box-shadow:0 8px 24px rgba(0,0,0,.12)}
+.service-detail-text .eyebrow{margin-bottom:14px}
+.service-detail-text h2{font-family:var(--heading-font);font-size:clamp(28px,3.5vw,44px);font-weight:800;letter-spacing:-.04em;line-height:1.1;margin-bottom:18px}
+.service-detail-text p{color:#6d7789;font-size:16px;line-height:1.75;margin-bottom:24px}
+.feature-list{display:flex;flex-direction:column;gap:12px;margin-bottom:28px}
+.feature-item{display:flex;align-items:flex-start;gap:12px;font-size:15px;color:#344154}
+.feature-check{width:22px;height:22px;border-radius:6px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:12px;color:#fff;flex-shrink:0;margin-top:2px}
+.divider{height:1px;background:linear-gradient(90deg,transparent,#e8f0f7,transparent);margin:0}
+@media(max-width:900px){.service-detail{grid-template-columns:1fr;direction:ltr !important;padding:60px clamp(20px,5vw,60px)}.service-detail-visual{display:none}}
+</style>
+<link rel="stylesheet" href="whatsapp.css?v=23">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <a class="brand" href="index.html"><img src="assets/aimaze-logo-transparent.png" alt="AimAze"><span class="brand-name">AimAze Tech Solutions</span></a>
+  <div class="nav-links" id="nav-links"></div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="page-hero">
+  <p class="eyebrow">Services</p>
+  <h1>Business technology services built around real workflows.</h1>
+  <p>We design, build, integrate and support the systems your team depends on every day — from Odoo ERP to custom websites and automation.</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="contact.html">Book Free Consultation</a>
+    <a class="btn btn-secondary" href="odoo.html">Odoo ERP Details</a>
+  </div>
+</section>
+
+<!-- SERVICES OVERVIEW -->
+<section class="section light">
+  <div class="section-head reveal">
+    <p class="eyebrow">What We Offer</p>
+    <h2>Six core service areas.</h2>
+    <p>Every service is delivered with a business-first mindset and long-term partnership approach.</p>
+  </div>
+  <div class="grid-3">
+    <div class="card reveal delay-1" style="display:flex;flex-direction:column;gap:16px">
+      <div style="width:54px;height:54px;border-radius:16px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:26px">📊</div>
+      <h3 style="font-family:var(--heading-font);font-size:19px;font-weight:700">Odoo ERP Implementation</h3>
+      <p style="color:#6d7789;font-size:14px;line-height:1.65;flex:1">Module planning, configuration, migration, training and go-live support for CRM, sales, finance, HR, inventory and operations.</p>
+      <a href="#erp" style="color:var(--secondary);font-size:14px;font-weight:700">Learn more →</a>
+    </div>
+    <div class="card reveal delay-2" style="display:flex;flex-direction:column;gap:16px">
+      <div style="width:54px;height:54px;border-radius:16px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:26px">⚙️</div>
+      <h3 style="font-family:var(--heading-font);font-size:19px;font-weight:700">Odoo Customization</h3>
+      <p style="color:#6d7789;font-size:14px;line-height:1.65;flex:1">Custom workflows, dashboards, approvals, automated reports and business-specific modules built around your processes.</p>
+      <a href="#custom" style="color:var(--secondary);font-size:14px;font-weight:700">Learn more →</a>
+    </div>
+    <div class="card reveal delay-3" style="display:flex;flex-direction:column;gap:16px">
+      <div style="width:54px;height:54px;border-radius:16px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:26px">📈</div>
+      <h3 style="font-family:var(--heading-font);font-size:19px;font-weight:700">CRM & Sales Automation</h3>
+      <p style="color:#6d7789;font-size:14px;line-height:1.65;flex:1">Lead management, pipeline stages, follow-ups, quotation workflow and full management visibility across your sales team.</p>
+      <a href="#crm" style="color:var(--secondary);font-size:14px;font-weight:700">Learn more →</a>
+    </div>
+    <div class="card reveal delay-1" style="display:flex;flex-direction:column;gap:16px">
+      <div style="width:54px;height:54px;border-radius:16px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:26px">💰</div>
+      <h3 style="font-family:var(--heading-font);font-size:19px;font-weight:700">Finance Dashboards</h3>
+      <p style="color:#6d7789;font-size:14px;line-height:1.65;flex:1">CFO dashboards, receivable tracking, margin reporting, VAT workflows and real-time KPI visibility for management.</p>
+      <a href="#finance" style="color:var(--secondary);font-size:14px;font-weight:700">Learn more →</a>
+    </div>
+    <div class="card reveal delay-2" style="display:flex;flex-direction:column;gap:16px">
+      <div style="width:54px;height:54px;border-radius:16px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:26px">🌐</div>
+      <h3 style="font-family:var(--heading-font);font-size:19px;font-weight:700">Custom Software & Websites</h3>
+      <p style="color:#6d7789;font-size:14px;line-height:1.65;flex:1">Professional business websites, portals, internal tools and web applications built for growth and performance.</p>
+      <a href="#web" style="color:var(--secondary);font-size:14px;font-weight:700">Learn more →</a>
+    </div>
+    <div class="card reveal delay-3" style="display:flex;flex-direction:column;gap:16px">
+      <div style="width:54px;height:54px;border-radius:16px;background:var(--grad);display:flex;align-items:center;justify-content:center;font-size:26px">🔧</div>
+      <h3 style="font-family:var(--heading-font);font-size:19px;font-weight:700">IT Support & Digital Advisory</h3>
+      <p style="color:#6d7789;font-size:14px;line-height:1.65;flex:1">Process review, automation roadmaps, integration planning and long-term technology support for your team.</p>
+      <a href="#advisory" style="color:var(--secondary);font-size:14px;font-weight:700">Learn more →</a>
+    </div>
+  </div>
+</section>
+
+<!-- DETAIL: ERP -->
+<div class="divider"></div>
+<div id="erp" class="service-detail">
+  <div class="service-detail-visual reveal-left">
+    <img src="https://images.pexels.com/photos/3183150/pexels-photo-3183150.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Odoo ERP">
+    <div class="service-detail-overlay"></div>
+    <div class="service-icon-large">📊</div>
+  </div>
+  <div class="service-detail-text reveal-right">
+    <p class="eyebrow">Odoo ERP</p>
+    <h2>Full ERP implementation shaped around your operations.</h2>
+    <p>We plan, configure, migrate and train — ensuring your Odoo system reflects how your business actually works, not how a generic template assumes it should.</p>
+    <div class="feature-list">
+      <div class="feature-item"><span class="feature-check">✓</span>Module selection and implementation roadmap</div>
+      <div class="feature-item"><span class="feature-check">✓</span>Data migration from existing systems</div>
+      <div class="feature-item"><span class="feature-check">✓</span>User training and documentation</div>
+      <div class="feature-item"><span class="feature-check">✓</span>Go-live support and post-launch optimization</div>
+      <div class="feature-item"><span class="feature-check">✓</span>UAE VAT compliance configuration</div>
+    </div>
+    <a class="btn btn-primary" href="odoo.html">Full Odoo Details</a>
+  </div>
+</div>
+
+<!-- DETAIL: CUSTOMIZATION -->
+<div class="divider"></div>
+<div id="custom" class="service-detail">
+  <div class="service-detail-visual reveal-right">
+    <img src="https://images.pexels.com/photos/3182773/pexels-photo-3182773.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Customization">
+    <div class="service-detail-overlay"></div>
+    <div class="service-icon-large">⚙️</div>
+  </div>
+  <div class="service-detail-text reveal-left">
+    <p class="eyebrow">Customization</p>
+    <h2>Odoo configured and extended for your exact workflow.</h2>
+    <p>Standard Odoo covers 80% of what most businesses need. We handle the remaining 20% — the custom approvals, reports, automations and modules unique to your operation.</p>
+    <div class="feature-list">
+      <div class="feature-item"><span class="feature-check">✓</span>Custom approval workflows and multi-level sign-offs</div>
+      <div class="feature-item"><span class="feature-check">✓</span>Automated reports delivered by email or dashboard</div>
+      <div class="feature-item"><span class="feature-check">✓</span>Custom fields, views and business logic</div>
+      <div class="feature-item"><span class="feature-check">✓</span>Third-party integrations and API connections</div>
+    </div>
+    <a class="btn btn-primary" href="contact.html">Discuss Your Requirements</a>
+  </div>
+</div>
+
+<!-- DETAIL: CRM -->
+<div class="divider"></div>
+<div id="crm" class="service-detail">
+  <div class="service-detail-visual reveal-left">
+    <img src="https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=800" alt="CRM">
+    <div class="service-detail-overlay"></div>
+    <div class="service-icon-large">📈</div>
+  </div>
+  <div class="service-detail-text reveal-right">
+    <p class="eyebrow">CRM & Sales</p>
+    <h2>Sales pipeline your team will actually use every day.</h2>
+    <p>We configure Odoo CRM around your real sales process — stages, follow-up rules, quotation workflows and the management visibility you need to track performance.</p>
+    <div class="feature-list">
+      <div class="feature-item"><span class="feature-check">✓</span>Pipeline stages mapped to your actual sales process</div>
+      <div class="feature-item"><span class="feature-check">✓</span>Automated follow-up reminders and activity scheduling</div>
+      <div class="feature-item"><span class="feature-check">✓</span>Quotation templates and approval flows</div>
+      <div class="feature-item"><span class="feature-check">✓</span>Management dashboards and sales KPI reporting</div>
+    </div>
+    <a class="btn btn-primary" href="contact.html">Book Consultation</a>
+  </div>
+</div>
+
+<!-- DETAIL: FINANCE -->
+<div class="divider"></div>
+<div id="finance" class="service-detail">
+  <div class="service-detail-visual reveal-right">
+    <img src="https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Finance">
+    <div class="service-detail-overlay"></div>
+    <div class="service-icon-large">💰</div>
+  </div>
+  <div class="service-detail-text reveal-left">
+    <p class="eyebrow">Finance Dashboards</p>
+    <h2>Real-time financial visibility for management and CFOs.</h2>
+    <p>Stop waiting for month-end reports. We build live dashboards that show your key numbers every morning — receivables, margins, cash flow and KPIs that drive decisions.</p>
+    <div class="feature-list">
+      <div class="feature-item"><span class="feature-check">✓</span>CFO and management dashboards</div>
+      <div class="feature-item"><span class="feature-check">✓</span>Receivables aging and collection tracking</div>
+      <div class="feature-item"><span class="feature-check">✓</span>Revenue and margin reporting by segment</div>
+      <div class="feature-item"><span class="feature-check">✓</span>UAE VAT reporting and compliance workflows</div>
+    </div>
+    <a class="btn btn-primary" href="contact.html">Book Consultation</a>
+  </div>
+</div>
+
+<!-- DETAIL: WEB -->
+<div class="divider"></div>
+<div id="web" class="service-detail">
+  <div class="service-detail-visual reveal-left">
+    <img src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Web Development">
+    <div class="service-detail-overlay"></div>
+    <div class="service-icon-large">🌐</div>
+  </div>
+  <div class="service-detail-text reveal-right">
+    <p class="eyebrow">Web Development</p>
+    <h2>Professional websites and portals built for business growth.</h2>
+    <p>Fast, modern, mobile-optimized business websites with clear calls to action, SEO structure and optional CRM integration so every inquiry lands in your pipeline automatically.</p>
+    <div class="feature-list">
+      <div class="feature-item"><span class="feature-check">✓</span>Professional multi-page business websites</div>
+      <div class="feature-item"><span class="feature-check">✓</span>Customer portals and internal tools</div>
+      <div class="feature-item"><span class="feature-check">✓</span>CRM lead capture integration</div>
+      <div class="feature-item"><span class="feature-check">✓</span>SEO structure, speed optimization and hosting setup</div>
+    </div>
+    <a class="btn btn-primary" href="contact.html">Book Consultation</a>
+  </div>
+</div>
+
+<!-- DETAIL: ADVISORY -->
+<div class="divider"></div>
+<div id="advisory" class="service-detail">
+  <div class="service-detail-visual reveal-right">
+    <img src="https://images.pexels.com/photos/3182781/pexels-photo-3182781.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Advisory">
+    <div class="service-detail-overlay"></div>
+    <div class="service-icon-large">🔧</div>
+  </div>
+  <div class="service-detail-text reveal-left">
+    <p class="eyebrow">IT Advisory</p>
+    <h2>Strategic technology guidance for your growing business.</h2>
+    <p>Not sure which system you need or how to connect your existing tools? We provide honest, practical technology advice — and stay involved to make sure it actually gets implemented.</p>
+    <div class="feature-list">
+      <div class="feature-item"><span class="feature-check">✓</span>Business process review and documentation</div>
+      <div class="feature-item"><span class="feature-check">✓</span>Technology roadmap and tool selection</div>
+      <div class="feature-item"><span class="feature-check">✓</span>System integration planning</div>
+      <div class="feature-item"><span class="feature-check">✓</span>Ongoing support and optimization</div>
+    </div>
+    <a class="btn btn-primary" href="contact.html">Book Free Analysis</a>
+  </div>
+</div>
+
+<div style="padding:0 clamp(20px,5vw,80px) 80px">
+  <div class="cta-banner reveal">
+    <div><h2>Ready to get started?</h2><p>Book a free process analysis — no commitment, just an honest conversation about your needs.</p></div>
+    <a class="btn-white" href="contact.html">Book Free Consultation</a>
+  </div>
+</div>
+
+<footer class="footer" id="footer"><div id="footer-inner"></div></footer>
+<script src="shared.js?v=23"></script>
+</body>
+</html>

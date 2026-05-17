@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Odoo ERP Implementation UAE | AimAze Tech Solutions</title>
+<meta name="description" content="Odoo ERP implementation, customization, integrations, training and support for UAE and international businesses.">
+<link rel="icon" href="assets/aimaze-logo-transparent.png">
+<link rel="stylesheet" href="site.css?v=15">
+<style>
+.modules-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.module-card{padding:22px;border-radius:16px;border:1px solid #e8f0f7;background:#fff;text-align:center;transition:.3s;cursor:default}
+.module-card:hover{border-color:var(--primary);transform:translateY(-4px);box-shadow:0 16px 40px rgba(39,199,215,.12)}
+.module-icon{font-size:32px;margin-bottom:12px}
+.module-card h4{font-family:var(--heading-font);font-size:15px;font-weight:700;margin-bottom:6px}
+.module-card p{color:#6d7789;font-size:12px;line-height:1.5}
+.edition-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.edition-card{border-radius:24px;padding:36px;border:2px solid #e8f0f7;background:#fff;transition:.3s}
+.edition-card.featured{border-color:var(--primary);background:linear-gradient(135deg,rgba(39,199,215,.04),rgba(63,131,223,.04))}
+.edition-badge{display:inline-block;padding:4px 14px;border-radius:999px;background:var(--grad);color:#fff;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;margin-bottom:16px}
+.edition-card h3{font-family:var(--heading-font);font-size:26px;font-weight:800;margin-bottom:10px}
+.edition-card .price{font-size:14px;color:#6d7789;margin-bottom:24px}
+.edition-features{display:flex;flex-direction:column;gap:10px;margin-bottom:28px}
+.edition-feature{display:flex;align-items:flex-start;gap:10px;font-size:14px;color:#344154}
+.ef-check{color:var(--primary);font-weight:800;flex-shrink:0}
+.faq-list{display:flex;flex-direction:column;gap:14px}
+.faq-item{border:1px solid #e8f0f7;border-radius:16px;overflow:hidden}
+.faq-q{padding:20px 24px;font-weight:700;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:.2s}
+.faq-q:hover{background:#f8fcfd}
+.faq-a{padding:0 24px 20px;color:#6d7789;font-size:15px;line-height:1.7;display:none}
+.faq-item.open .faq-a{display:block}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
+.faq-arrow{transition:.3s;font-size:12px}
+@media(max-width:900px){.modules-grid{grid-template-columns:repeat(2,1fr)}.edition-grid{grid-template-columns:1fr}}
+@media(max-width:620px){.modules-grid{grid-template-columns:1fr 1fr}}
+</style>
+<link rel="stylesheet" href="whatsapp.css?v=23">
+</head>
+<body>
+<nav class="navbar" id="navbar">
+  <a class="brand" href="index.html"><img src="assets/aimaze-logo-transparent.png" alt="AimAze"><span class="brand-name">AimAze Tech Solutions</span></a>
+  <div class="nav-links" id="nav-links"></div>
+  <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+</nav>
+
+<section class="page-hero">
+  <p class="eyebrow">Odoo ERP Specialists</p>
+  <h1>Odoo setup shaped around your actual business process.</h1>
+  <p>We plan modules, configure workflows, customize reports, train users and support adoption after go-live — so your team actually uses the system.</p>
+  <div class="hero-actions">
+    <a class="btn btn-primary" href="contact.html">Book Free ERP Consultation</a>
+    <a class="btn btn-secondary" href="portfolio.html">View Case Studies</a>
+  </div>
+</section>
+
+<!-- WHY ODOO -->
+<section class="section light">
+  <div class="split">
+    <div class="reveal-left">
+      <p class="eyebrow">Why Odoo</p>
+      <h2 style="font-family:var(--heading-font);font-size:clamp(28px,3.5vw,46px);font-weight:800;letter-spacing:-.04em;line-height:1.1;margin-bottom:18px">One platform for your entire business operation.</h2>
+      <p style="color:#6d7789;font-size:16px;line-height:1.75;margin-bottom:16px">Odoo connects every department — sales, finance, HR, inventory, purchasing — in a single system with live data, automated workflows and management dashboards built in.</p>
+      <p style="color:#6d7789;font-size:16px;line-height:1.75;margin-bottom:28px">With Odoo Community Edition, growing businesses can start with a reliable open-source ERP foundation, control their hosting and source code, and invest budget into the workflows, reports and integrations they actually need.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px">
+        <div style="padding:18px;border-radius:14px;border:1px solid #e8f0f7;text-align:center">
+          <div style="font-family:var(--heading-font);font-size:28px;font-weight:800;color:var(--secondary)">50+</div>
+          <div style="font-size:13px;color:#6d7789;font-weight:600">Core business modules</div>
+        </div>
+        <div style="padding:18px;border-radius:14px;border:1px solid #e8f0f7;text-align:center">
+          <div style="font-family:var(--heading-font);font-size:28px;font-weight:800;color:var(--secondary)">12M+</div>
+          <div style="font-size:13px;color:#6d7789;font-weight:600">Users worldwide</div>
+        </div>
+        <div style="padding:18px;border-radius:14px;border:1px solid #e8f0f7;text-align:center">
+          <div style="font-family:var(--heading-font);font-size:28px;font-weight:800;color:var(--secondary)">UAE</div>
+          <div style="font-size:13px;color:#6d7789;font-weight:600">VAT compliant</div>
+        </div>
+        <div style="padding:18px;border-radius:14px;border:1px solid #e8f0f7;text-align:center">
+          <div style="font-family:var(--heading-font);font-size:28px;font-weight:800;color:var(--secondary)">Open</div>
+          <div style="font-size:13px;color:#6d7789;font-weight:600">Source platform</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal-right" style="border-radius:28px;overflow:hidden;position:relative">
+      <img src="https://images.pexels.com/photos/3183197/pexels-photo-3183197.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Odoo ERP" style="width:100%;height:480px;object-fit:cover">
+      <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(39,199,215,.2),rgba(63,131,223,.2))"></div>
+    </div>
+  </div>
+</section>
+
+<!-- MODULES -->
+<section class="section">
+  <div class="section-head reveal">
+    <p class="eyebrow">Odoo Modules</p>
+    <h2>Key modules we implement and customize.</h2>
+    <p>We focus on the modules that drive the most business value — and connect them so data flows automatically across your organization.</p>
+  </div>
+  <div class="modules-grid">
+    <div class="module-card reveal delay-1"><div class="module-icon">🤝</div><h4>CRM</h4><p>Lead tracking, pipeline stages, follow-ups and sales visibility</p></div>
+    <div class="module-card reveal delay-2"><div class="module-icon">📋</div><h4>Sales</h4><p>Quotations, orders, pricing rules and customer management</p></div>
+    <div class="module-card reveal delay-3"><div class="module-icon">💰</div><h4>Accounting</h4><p>Invoicing, payments, VAT, bank reconciliation and reporting</p></div>
+    <div class="module-card reveal delay-4"><div class="module-icon">📦</div><h4>Inventory</h4><p>Stock management, warehouses, routes and reorder rules</p></div>
+    <div class="module-card reveal delay-1"><div class="module-icon">🛒</div><h4>Purchase</h4><p>RFQs, purchase orders, vendor management and approvals</p></div>
+    <div class="module-card reveal delay-2"><div class="module-icon">👥</div><h4>HR Basics</h4><p>Employee records, team structure, leave workflows and internal approvals</p></div>
+    <div class="module-card reveal delay-3"><div class="module-icon">📊</div><h4>Dashboards</h4><p>Custom KPI views, management reports and practical decision dashboards</p></div>
+    <div class="module-card reveal delay-4"><div class="module-icon">🔧</div><h4>Operations</h4><p>Production planning, BOM-style workflows, job tracking and process control</p></div>
+  </div>
+</section>
+
+<!-- EDITIONS -->
+<section class="section light">
+  <div class="section-head reveal">
+    <p class="eyebrow">Community Edition Focus</p>
+    <h2>Odoo Community implementation without license-heavy complexity.</h2>
+    <p>We focus on open-source Odoo Community setups for businesses that want control, customization and practical ERP value without annual per-user licensing.</p>
+  </div>
+  <div class="edition-grid reveal">
+    <div class="edition-card featured">
+      <div class="edition-badge">Recommended</div>
+      <h3>Odoo Community</h3>
+      <p class="price">Open-source ERP foundation — pay for implementation, customization and support</p>
+      <div class="edition-features">
+        <div class="edition-feature"><span class="ef-check">✓</span>Flexible implementation fee based on customization scope</div>
+        <div class="edition-feature"><span class="ef-check">✓</span>CRM, sales, invoicing, purchasing, inventory and operations workflows</div>
+        <div class="edition-feature"><span class="ef-check">✓</span>Flexible hosting choice: self-hosted or outsourced cloud server</div>
+        <div class="edition-feature"><span class="ef-check">✓</span>Custom modules, reports, dashboards and business documents</div>
+        <div class="edition-feature"><span class="ef-check">✓</span>Integrations with websites, payment tools, accounting data and external systems</div>
+        <div class="edition-feature"><span class="ef-check">✓</span>Training, user adoption and ongoing AimAze support after go-live</div>
+      </div>
+      <a class="btn btn-primary" href="contact.html">Discuss Community Edition</a>
+    </div>
+    <div class="edition-card">
+      <h3>What We Clarify Before You Start</h3>
+      <p class="price">Transparent scope planning so the system matches real operational needs</p>
+      <div class="edition-features">
+        <div class="edition-feature"><span class="ef-check">✓</span>Which Community modules fit your business process</div>
+        <div class="edition-feature"><span class="ef-check">✓</span>Where custom development is better than forcing manual workarounds</div>
+        <div class="edition-feature"><span class="ef-check">✓</span>Which reporting, approval and security rules should be configured</div>
+        <div class="edition-feature"><span class="ef-check">✓</span>Hosting, backup and maintenance responsibilities</div>
+        <div class="edition-feature"><span class="ef-check">✓</span>Data migration, user roles, training and go-live plan</div>
+        <div class="edition-feature"><span class="ef-check">✓</span>Clear note of any feature that may require custom work or a paid app</div>
+      </div>
+      <a class="btn btn-primary" href="contact.html">Request Community ERP Audit</a>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="section-head reveal">
+    <p class="eyebrow">FAQ</p>
+    <h2>Common questions about Odoo ERP.</h2>
+  </div>
+  <div class="faq-list" style="max-width:800px;margin:0 auto">
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>How long does an Odoo implementation take?</span><span class="faq-arrow">▾</span></div>
+      <div class="faq-a">It depends on the scope. A focused implementation (e.g. CRM + Sales + Accounting for a small team) can go live in 3–4 weeks. A full multi-module implementation for a larger team typically takes 6–12 weeks including data migration and training.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>Can you migrate our data from our current system?</span><span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Yes. We migrate data from Excel, accounting software, other ERP systems and databases. We clean and validate the data before migration to ensure your Odoo system starts with accurate records.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>Do you support UAE VAT compliance?</span><span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Yes. We configure Odoo for UAE VAT — including tax rules, VAT invoices, credit notes and the VAT return report format required by the Federal Tax Authority (FTA).</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>What happens after go-live?</span><span class="faq-arrow">▾</span></div>
+      <div class="faq-a">We provide post-launch support, additional training sessions as your team grows, and ongoing customization as your business evolves. We stay involved as your long-term Odoo partner.</div>
+    </div>
+    <div class="faq-item reveal">
+      <div class="faq-q" onclick="toggleFaq(this)"><span>Can Odoo Community handle a serious business operation?</span><span class="faq-arrow">▾</span></div>
+      <div class="faq-a">Yes, when it is scoped and implemented correctly. We focus on Community Edition for core ERP workflows such as CRM, sales, invoicing, purchasing, inventory, operations, reporting and custom process automation. If a requested feature is not available in Community by default, we explain the options clearly before development starts.</div>
+    </div>
+  </div>
+</section>
+
+<div style="padding:0 clamp(20px,5vw,80px) 80px">
+  <div class="cta-banner reveal">
+    <div><h2>Ready to implement Odoo for your business?</h2><p>Book a free consultation and we'll map out the right modules and approach for your needs.</p></div>
+    <a class="btn-white" href="contact.html">Book Free ERP Consultation</a>
+  </div>
+</div>
+
+<footer class="footer" id="footer"><div id="footer-inner"></div></footer>
+<script src="shared.js?v=23"></script>
+<script>
+function toggleFaq(el){
+  const item=el.parentElement;
+  item.classList.toggle('open');
+}
+</script>
+</body>
+</html>
