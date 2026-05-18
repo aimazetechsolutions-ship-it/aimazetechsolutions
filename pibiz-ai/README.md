@@ -1,10 +1,10 @@
-# PiBiz AI by AimAze
+# AimAze Biz AI
 
 Standalone Pi Browser app for AimAze Tech Solutions.
 
 ## Cloudflare Pages Settings
 
-Use these settings for the PiBiz AI Pages deployment:
+Use these settings for the AimAze Biz AI Pages deployment:
 
 ```text
 Root directory: pibiz-ai

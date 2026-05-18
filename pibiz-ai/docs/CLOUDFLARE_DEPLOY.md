@@ -83,7 +83,7 @@ Later, for automatic email:
 
 ```text
 RESEND_API_KEY=your-resend-api-key
-EMAIL_FROM=PiBiz AI <verified-email@aimazetechsolutions.com>
+EMAIL_FROM=AimAze Biz AI <verified-email@aimazetechsolutions.com>
 ```
 
 ## 4. Deploy Code

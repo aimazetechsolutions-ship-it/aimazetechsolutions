@@ -544,12 +544,12 @@ function renderReport(report) {
   qs("#roadmap-list").innerHTML = report.roadmap.map(item => `<li>${item}</li>`).join("");
 
   const message = encodeURIComponent(
-    `Hello AimAze, I generated my PiBiz AI report for ${report.industry}. I want a free ERP consultation.\n\nName: ${report.data.name}\nBusiness: ${report.data.businessName}\nBusiness Type: ${report.industry}\nWhatsApp: ${report.data.whatsapp}\nEmail: ${report.data.email}\nWebsite: ${config.websiteUrl || "https://www.aimazetechsolutions.com"}`
+    `Hello AimAze, I generated my AimAze Biz AI report for ${report.industry}. I want a free ERP consultation.\n\nName: ${report.data.name}\nBusiness: ${report.data.businessName}\nBusiness Type: ${report.industry}\nWhatsApp: ${report.data.whatsapp}\nEmail: ${report.data.email}\nWebsite: ${config.websiteUrl || "https://www.aimazetechsolutions.com"}`
   );
   const number = config.whatsappNumber || "";
   qs("#fallback-contact-link").href = number
     ? `https://wa.me/${number}?text=${message}`
-    : `mailto:${config.contactEmail || "info@aimazetechsolutions.com"}?subject=PiBiz AI consultation&body=${message}`;
+    : `mailto:${config.contactEmail || "info@aimazetechsolutions.com"}?subject=AimAze Biz AI consultation&body=${message}`;
   qs("#fallback-contact-link").textContent = number ? "Open WhatsApp Backup" : "Open Email Backup";
   qs("#fallback-contact-link").classList.add("hidden");
   setConsultationStatus("");
@@ -582,7 +582,7 @@ async function saveLead(report) {
         erpScore: report.erpScore,
         modules: report.modules,
         profile: report.data,
-        source: "PiBiz AI web app"
+        source: "AimAze Biz AI web app"
       })
     });
   } catch {
@@ -619,7 +619,7 @@ async function requestConsultation() {
         erpScore: latestReport.erpScore,
         modules: latestReport.modules,
         profile: latestReport.data,
-        source: "PiBiz AI consultation button"
+        source: "AimAze Biz AI consultation button"
       })
     });
     const result = await response.json();
@@ -702,7 +702,7 @@ async function unlockPremiumReport() {
 
   window.Pi.createPayment({
     amount: Number(config.paymentAmount || 1),
-    memo: "Premium PiBiz AI ERP report by AimAze",
+    memo: "Premium AimAze Biz AI ERP report by AimAze",
     metadata: {
       reportId: latestReport.reportId || "pending",
       businessType: latestReport.industry

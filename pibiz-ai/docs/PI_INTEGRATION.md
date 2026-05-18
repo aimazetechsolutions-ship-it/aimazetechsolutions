@@ -68,7 +68,7 @@ The local server runs in mock mode if `PI_API_KEY` is missing. That lets you tes
 Name:
 
 ```text
-PiBiz AI by AimAze
+AimAze Biz AI
 ```
 
 Short description:
@@ -80,5 +80,5 @@ AI ERP advisor for Pi entrepreneurs, merchants, hospitality businesses, travel a
 Long description:
 
 ```text
-PiBiz AI by AimAze helps Pi business owners understand how ready their business is for ERP and automation. Users answer a short industry-specific questionnaire and receive a free report with business health score, ERP readiness score, process weaknesses, recommended Odoo modules, estimated savings, and a 30/60/90 day implementation plan. The app supports hospitality, travel, real estate, retail, e-commerce, trading, and service businesses. Users can request a free AimAze consultation and later unlock a detailed premium report using Pi payments.
+AimAze Biz AI helps Pi business owners understand how ready their business is for ERP and automation. Users answer a short industry-specific questionnaire and receive a free report with business health score, ERP readiness score, process weaknesses, recommended Odoo modules, estimated savings, and a 30/60/90 day implementation plan. The app supports hospitality, travel, real estate, retail, e-commerce, trading, and service businesses. Users can request a free AimAze consultation and later unlock a detailed premium report using Pi payments.
 ```
