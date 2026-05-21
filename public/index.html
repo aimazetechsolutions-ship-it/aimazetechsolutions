@@ -1,23 +1,942 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="robots" content="noindex" />
-    <title>AimAze Tech Solutions | Maintenance</title>
-    <link rel="icon" href="assets/aimaze-logo-transparent.png" />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <main class="maintenance">
-      <img src="assets/aimaze-logo-transparent.png" alt="AimAze Tech Solutions logo" />
-      <p class="eyebrow">Website update in progress</p>
-      <h1>We'll be back online soon.</h1>
-      <p class="copy">
-        AimAze Tech Solutions is updating the website experience. For urgent
-        inquiries, please contact us by email.
-      </p>
-      <a href="mailto:info@aimazetechsolutions.com">info@aimazetechsolutions.com</a>
-    </main>
-  </body>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AimAze Tech Solutions | Odoo ERP & Digital Transformation UAE</title>
+<meta name="description" content="AimAze Tech Solutions — Odoo ERP implementation, automation, software and digital transformation for UAE and international businesses.">
+<meta property="og:title" content="AimAze Tech Solutions | Odoo ERP & Digital Transformation UAE">
+<meta property="og:image" content="assets/aimaze-coverpage.png">
+<link rel="icon" href="assets/aimaze-logo-transparent.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preload" as="video" href="assets/videos/home.mp4" type="video/mp4">
+<link rel="preload" as="image" href="assets/videos/home-poster.jpg">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap">
+<style>
+/* ── RESET & BASE ── */
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--body-font,'Inter'),sans-serif;font-size:var(--base-size,16px);background:#fff;color:#101729;line-height:1.65;overflow-x:hidden}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block}
+
+/* ── CSS VARIABLES (overridden by admin) ── */
+:root{
+  --primary:#27c7d7;
+  --secondary:#3f83df;
+  --accent:#ff8847;
+  --dark:#101729;
+  --heading-font:'Syne';
+  --body-font:'Inter';
+  --base-size:16px;
+  --grad:linear-gradient(135deg,var(--primary),var(--secondary),#7c3aed);
+  --shadow:0 30px 80px rgba(16,23,41,.12);
+}
+
+/* ── TOPBAR ── */
+.topbar{
+  display:flex;justify-content:center;align-items:center;gap:18px;
+  padding:10px 24px;
+  background:var(--grad);
+  color:#fff;font-size:13px;font-weight:600;
+  position:relative;z-index:100;
+}
+.topbar a{color:#fff;text-decoration:underline;white-space:nowrap}
+
+/* ── NAVBAR ── */
+.navbar{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:20px clamp(20px,5vw,80px);
+  transition:all .4s ease;
+}
+.navbar.scrolled{
+  background:rgba(255,255,255,.97);
+  backdrop-filter:blur(20px);
+  padding:14px clamp(20px,5vw,80px);
+  box-shadow:0 8px 40px rgba(16,23,41,.08);
+}
+.brand{display:flex;align-items:center;gap:12px}
+.brand img{height:44px;width:auto;object-fit:contain}
+.brand-name{font-family:var(--heading-font);font-size:18px;font-weight:800;color:#fff;transition:color .3s}
+.navbar.scrolled .brand-name{color:var(--dark)}
+.nav-links{display:flex;align-items:center;gap:4px}
+.nav-links a{
+  padding:9px 14px;border-radius:8px;
+  font-size:var(--nav-font-size,14px);font-weight:600;
+  color:rgba(255,255,255,.9);
+  transition:all .25s;
+}
+.navbar.scrolled .nav-links a{color:#344154}
+.nav-links a:hover{background:rgba(255,255,255,.15);color:#fff}
+.navbar.scrolled .nav-links a:hover{background:#f0f9ff;color:var(--secondary)}
+.nav-cta{
+  padding:10px 20px !important;border-radius:10px !important;
+  background:rgba(255,255,255,.2) !important;
+  color:#fff !important;font-weight:700 !important;
+  border:1px solid rgba(255,255,255,.3);
+  backdrop-filter:blur(10px);
+}
+.navbar.scrolled .nav-cta{
+  background:var(--grad) !important;
+  color:#fff !important;border:none !important;
+}
+.hamburger{display:none;position:relative;z-index:260;background:none;border:none;cursor:pointer;flex-direction:column;align-items:center;justify-content:center;gap:5px;width:40px;height:40px;padding:4px;border-radius:10px;touch-action:manipulation}
+.hamburger span{display:block;width:24px;height:2px;background:#fff;border-radius:2px;transition:.3s}
+.navbar.scrolled .hamburger span{background:var(--dark)}
+.hamburger.is-open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hamburger.is-open span:nth-child(2){opacity:0}
+.hamburger.is-open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+/* ── HERO ── */
+.hero{
+  position:relative;min-height:calc(100vh - 80px);
+  display:flex;align-items:center;
+  overflow:hidden;padding:120px clamp(20px,6vw,90px) 80px;
+  background:#101729;
+}
+.hero-video{
+  position:absolute;inset:-2px;z-index:0;pointer-events:none;overflow:hidden;background:transparent;
+}
+.hero-video iframe{
+  position:absolute;
+  top:50%;left:50%;
+  width:max(120vw,213.33vh);
+  height:max(120vh,67.5vw);
+  min-width:120%;
+  min-height:120%;
+  transform:translate(-50%,-50%) scale(1.35);
+  transform-origin:center;
+  border:none;opacity:.9;
+}
+.hero-video video{
+  position:absolute;
+  top:50%;left:50%;
+  width:100%;height:100%;
+  object-fit:cover;
+  transform:translate(-50%,-50%);
+  border:none;opacity:.9;
+}
+.hero-overlay{
+  position:absolute;inset:0;z-index:1;
+  background:linear-gradient(90deg,rgba(10,15,30,.72),rgba(10,15,30,.54) 48%,rgba(10,15,30,.64));
+}
+.hero-content{position:relative;z-index:2;max-width:780px}
+.eyebrow{
+  display:inline-block;padding:6px 16px;border-radius:999px;
+  background:rgba(39,199,215,.2);border:1px solid rgba(39,199,215,.4);
+  color:var(--primary);font-size:13px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.08em;margin-bottom:24px;
+}
+.hero h1{
+  font-family:var(--heading-font);
+  font-size:clamp(44px,6.5vw,var(--hero-h-size,88px));
+  font-weight:var(--hero-h-weight,800);line-height:.95;
+  letter-spacing:-.04em;color:#fff;
+  margin-bottom:8px;
+}
+.hero h1 .highlight{
+  background:var(--grad);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;
+}
+.hero-sub{
+  font-family:var(--heading-font);
+  font-size:clamp(28px,3.5vw,var(--hero-sub-size,52px));
+  font-weight:700;color:rgba(255,255,255,.7);
+  margin-bottom:28px;letter-spacing:-.03em;
+}
+.hero-text{
+  font-size:var(--hero-text-size,18px);color:rgba(255,255,255,.75);
+  max-width:600px;margin-bottom:40px;line-height:1.7;
+}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:15px 28px;border-radius:12px;
+  font-size:15px;font-weight:700;
+  transition:all .3s ease;cursor:pointer;border:none;
+}
+.btn:hover{transform:translateY(-3px)}
+.btn-primary{
+  background:var(--grad);color:#fff;
+  box-shadow:0 16px 40px rgba(39,199,215,.35);
+}
+.btn-primary:hover{box-shadow:0 20px 50px rgba(39,199,215,.5)}
+.btn-secondary{
+  background:rgba(255,255,255,.12);color:#fff;
+  border:1px solid rgba(255,255,255,.3);
+  backdrop-filter:blur(10px);
+}
+.btn-secondary:hover{background:rgba(255,255,255,.2)}
+.scroll-indicator{
+  position:absolute;bottom:36px;left:50%;transform:translateX(-50%);
+  z-index:2;display:flex;flex-direction:column;align-items:center;gap:8px;
+  color:rgba(255,255,255,.5);font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;
+  animation:bounce 2s infinite;
+}
+.scroll-indicator::after{
+  content:'';display:block;width:1px;height:48px;
+  background:linear-gradient(to bottom,rgba(255,255,255,.5),transparent);
+}
+@keyframes bounce{0%,100%{transform:translateX(-50%) translateY(0)}50%{transform:translateX(-50%) translateY(8px)}}
+
+/* ── STATS BAR ── */
+.stats-bar{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  background:var(--dark);padding:0;
+}
+.stat-item{
+  padding:40px 32px;text-align:center;
+  border-right:1px solid rgba(255,255,255,.08);
+  position:relative;overflow:hidden;
+}
+.stat-item:last-child{border-right:none}
+.stat-item::before{
+  content:'';position:absolute;inset:0;
+  background:var(--grad);opacity:0;transition:.4s;
+}
+.stat-item:hover::before{opacity:.1}
+.stat-num{
+  font-family:var(--heading-font);
+  font-size:clamp(36px,3.5vw,56px);
+  font-weight:800;color:#fff;
+  display:flex;align-items:baseline;justify-content:center;gap:2px;
+}
+.stat-num .suffix{color:var(--primary);font-size:.7em}
+.stat-label{color:rgba(255,255,255,.5);font-size:14px;font-weight:500;margin-top:6px}
+
+/* ── SECTION BASE ── */
+.section{padding:100px clamp(20px,6vw,90px)}
+.section.light{background:linear-gradient(180deg,#f8fcfd,#fff)}
+.section-head{text-align:center;max-width:800px;margin:0 auto 64px}
+.section-head .eyebrow{color:var(--secondary)}
+.section-head h2{
+  font-family:var(--heading-font);
+  font-size:clamp(32px,4vw,54px);
+  font-weight:800;letter-spacing:-.04em;
+  line-height:1.05;margin-bottom:18px;
+}
+.section-head p{font-size:18px;color:#6d7789}
+
+/* ── SERVICES ── */
+.services-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+}
+.service-card{
+  border-radius:24px;
+  border:1px solid #e8f0f7;background:#fff;
+  box-shadow:0 20px 60px rgba(16,23,41,.06);
+  transition:all .35s ease;position:relative;overflow:hidden;
+  cursor:default;display:flex;flex-direction:column;
+}
+.service-card-img{
+  width:100%;height:180px;object-fit:cover;display:block;
+  transition:transform .4s ease;
+}
+.service-card:hover .service-card-img{transform:scale(1.05)}
+.service-card-body{
+  padding:28px;flex:1;display:flex;flex-direction:column;
+  position:relative;
+}
+.service-card-body::before{
+  content:'';position:absolute;inset:0;
+  background:var(--grad);opacity:0;transition:.35s;
+}
+.service-card:hover .service-card-body::before{opacity:1}
+.service-card:hover h3,.service-card:hover p,.service-card:hover .service-link{color:#fff;position:relative;z-index:1}
+.service-card:hover .service-icon-wrap{background:rgba(255,255,255,.2)}
+.service-icon-wrap{
+  width:52px;height:52px;border-radius:15px;
+  background:linear-gradient(135deg,rgba(39,199,215,.12),rgba(63,131,223,.12));
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;margin-bottom:16px;
+  transition:.35s;position:relative;z-index:1;
+}
+.service-card h3{
+  font-family:var(--heading-font);
+  font-size:var(--card-title-size,20px);
+  font-weight:var(--card-title-weight,700);
+  margin-bottom:10px;position:relative;z-index:1;transition:.35s;
+}
+.service-card p{
+  color:#6d7789;
+  font-size:var(--card-text-size,15px);
+  line-height:1.65;position:relative;z-index:1;transition:.35s;flex:1
+}
+.service-link{
+  display:inline-flex;align-items:center;gap:6px;
+  margin-top:16px;font-size:14px;font-weight:700;
+  color:var(--secondary);position:relative;z-index:1;transition:.35s;
+}
+
+/* ── WHY SECTION ── */
+.why-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.why-image{position:relative;border-radius:30px;overflow:hidden}
+.why-image img{width:100%;height:520px;object-fit:cover}
+.why-image-badge{
+  position:absolute;bottom:28px;left:28px;right:28px;
+  background:rgba(16,23,41,.85);backdrop-filter:blur(20px);
+  border-radius:18px;padding:20px 24px;
+  display:flex;align-items:center;gap:16px;
+  border:1px solid rgba(255,255,255,.1);
+}
+.badge-icon{font-size:32px}
+.badge-text strong{display:block;color:#fff;font-weight:700;font-size:16px}
+.badge-text span{color:rgba(255,255,255,.6);font-size:13px}
+.why-points{display:flex;flex-direction:column;gap:24px;margin-top:36px}
+.why-point{
+  display:flex;gap:18px;padding:22px 24px;
+  border-radius:18px;border:1px solid #e8f0f7;
+  transition:all .3s;
+}
+.why-point:hover{border-color:var(--primary);box-shadow:0 10px 30px rgba(39,199,215,.12);transform:translateX(6px)}
+.why-num{
+  flex-shrink:0;width:40px;height:40px;border-radius:12px;
+  background:var(--grad);display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:800;font-size:14px;font-family:var(--heading-font);
+}
+.why-point h4{font-family:var(--heading-font);font-size:17px;font-weight:700;margin-bottom:6px}
+.why-point p{color:#6d7789;font-size:14px;line-height:1.6}
+
+/* ── PROCESS ── */
+.process-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);gap:24px;
+  position:relative;
+}
+.process-grid::before{
+  content:'';position:absolute;top:44px;left:12%;right:12%;height:2px;
+  background:linear-gradient(90deg,var(--primary),var(--secondary),#7c3aed);
+  opacity:.3;z-index:0;
+}
+.process-card{
+  text-align:center;padding:40px 24px;border-radius:24px;
+  background:#fff;border:1px solid #e8f0f7;
+  position:relative;z-index:1;transition:all .35s;
+}
+.process-card:hover{transform:translateY(-6px);box-shadow:var(--shadow);border-color:var(--primary)}
+.process-num{
+  width:72px;height:72px;border-radius:50%;
+  background:var(--grad);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--heading-font);font-size:22px;font-weight:800;color:#fff;
+  margin:0 auto 24px;
+  box-shadow:0 12px 30px rgba(39,199,215,.3);
+}
+.process-card h3{font-family:var(--heading-font);font-size:20px;font-weight:700;margin-bottom:12px}
+.process-card p{color:#6d7789;font-size:14px;line-height:1.65}
+
+/* ── TESTIMONIALS ── */
+.testimonials-section{
+  background:var(--dark);
+  padding:100px clamp(20px,6vw,90px);
+  position:relative;overflow:hidden;
+}
+.testimonials-section::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse at 20% 50%,rgba(39,199,215,.15),transparent 60%),
+             radial-gradient(ellipse at 80% 50%,rgba(124,58,237,.15),transparent 60%);
+}
+.testimonials-section .section-head h2,.testimonials-section .section-head .eyebrow{color:#fff}
+.testimonials-section .section-head p{color:rgba(255,255,255,.5)}
+.testimonials-track{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:24px;
+  position:relative;z-index:1;
+}
+.testimonial-card{
+  padding:36px;border-radius:24px;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.1);
+  transition:all .35s;
+}
+.testimonial-card:hover{background:rgba(255,255,255,.09);transform:translateY(-6px)}
+.stars{color:#fbbf24;font-size:18px;margin-bottom:18px;letter-spacing:2px}
+.testimonial-card p{
+  color:rgba(255,255,255,.8);font-size:16px;
+  line-height:1.7;margin-bottom:28px;
+  font-style:italic;
+}
+.testimonial-author{display:flex;align-items:center;gap:14px}
+.author-avatar{
+  width:48px;height:48px;border-radius:50%;
+  background:var(--grad);display:flex;align-items:center;justify-content:center;
+  font-size:20px;font-weight:800;color:#fff;font-family:var(--heading-font);
+  flex-shrink:0;
+}
+.author-name{font-weight:700;color:#fff;font-size:15px}
+.author-role{color:rgba(255,255,255,.5);font-size:13px;margin-top:2px}
+
+/* ── INDUSTRIES ── */
+.industries-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:18px;
+}
+.industry-card{
+  padding:28px;border-radius:18px;
+  border:1px solid #e8f0f7;background:#fff;
+  font-family:var(--heading-font);font-weight:700;font-size:18px;
+  transition:all .3s;text-align:center;
+  position:relative;overflow:hidden;
+}
+.industry-card::before{
+  content:'';position:absolute;inset:0;
+  background:var(--grad);opacity:0;transition:.3s;
+}
+.industry-card:hover{transform:translateY(-4px);color:#fff;border-color:transparent}
+.industry-card:hover::before{opacity:1}
+.industry-card span{position:relative;z-index:1}
+
+/* ── CTA BANNER ── */
+.cta-banner{
+  margin:0 clamp(20px,5vw,80px) 100px;
+  border-radius:34px;padding:70px clamp(30px,5vw,80px);
+  background:var(--grad);
+  display:flex;justify-content:space-between;align-items:center;gap:40px;
+  position:relative;overflow:hidden;
+}
+.cta-banner::before{
+  content:'';position:absolute;top:-50%;right:-10%;
+  width:500px;height:500px;border-radius:50%;
+  background:rgba(255,255,255,.07);
+}
+.cta-banner h2{
+  font-family:var(--heading-font);
+  font-size:clamp(28px,3vw,44px);font-weight:800;
+  color:#fff;letter-spacing:-.03em;
+  max-width:600px;
+}
+.cta-banner p{color:rgba(255,255,255,.75);margin-top:12px;font-size:17px}
+.btn-white{
+  background:#fff;color:var(--dark);
+  padding:16px 32px;border-radius:14px;
+  font-weight:800;font-size:15px;white-space:nowrap;
+  box-shadow:0 16px 40px rgba(0,0,0,.15);
+  transition:all .3s;
+}
+.btn-white:hover{transform:translateY(-3px);box-shadow:0 20px 50px rgba(0,0,0,.25)}
+
+/* ── FOOTER ── */
+.footer{
+  background:var(--dark);
+  padding:80px clamp(20px,6vw,90px) 40px;
+}
+.footer-grid{
+  display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;
+  gap:48px;margin-bottom:60px;
+}
+.footer-brand img{height:44px;margin-bottom:18px}
+.footer-brand p{color:rgba(255,255,255,.5);font-size:14px;line-height:1.7;max-width:280px}
+.footer-col h4{
+  font-family:var(--heading-font);color:#fff;font-weight:700;
+  font-size:16px;margin-bottom:20px;
+}
+.footer-col a{
+  display:block;color:rgba(255,255,255,.5);
+  font-size:14px;margin-bottom:10px;transition:.25s;
+}
+.footer-col a:hover{color:var(--primary);transform:translateX(4px)}
+.footer-contact p{color:rgba(255,255,255,.5);font-size:14px;margin-bottom:10px}
+.footer-contact strong{color:#fff}
+.footer-bottom{
+  border-top:1px solid rgba(255,255,255,.08);
+  padding-top:30px;display:flex;
+  justify-content:space-between;align-items:center;
+  color:rgba(255,255,255,.4);font-size:13px;
+}
+.social-links{display:flex;gap:12px}
+.social-link{
+  width:38px;height:38px;border-radius:10px;
+  background:rgba(255,255,255,.08);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;transition:.25s;
+  border:1px solid rgba(255,255,255,.08);
+  color:rgba(255,255,255,.72);
+}
+.social-link svg{width:18px;height:18px;fill:currentColor}
+.social-link:hover{background:var(--primary);border-color:var(--primary);color:#fff}
+
+/* ── WHATSAPP FLOAT ── */
+.whatsapp-float{
+  position:fixed;right:24px;bottom:24px;z-index:300;
+  width:56px;height:56px;border-radius:50%;
+  background:#25D366;
+  display:flex;align-items:center;justify-content:center;
+  font-size:26px;box-shadow:0 8px 30px rgba(37,211,102,.4);
+  transition:all .3s;
+}
+.whatsapp-float:hover{transform:scale(1.1);box-shadow:0 12px 40px rgba(37,211,102,.5)}
+
+/* ── SCROLL REVEAL ── */
+.reveal{opacity:0;transform:translateY(36px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+.reveal-left{opacity:0;transform:translateX(-36px);transition:opacity .7s ease,transform .7s ease}
+.reveal-left.in{opacity:1;transform:none}
+.reveal-right{opacity:0;transform:translateX(36px);transition:opacity .7s ease,transform .7s ease}
+.reveal-right.in{opacity:1;transform:none}
+.delay-1{transition-delay:.1s}
+.delay-2{transition-delay:.2s}
+.delay-3{transition-delay:.3s}
+.delay-4{transition-delay:.4s}
+.delay-5{transition-delay:.5s}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1100px){
+  .services-grid{grid-template-columns:repeat(2,1fr)}
+  .process-grid{grid-template-columns:repeat(2,1fr)}
+  .process-grid::before{display:none}
+  .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:900px){
+  .why-grid{grid-template-columns:1fr}
+  .testimonials-track{grid-template-columns:1fr}
+  .industries-grid{grid-template-columns:repeat(2,1fr)}
+  .stats-bar{grid-template-columns:repeat(2,1fr)}
+  .cta-banner{flex-direction:column;text-align:center}
+  .nav-links{display:none;position:absolute;top:80px;left:16px;right:16px;z-index:250;flex-direction:column;align-items:stretch;background:#fff;border-radius:18px;padding:16px;box-shadow:var(--shadow);max-height:calc(100vh - 110px);overflow:auto}
+  .nav-links.open{display:flex}
+  .nav-links a{color:var(--dark) !important;text-align:center}
+  .hamburger{display:flex}
+}
+@media(max-width:620px){
+  .services-grid,.process-grid,.industries-grid{grid-template-columns:1fr}
+  .stats-bar{grid-template-columns:1fr 1fr}
+  .footer-grid{grid-template-columns:1fr}
+  .hero h1{font-size:42px}
+}
+
+/* ENTERPRISE TRUST STRIP */
+.trust-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:28px clamp(20px,6vw,90px);background:#f8fcfd;border-bottom:1px solid #e8f0f7}
+.trust-item{padding:18px 20px;border-radius:16px;background:#fff;border:1px solid #e8f0f7;font-weight:800;color:#344154;text-align:center;box-shadow:0 12px 35px rgba(16,23,41,.04)}
+.trust-item::before{content:'✓';display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;margin-right:8px;border-radius:50%;background:var(--grad);color:#fff;font-size:12px;vertical-align:middle}
+.whatsapp-float span{display:none}
+@media(min-width:780px){.whatsapp-float{width:auto!important;border-radius:999px!important;padding:0 18px!important;gap:10px;font-size:20px!important}.whatsapp-float span{display:inline;font-size:14px;font-weight:800;color:#fff}}
+@media(max-width:900px){.trust-strip{grid-template-columns:1fr 1fr}}
+@media(max-width:620px){.trust-strip{grid-template-columns:1fr}}
+
+/* TOPBAR REMOVED */
+.topbar{display:none!important;height:0!important;padding:0!important;overflow:hidden!important}
+
+
+/* V14: round premium WhatsApp launcher override */
+.whatsapp-float{
+  position:fixed!important;right:24px!important;bottom:24px!important;z-index:9999!important;
+  width:68px!important;height:68px!important;min-width:68px!important;max-width:68px!important;
+  padding:0!important;border-radius:50%!important;
+  background:radial-gradient(circle at 35% 28%,#45f38a 0%,#25d366 42%,#128c7e 100%)!important;
+  color:#fff!important;display:flex!important;align-items:center!important;justify-content:center!important;
+  box-shadow:0 22px 55px rgba(18,140,126,.38),0 8px 18px rgba(0,0,0,.16)!important;
+  text-decoration:none!important;overflow:visible!important;animation:waRoundFloat 2.8s ease-in-out infinite!important;
+}
+.whatsapp-float::before{content:''!important;position:absolute!important;inset:-9px!important;border-radius:50%!important;border:2px solid rgba(37,211,102,.42)!important;animation:waRoundPulse 2.2s ease-out infinite!important;pointer-events:none!important}
+.whatsapp-float::after{content:''!important;position:absolute!important;right:8px!important;top:8px!important;width:13px!important;height:13px!important;background:#22c55e!important;border:3px solid #fff!important;border-radius:50%!important;box-shadow:0 0 0 5px rgba(34,197,94,.18)!important}
+.whatsapp-float .wa-icon{width:42px!important;height:42px!important;border-radius:50%!important;background:rgba(255,255,255,.96)!important;color:#12a85d!important;display:flex!important;align-items:center!important;justify-content:center!important;font-size:22px!important;line-height:1!important;box-shadow:0 8px 18px rgba(0,0,0,.14)!important}
+.whatsapp-float .wa-label,.whatsapp-float .wa-mini-status,.whatsapp-float .wa-ring{display:none!important}
+.whatsapp-float:hover{transform:translateY(-5px) scale(1.07)!important;box-shadow:0 30px 75px rgba(18,140,126,.5),0 12px 24px rgba(0,0,0,.2)!important}
+@keyframes waRoundFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes waRoundPulse{0%{transform:scale(.9);opacity:.75}70%{transform:scale(1.45);opacity:0}100%{opacity:0}}
+@media(max-width:640px){.whatsapp-float{right:16px!important;bottom:16px!important;width:62px!important;height:62px!important;min-width:62px!important;max-width:62px!important}.whatsapp-float .wa-icon{width:38px!important;height:38px!important}}
+
+
+/* V23 CFO-level homepage typography */
+.hero-content{max-width:860px !important;}
+.hero h1{font-size:clamp(42px,5.2vw,var(--hero-h-size,48px)) !important;line-height:1.06 !important;letter-spacing:-.03em !important;margin-bottom:14px !important;}
+.hero-sub{font-size:clamp(27px,3.1vw,var(--hero-sub-size,34px)) !important;line-height:1.15 !important;letter-spacing:-.025em !important;margin-bottom:24px !important;}
+.hero-text{font-size:var(--hero-text-size,17px) !important;line-height:1.72 !important;max-width:680px !important;}
+.section-head h2{font-size:clamp(28px,3.2vw,var(--section-h-size,40px)) !important;line-height:1.12 !important;}
+.service-card h3{font-size:var(--card-title-size,19px) !important;}
+.service-card p{font-size:var(--card-text-size,15px) !important;line-height:1.72 !important;}
+@media(max-width:620px){.hero h1{font-size:38px !important}.hero-sub{font-size:27px !important}.hero-text{font-size:16px !important}}
+
+</style>
+
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Organization","name":"AimAze Tech Solutions","url":"https://www.aimazetechsolutions.com/","logo":"https://www.aimazetechsolutions.com/assets/aimaze-logo-transparent.png","email":"info@aimazetechsolutions.com","address":{"@type":"PostalAddress","addressLocality":"Dubai","addressCountry":"AE"},"sameAs":[]}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"AimAze Tech Solutions","areaServed":["United Arab Emirates","International"],"serviceType":["Odoo ERP Implementation","ERP Customization","CRM Automation","Finance Dashboards","Web Development"],"url":"https://www.aimazetechsolutions.com/"}
+</script>
+<link rel="stylesheet" href="whatsapp.css?v=23">
+</head>
+<body>
+
+<!-- TOPBAR -->
+
+<!-- NAVBAR -->
+<nav class="navbar" id="navbar">
+  <a class="brand" href="index.html">
+    <img src="assets/aimaze-logo-transparent.png" alt="AimAze" id="nav-logo">
+    <span class="brand-name" id="nav-brand">AimAze Tech Solutions</span>
+  </a>
+  <div class="nav-links" id="nav-links">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="services.html">Services</a>
+    <a href="odoo.html">Odoo ERP</a>
+    <a href="industries.html">Industries</a>
+    <a href="portfolio.html">Portfolio</a>
+    <a href="blog.html">Blog</a>
+    <a class="nav-cta" href="contact.html">Contact Us</a>
+  </div>
+  <button class="hamburger" id="hamburger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="nav-links">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-video" id="hero-video-wrap">
+    <video id="hero-bg-video" autoplay muted loop playsinline preload="auto" poster="assets/videos/home-poster.jpg">
+      <source id="hero-bg-webm" type="video/webm">
+      <source id="hero-bg-mp4" src="assets/videos/home.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <p class="eyebrow" id="hero-eyebrow">UAE + International ERP Partner</p>
+    <h1 id="hero-heading">Odoo ERP, Software &amp; <span class="highlight">Digital Transformation</span></h1>
+    <p class="hero-sub" id="hero-sub">for Growing Businesses</p>
+    <p class="hero-text" id="hero-text">AimAze Tech Solutions helps UAE and international companies implement Odoo ERP, automate workflows, improve reporting, and build scalable digital systems around real business operations.</p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href="contact.html" id="hero-cta1">Book Free Process Analysis</a>
+      <a class="btn btn-secondary" href="odoo.html" id="hero-cta2">Explore Odoo Services</a>
+    </div>
+  </div>
+  <div class="scroll-indicator">Scroll</div>
+</section>
+
+
+<section class="trust-strip" aria-label="Enterprise capabilities" style="display:grid;grid-template-columns:repeat(4,1fr);gap:16px;padding:28px clamp(20px,6vw,90px);background:#f8fcfd;border-bottom:1px solid #e8f0f7">
+  <div class="trust-item" style="padding:18px 20px;border-radius:16px;background:#fff;border:1px solid #e8f0f7;font-weight:800;color:#344154;text-align:center;box-shadow:0 12px 35px rgba(16,23,41,.04)">✓ Odoo CRM & ERP</div>
+  <div class="trust-item" style="padding:18px 20px;border-radius:16px;background:#fff;border:1px solid #e8f0f7;font-weight:800;color:#344154;text-align:center;box-shadow:0 12px 35px rgba(16,23,41,.04)">✓ Finance Controls</div>
+  <div class="trust-item" style="padding:18px 20px;border-radius:16px;background:#fff;border:1px solid #e8f0f7;font-weight:800;color:#344154;text-align:center;box-shadow:0 12px 35px rgba(16,23,41,.04)">✓ Lead Automation</div>
+  <div class="trust-item" style="padding:18px 20px;border-radius:16px;background:#fff;border:1px solid #e8f0f7;font-weight:800;color:#344154;text-align:center;box-shadow:0 12px 35px rgba(16,23,41,.04)">✓ UAE VAT Focus</div>
+</section>
+
+<!-- STATS -->
+<div class="stats-bar" id="stats-bar">
+  <div class="stat-item"><div class="stat-num">4</div><div class="stat-label">Core ERP Capabilities</div></div>
+  <div class="stat-item"><div class="stat-num">6</div><div class="stat-label">Enterprise Service Areas</div></div>
+  <div class="stat-item"><div class="stat-num">24<span class="suffix">/7</span></div><div class="stat-label">Website Lead Capture</div></div>
+  <div class="stat-item"><div class="stat-num">5<span class="suffix">%</span></div><div class="stat-label">UAE VAT Workflow Focus</div></div>
+</div>
+
+<!-- SERVICES -->
+<section class="section light" id="services-section">
+  <div class="section-head reveal">
+    <p class="eyebrow">What We Do</p>
+    <h2>Business technology services built around real workflows.</h2>
+    <p>We design, build, integrate and support the systems your team depends on every day.</p>
+  </div>
+  <div class="services-grid" id="services-grid"></div>
+</section>
+
+<!-- WHY -->
+<section class="section" id="why-section">
+  <div class="why-grid">
+    <div class="why-image reveal-left">
+      <img src="https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Team" id="why-img">
+      <div class="why-image-badge">
+        <span class="badge-icon">🏆</span>
+        <div class="badge-text">
+          <strong>100% Client Satisfaction</strong>
+          <span>UAE & International Projects</span>
+        </div>
+      </div>
+    </div>
+    <div class="reveal-right">
+      <p class="eyebrow">Why AimAze</p>
+      <h2 id="why-heading" style="font-family:var(--heading-font);font-size:clamp(28px,3.5vw,48px);font-weight:800;letter-spacing:-.04em;line-height:1.1;margin-bottom:16px">Built for clarity, control and growth.</h2>
+      <p id="why-text" style="color:#6d7789;font-size:17px;line-height:1.7">Our goal is to make technology simple, useful and measurable for management and operating teams.</p>
+      <div class="why-points" id="why-points"></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section light" id="process-section">
+  <div class="section-head reveal">
+    <p class="eyebrow">Our Process</p>
+    <h2>How we deliver results.</h2>
+    <p>A proven four-step approach that puts your business operations first.</p>
+  </div>
+  <div class="process-grid" id="process-grid"></div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials-section" id="testimonials-section">
+  <div class="section-head reveal">
+    <p class="eyebrow" style="color:var(--primary)">Client Feedback</p>
+    <h2>What our clients say.</h2>
+    <p>Real results from real businesses we've helped transform.</p>
+  </div>
+  <div class="testimonials-track" id="testimonials-track"></div>
+</section>
+
+<!-- INDUSTRIES -->
+<section class="section" id="industries-section">
+  <div class="section-head reveal">
+    <p class="eyebrow">Industries</p>
+    <h2>Sectors we serve.</h2>
+    <p>We support businesses that need better control over sales, finance, HR, inventory, approvals and follow-ups.</p>
+  </div>
+  <div class="industries-grid" id="industries-grid"></div>
+</section>
+
+<!-- CTA BANNER -->
+<div class="cta-banner reveal" id="cta-banner">
+  <div>
+    <h2>Ready to improve your business operations?</h2>
+    <p>Book a free process analysis and we will map out the right solution path for you.</p>
+  </div>
+  <a class="btn-white" href="contact.html">Book Free Consultation</a>
+</div>
+
+<!-- FOOTER -->
+<footer class="footer" id="footer">
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <img src="assets/aimaze-logo-transparent.png" alt="AimAze">
+      <p>Odoo ERP, software, websites and digital transformation services for UAE and international businesses.</p>
+      <div class="social-links" style="margin-top:20px">
+        <a class="social-link" href="#" aria-label="LinkedIn" title="LinkedIn">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5.001 2.5 2.5 0 0 1 0-5ZM3 9h4v12H3V9Zm6.5 0h3.82v1.64h.05c.53-.96 1.83-1.97 3.77-1.97 4.03 0 4.77 2.65 4.77 6.1V21h-4v-5.53c0-1.32-.02-3.02-1.84-3.02-1.84 0-2.12 1.44-2.12 2.93V21h-4V9Z"/></svg>
+        </a>
+        <a class="social-link" href="#" aria-label="Facebook" title="Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-7.3h2.45l.37-2.85H13.5V9.03c0-.82.23-1.38 1.41-1.38h1.5V5.1c-.26-.03-1.15-.11-2.19-.11-2.17 0-3.66 1.32-3.66 3.76v2.1H8.1v2.85h2.46V21h2.94Z"/></svg>
+        </a>
+        <a class="social-link" href="#" aria-label="Instagram" title="Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7.8 2h8.4A5.8 5.8 0 0 1 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8A5.8 5.8 0 0 1 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2Zm0 2A3.8 3.8 0 0 0 4 7.8v8.4A3.8 3.8 0 0 0 7.8 20h8.4a3.8 3.8 0 0 0 3.8-3.8V7.8A3.8 3.8 0 0 0 16.2 4H7.8Zm4.2 3.35A4.65 4.65 0 1 1 12 16.65a4.65 4.65 0 0 1 0-9.3Zm0 2A2.65 2.65 0 1 0 12 14a2.65 2.65 0 0 0 0-5.3Zm4.9-2.45a1.15 1.15 0 1 1-1.15 1.15A1.15 1.15 0 0 1 16.9 6.9Z"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Services</h4>
+      <a href="odoo.html">Odoo ERP</a>
+      <a href="services.html">Customization</a>
+      <a href="services.html">CRM & Sales</a>
+      <a href="services.html">Finance Dashboards</a>
+      <a href="services.html">Web Development</a>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="about.html">About Us</a>
+      <a href="portfolio.html">Portfolio</a>
+      <a href="blog.html">Blog</a>
+      <a href="industries.html">Industries</a>
+    </div>
+    <div class="footer-col footer-contact">
+      <h4>Contact</h4>
+      <p><strong>Email</strong><br>info@aimazetechsolutions.com</p>
+      <p><strong>Location</strong><br>Dubai, UAE</p>
+      <p style="margin-top:16px"><a class="btn btn-primary" href="contact.html" style="font-size:13px;padding:11px 20px">Book Consultation</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 AimAze Tech Solutions LLC. All rights reserved.</span>
+    <span style="color:rgba(255,255,255,.3)">Built with ❤️ in Dubai</span>
+  </div>
+</footer>
+
+<!-- PREMIUM WHATSAPP: enhanced by shared.js -->
+
+<script>
+// ── LOAD CONTENT ──
+async function loadContent(){
+  try{
+    const r=await fetch('content.json?v='+Date.now());
+    const c=await r.json();
+    applyTheme(c.theme||{});
+    buildStats(c.stats||[]);
+    buildServices(c.services||[]);
+    buildWhy(c.why||{});
+    buildProcess(c.process||[]);
+    buildTestimonials(c.testimonials||[]);
+    buildIndustries(c.industries||[]);
+    applyHero(c.hero||{});
+    applyWhatsApp(c.site||{});
+  }catch(e){console.warn('content.json not found, using defaults')}
+}
+
+function applyTheme(t){
+  const r=document.documentElement.style;
+  if(t.primaryColor)r.setProperty('--primary',t.primaryColor);
+  if(t.secondaryColor)r.setProperty('--secondary',t.secondaryColor);
+  if(t.accentColor)r.setProperty('--accent',t.accentColor);
+  if(t.darkColor)r.setProperty('--dark',t.darkColor);
+  if(t.headingFont)r.setProperty('--heading-font',`'${t.headingFont}'`);
+  if(t.bodyFont)r.setProperty('--body-font',`'${t.bodyFont}'`);
+  if(t.baseFontSize)r.setProperty('--base-size',t.baseFontSize+'px');
+  if(t.heroHeadingSize)r.setProperty('--hero-h-size',t.heroHeadingSize+'px');
+  if(t.heroSubSize)r.setProperty('--hero-sub-size',t.heroSubSize+'px');
+  if(t.heroTextSize)r.setProperty('--hero-text-size',t.heroTextSize+'px');
+  if(t.sectionHeadingSize)r.setProperty('--section-h-size',t.sectionHeadingSize+'px');
+  if(t.cardTitleSize)r.setProperty('--card-title-size',t.cardTitleSize+'px');
+  if(t.cardTextSize)r.setProperty('--card-text-size',t.cardTextSize+'px');
+  if(t.navFontSize)r.setProperty('--nav-font-size',t.navFontSize+'px');
+  if(t.heroHeadingWeight)r.setProperty('--hero-h-weight',t.heroHeadingWeight);
+  if(t.sectionHeadingWeight)r.setProperty('--section-h-weight',t.sectionHeadingWeight);
+  if(t.cardTitleWeight)r.setProperty('--card-title-weight',t.cardTitleWeight);
+}
+
+function applyHero(h){
+  if(h.eyebrow)document.getElementById('hero-eyebrow').textContent=h.eyebrow;
+  if(h.heading)document.getElementById('hero-heading').innerHTML=h.heading.replace('Digital Transformation','<span class="highlight">Digital Transformation</span>');
+  if(h.subheading)document.getElementById('hero-sub').textContent=h.subheading;
+  if(h.text)document.getElementById('hero-text').textContent=h.text;
+  if(h.primaryCta){const e=document.getElementById('hero-cta1');e.textContent=h.primaryCta;if(h.primaryCtaLink)e.href=h.primaryCtaLink}
+  if(h.secondaryCta){const e=document.getElementById('hero-cta2');e.textContent=h.secondaryCta;if(h.secondaryCtaLink)e.href=h.secondaryCtaLink}
+  if(h.showVideo===false){
+    const w=document.getElementById('hero-video-wrap');
+    if(w)w.style.display='none';
+  }else{
+    const w=document.getElementById('hero-video-wrap');
+    if(w)w.style.display='block';
+    const video=document.getElementById('hero-bg-video');
+    const mp4=document.getElementById('hero-bg-mp4');
+    const webm=document.getElementById('hero-bg-webm');
+    if(video){
+      const mp4Src=h.videoMp4||h.videoUrl||'assets/videos/home.mp4';
+      const webmSrc=h.videoWebm||'';
+      const poster=h.videoPoster||'assets/videos/home-poster.jpg';
+      let changed=false;
+      if(mp4 && mp4.getAttribute('src')!==mp4Src){mp4.src=mp4Src;changed=true;}
+      if(webm){
+        if(webmSrc && webm.getAttribute('src')!==webmSrc){webm.src=webmSrc;changed=true;}
+        if(!webmSrc && webm.hasAttribute('src')){webm.removeAttribute('src');changed=true;}
+      }
+      if(poster && video.getAttribute('poster')!==poster)video.setAttribute('poster',poster);
+      if(changed)video.load();
+      const playPromise=video.play();
+      if(playPromise&&playPromise.catch)playPromise.catch(()=>{});
+    }
+  }
+}
+
+function buildStats(stats){
+  const el=document.getElementById('stats-bar');
+  if(!el)return;
+  const safeStats = Array.isArray(stats) && stats.length ? stats : [
+    {number:'4', suffix:'', label:'Core ERP Capabilities'},
+    {number:'6', suffix:'', label:'Enterprise Service Areas'},
+    {number:'24', suffix:'/7', label:'Website Lead Capture'},
+    {number:'5', suffix:'%', label:'UAE VAT Workflow Focus'}
+  ];
+  el.innerHTML=safeStats.map((s,i)=>`
+    <div class="stat-item reveal delay-${i+1}">
+      <div class="stat-num">${s.number||''}<span class="suffix">${s.suffix||''}</span></div>
+      <div class="stat-label">${s.label||''}</div>
+    </div>`).join('');
+}
+
+
+function buildServices(services){
+  const el=document.getElementById('services-grid');
+  el.innerHTML=services.map((s,i)=>`
+    <div class="service-card reveal delay-${(i%3)+1}">
+      ${s.image?`<img class="service-card-img" src="${s.image}" alt="${s.title}" loading="lazy">`:''}
+      <div class="service-card-body">
+        <div class="service-icon-wrap"><span class="service-icon">${s.icon}</span></div>
+        <h3>${s.title}</h3>
+        <p>${s.text}</p>
+        <a class="service-link" href="${s.link||'services.html'}">Learn more →</a>
+      </div>
+    </div>`).join('');
+}
+
+function buildWhy(w){
+  if(w.heading)document.getElementById('why-heading').textContent=w.heading;
+  if(w.text)document.getElementById('why-text').textContent=w.text;
+  if(w.image)document.getElementById('why-img').src=w.image;
+  const el=document.getElementById('why-points');
+  if(w.points)el.innerHTML=w.points.map((p,i)=>`
+    <div class="why-point reveal delay-${i+1}">
+      <div class="why-num">${String(i+1).padStart(2,'0')}</div>
+      <div><h4>${p.title}</h4><p>${p.text}</p></div>
+    </div>`).join('');
+}
+
+function buildProcess(steps){
+  const el=document.getElementById('process-grid');
+  el.innerHTML=steps.map((s,i)=>`
+    <div class="process-card reveal delay-${i+1}">
+      <div class="process-num">${s.step}</div>
+      <h3>${s.title}</h3>
+      <p>${s.text}</p>
+    </div>`).join('');
+}
+
+function buildTestimonials(testimonials){
+  const el=document.getElementById('testimonials-track');
+  el.innerHTML=testimonials.map((t,i)=>`
+    <div class="testimonial-card reveal delay-${i+1}">
+      <div class="stars">${'★'.repeat(t.rating||5)}</div>
+      <p>"${t.text}"</p>
+      <div class="testimonial-author">
+        <div class="author-avatar">${t.name[0]}</div>
+        <div><div class="author-name">${t.name}</div><div class="author-role">${t.role}</div></div>
+      </div>
+    </div>`).join('');
+}
+
+function buildIndustries(industries){
+  const el=document.getElementById('industries-grid');
+  el.innerHTML=industries.map(ind=>`
+    <div class="industry-card reveal"><span>${ind}</span></div>`).join('');
+}
+
+function applyWhatsApp(site){
+  // Home page WhatsApp is controlled by shared.js premium live-chat system.
+  const wa=document.getElementById('wa-btn');
+  if(wa) wa.href='#';
+}
+
+// ── NAVBAR SCROLL ──
+const navbar=document.getElementById('navbar');
+window.addEventListener('scroll',()=>{
+  if(window.scrollY>80)navbar.classList.add('scrolled');
+  else navbar.classList.remove('scrolled');
+},{passive:true});
+
+// ── HAMBURGER ──
+const hamburger=document.getElementById('hamburger');
+const navMenu=document.getElementById('nav-links');
+function setMobileMenu(open){
+  if(!hamburger || !navMenu)return;
+  navMenu.classList.toggle('open',open);
+  hamburger.classList.toggle('is-open',open);
+  hamburger.setAttribute('aria-expanded',open?'true':'false');
+}
+if(hamburger && navMenu){
+  hamburger.addEventListener('click',(event)=>{
+    event.preventDefault();
+    event.stopPropagation();
+    setMobileMenu(!navMenu.classList.contains('open'));
+  });
+  navMenu.addEventListener('click',(event)=>{
+    if(event.target.closest('a'))setMobileMenu(false);
+  });
+  document.addEventListener('click',(event)=>{
+    if(navMenu.classList.contains('open') && !event.target.closest('#navbar'))setMobileMenu(false);
+  });
+  window.addEventListener('resize',()=>{
+    if(window.innerWidth>900)setMobileMenu(false);
+  },{passive:true});
+}
+
+// ── SCROLL REVEAL ──
+const revealEls=()=>{
+  document.querySelectorAll('.reveal,.reveal-left,.reveal-right').forEach(el=>{
+    const rect=el.getBoundingClientRect();
+    if(rect.top<window.innerHeight-80)el.classList.add('in');
+  });
+};
+window.addEventListener('scroll',revealEls,{passive:true});
+
+// ── INIT ──
+loadContent().then(()=>{
+  setTimeout(revealEls,100);
+});
+</script>
+<script src="shared.js?v=23"></script>
+</body>
 </html>
+
