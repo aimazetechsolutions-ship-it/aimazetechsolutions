@@ -931,7 +931,8 @@ function setMobileMenu(open){
   hamburger.classList.toggle('is-open',open);
   hamburger.setAttribute('aria-expanded',open?'true':'false');
 }
-if(hamburger && navMenu){
+if(hamburger && navMenu && !hamburger.dataset.mobileMenuBound){
+  hamburger.dataset.mobileMenuBound='true';
   hamburger.addEventListener('click',(event)=>{
     event.preventDefault();
     event.stopPropagation();

@@ -302,7 +302,8 @@
     ham.classList.toggle('is-open',open);
     ham.setAttribute('aria-expanded',open?'true':'false');
   }
-  if(ham && menu){
+  if(ham && menu && !ham.dataset.mobileMenuBound){
+    ham.dataset.mobileMenuBound='true';
     ham.setAttribute('aria-controls','nav-links');
     ham.setAttribute('aria-expanded','false');
     ham.addEventListener('click',(event)=>{
