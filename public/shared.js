@@ -244,7 +244,7 @@
     </div>`;
   }
 
-  // ── V25 FINAL HD PAGE HERO VIDEO (NO HOME FALLBACK OVERWRITE) ──
+  // ── V26 FINAL HD PAGE HERO VIDEO (NO HOME FALLBACK OVERWRITE) ──
   // This version does NOT depend on content.json to decide the page video.
   // It uses the current page name directly, so each page always loads its own file:
   // home.mp4, about.mp4, services.mp4, odoo.mp4, industries.mp4, portfolio.mp4, blog.mp4, contact.mp4
@@ -260,8 +260,8 @@
     vdiv.className='page-hero-video';
     vdiv.setAttribute('data-video-page',name);
     vdiv.innerHTML=`<video autoplay muted loop playsinline preload="auto" poster="assets/videos/${name}-hq-poster.jpg">
-      <source src="assets/videos/${name}-hq.webm?v=25" type="video/webm">
-      <source src="assets/videos/${name}.mp4?v=25" type="video/mp4">
+      <source src="assets/videos/${name}-hq.webm?v=26" type="video/webm">
+      <source src="assets/videos/${name}.mp4?v=26" type="video/mp4">
     </video>`;
     return vdiv;
   }
@@ -333,10 +333,10 @@
   setTimeout(reveal,150);
 
 
-  // ── V25 FINAL FORCE PAGE-SPECIFIC HD VIDEO FIX ──
+  // ── V26 FINAL FORCE PAGE-SPECIFIC HD VIDEO FIX ──
   // This runs after all older content/video code and guarantees every page loads its own file.
-  function aimazeForceCorrectPageVideoV25(){
-    const VERSION = '25';
+  function aimazeForceCorrectPageVideoV26(){
+    const VERSION = '26';
     const cleanPage = (location.pathname.split('/').pop() || 'index.html').replace('.html','').toLowerCase();
     const page = (!cleanPage || cleanPage === 'index') ? 'home' : cleanPage;
     const validPages = ['home','about','services','odoo','industries','portfolio','blog','contact'];
@@ -441,9 +441,9 @@
       createOrUpdateVideo(layer);
     }
 
-    console.log('[AimAze V25] page video loaded:', finalPage, getVideoConfig().webm || getVideoConfig().mp4);
+    console.log('[AimAze V26] page video loaded:', finalPage, getVideoConfig().webm || getVideoConfig().mp4);
   }
-  aimazeForceCorrectPageVideoV25();
-  setTimeout(aimazeForceCorrectPageVideoV25, 500);
+  aimazeForceCorrectPageVideoV26();
+  setTimeout(aimazeForceCorrectPageVideoV26, 500);
 
 })();
