@@ -244,7 +244,7 @@
     </div>`;
   }
 
-  // ── V22 FINAL MP4 PAGE HERO VIDEO (NO HOME FALLBACK OVERWRITE) ──
+  // ── V24 FINAL MP4 PAGE HERO VIDEO (NO HOME FALLBACK OVERWRITE) ──
   // This version does NOT depend on content.json to decide the page video.
   // It uses the current page name directly, so each page always loads its own file:
   // home.mp4, about.mp4, services.mp4, odoo.mp4, industries.mp4, portfolio.mp4, blog.mp4, contact.mp4
@@ -260,7 +260,7 @@
     vdiv.className='page-hero-video';
     vdiv.setAttribute('data-video-page',name);
     vdiv.innerHTML=`<video autoplay muted loop playsinline preload="auto" poster="assets/videos/${name}-poster.jpg">
-      <source src="assets/videos/${name}.mp4?v=22" type="video/mp4">
+      <source src="assets/videos/${name}.mp4?v=24" type="video/mp4">
     </video>`;
     return vdiv;
   }
@@ -332,10 +332,10 @@
   setTimeout(reveal,150);
 
 
-  // ── V21 FINAL FORCE PAGE-SPECIFIC MP4 VIDEO FIX ──
+  // ── V24 FINAL FORCE PAGE-SPECIFIC MP4 VIDEO FIX ──
   // This runs after all older content/video code and guarantees every page loads its own file.
-  function aimazeForceCorrectPageVideoV21(){
-    const VERSION = '21';
+  function aimazeForceCorrectPageVideoV24(){
+    const VERSION = '24';
     const cleanPage = (location.pathname.split('/').pop() || 'index.html').replace('.html','').toLowerCase();
     const page = (!cleanPage || cleanPage === 'index') ? 'home' : cleanPage;
     const validPages = ['home','about','services','odoo','industries','portfolio','blog','contact'];
@@ -376,14 +376,17 @@
         video.muted = true;
         video.loop = true;
         video.playsInline = true;
-        video.preload = 'metadata';
+        video.preload = 'auto';
         container.appendChild(video);
       }
       video.setAttribute('autoplay','');
       video.setAttribute('muted','');
       video.setAttribute('loop','');
       video.setAttribute('playsinline','');
+      video.setAttribute('preload','auto');
+      video.setAttribute('disablepictureinpicture','');
       video.muted = true;
+      video.preload = 'auto';
       video.poster = cfg.poster;
       video.innerHTML = '';
       if(cfg.webm){
@@ -402,8 +405,11 @@
       video.style.width='100%';
       video.style.height='100%';
       video.style.objectFit='cover';
-      video.style.transform='translate(-50%,-50%)';
-      video.style.opacity='.9';
+      video.style.objectPosition='center';
+      video.style.transform='translate3d(-50%,-50%,0)';
+      video.style.backfaceVisibility='hidden';
+      video.style.filter='saturate(1.08) contrast(1.04)';
+      video.style.opacity='.95';
       video.style.pointerEvents='none';
       video.onerror=function(){
         container.style.backgroundImage = `url('${cfg.poster}')`;
@@ -434,9 +440,9 @@
       createOrUpdateVideo(layer);
     }
 
-    console.log('[AimAze V21] page video loaded:', finalPage, getVideoConfig().mp4);
+    console.log('[AimAze V24] page video loaded:', finalPage, getVideoConfig().mp4);
   }
-  aimazeForceCorrectPageVideoV21();
-  setTimeout(aimazeForceCorrectPageVideoV21, 500);
+  aimazeForceCorrectPageVideoV24();
+  setTimeout(aimazeForceCorrectPageVideoV24, 500);
 
 })();

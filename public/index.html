@@ -9,7 +9,7 @@
 <meta property="og:image" content="assets/aimaze-coverpage.png">
 <link rel="icon" href="assets/aimaze-logo-transparent.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preload" as="video" href="assets/videos/home.mp4" type="video/mp4">
+<link rel="preload" as="video" href="assets/videos/home.mp4?v=24" type="video/mp4">
 <link rel="preload" as="image" href="assets/videos/home-poster.jpg">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap">
 <style>
@@ -114,12 +114,15 @@ img{max-width:100%;display:block}
   top:50%;left:50%;
   width:100%;height:100%;
   object-fit:cover;
-  transform:translate(-50%,-50%);
-  border:none;opacity:.9;
+  object-position:center;
+  transform:translate3d(-50%,-50%,0);
+  backface-visibility:hidden;
+  filter:saturate(1.08) contrast(1.04);
+  border:none;opacity:.95;
 }
 .hero-overlay{
   position:absolute;inset:0;z-index:1;
-  background:linear-gradient(90deg,rgba(10,15,30,.72),rgba(10,15,30,.54) 48%,rgba(10,15,30,.64));
+  background:linear-gradient(90deg,rgba(10,15,30,.66),rgba(10,15,30,.46) 48%,rgba(10,15,30,.58));
 }
 .hero-content{position:relative;z-index:2;max-width:780px}
 .eyebrow{
@@ -612,7 +615,7 @@ img{max-width:100%;display:block}
   <div class="hero-video" id="hero-video-wrap">
     <video id="hero-bg-video" autoplay muted loop playsinline preload="auto" poster="assets/videos/home-poster.jpg">
       <source id="hero-bg-webm" type="video/webm">
-      <source id="hero-bg-mp4" src="assets/videos/home.mp4" type="video/mp4">
+      <source id="hero-bg-mp4" src="assets/videos/home.mp4?v=24" type="video/mp4">
     </video>
   </div>
   <div class="hero-overlay"></div>
