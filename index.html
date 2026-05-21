@@ -9,8 +9,8 @@
 <meta property="og:image" content="assets/aimaze-coverpage.png">
 <link rel="icon" href="assets/aimaze-logo-transparent.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preload" as="video" href="assets/videos/home.mp4?v=24" type="video/mp4">
-<link rel="preload" as="image" href="assets/videos/home-poster.jpg">
+<link rel="preload" as="video" href="assets/videos/home-hq.webm?v=25" type="video/webm">
+<link rel="preload" as="image" href="assets/videos/home-hq-poster.jpg">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap">
 <style>
 /* ── RESET & BASE ── */
@@ -613,9 +613,9 @@ img{max-width:100%;display:block}
 <!-- HERO -->
 <section class="hero" id="hero">
   <div class="hero-video" id="hero-video-wrap">
-    <video id="hero-bg-video" autoplay muted loop playsinline preload="auto" poster="assets/videos/home-poster.jpg">
-      <source id="hero-bg-webm" type="video/webm">
-      <source id="hero-bg-mp4" src="assets/videos/home.mp4?v=24" type="video/mp4">
+    <video id="hero-bg-video" autoplay muted loop playsinline preload="auto" poster="assets/videos/home-hq-poster.jpg">
+      <source id="hero-bg-webm" src="assets/videos/home-hq.webm?v=25" type="video/webm">
+      <source id="hero-bg-mp4" src="assets/videos/home.mp4?v=25" type="video/mp4">
     </video>
   </div>
   <div class="hero-overlay"></div>
@@ -823,9 +823,10 @@ function applyHero(h){
     const mp4=document.getElementById('hero-bg-mp4');
     const webm=document.getElementById('hero-bg-webm');
     if(video){
-      const mp4Src=h.videoMp4||h.videoUrl||'assets/videos/home.mp4';
-      const webmSrc=h.videoWebm||'';
-      const poster=h.videoPoster||'assets/videos/home-poster.jpg';
+      const versionAsset=(src)=>src ? src + (src.includes('?') ? '&' : '?') + 'v=25' : '';
+      const mp4Src=versionAsset(h.videoMp4||h.videoUrl||'assets/videos/home.mp4');
+      const webmSrc=versionAsset(h.videoWebm||'assets/videos/home-hq.webm');
+      const poster=h.videoPoster||'assets/videos/home-hq-poster.jpg';
       let changed=false;
       if(mp4 && mp4.getAttribute('src')!==mp4Src){mp4.src=mp4Src;changed=true;}
       if(webm){

@@ -244,7 +244,7 @@
     </div>`;
   }
 
-  // ── V24 FINAL MP4 PAGE HERO VIDEO (NO HOME FALLBACK OVERWRITE) ──
+  // ── V25 FINAL HD PAGE HERO VIDEO (NO HOME FALLBACK OVERWRITE) ──
   // This version does NOT depend on content.json to decide the page video.
   // It uses the current page name directly, so each page always loads its own file:
   // home.mp4, about.mp4, services.mp4, odoo.mp4, industries.mp4, portfolio.mp4, blog.mp4, contact.mp4
@@ -259,8 +259,9 @@
     const vdiv=document.createElement('div');
     vdiv.className='page-hero-video';
     vdiv.setAttribute('data-video-page',name);
-    vdiv.innerHTML=`<video autoplay muted loop playsinline preload="auto" poster="assets/videos/${name}-poster.jpg">
-      <source src="assets/videos/${name}.mp4?v=24" type="video/mp4">
+    vdiv.innerHTML=`<video autoplay muted loop playsinline preload="auto" poster="assets/videos/${name}-hq-poster.jpg">
+      <source src="assets/videos/${name}-hq.webm?v=25" type="video/webm">
+      <source src="assets/videos/${name}.mp4?v=25" type="video/mp4">
     </video>`;
     return vdiv;
   }
@@ -332,10 +333,10 @@
   setTimeout(reveal,150);
 
 
-  // ── V24 FINAL FORCE PAGE-SPECIFIC MP4 VIDEO FIX ──
+  // ── V25 FINAL FORCE PAGE-SPECIFIC HD VIDEO FIX ──
   // This runs after all older content/video code and guarantees every page loads its own file.
-  function aimazeForceCorrectPageVideoV24(){
-    const VERSION = '24';
+  function aimazeForceCorrectPageVideoV25(){
+    const VERSION = '25';
     const cleanPage = (location.pathname.split('/').pop() || 'index.html').replace('.html','').toLowerCase();
     const page = (!cleanPage || cleanPage === 'index') ? 'home' : cleanPage;
     const validPages = ['home','about','services','odoo','industries','portfolio','blog','contact'];
@@ -354,14 +355,14 @@
       if(finalPage === 'home'){
         cfg = Object.assign({
           mp4: h.videoMp4 || h.videoUrl || 'assets/videos/home.mp4',
-          webm: h.videoWebm || '',
-          poster: h.videoPoster || 'assets/videos/home-poster.jpg'
+          webm: h.videoWebm || 'assets/videos/home-hq.webm',
+          poster: h.videoPoster || 'assets/videos/home-hq-poster.jpg'
         }, cfg || {});
       }
       return {
         mp4: cfg.mp4 || cfg.videoMp4 || `assets/videos/${finalPage}.mp4`,
-        webm: cfg.webm || cfg.videoWebm || '',
-        poster: cfg.poster || cfg.videoPoster || `assets/videos/${finalPage}-poster.jpg`
+        webm: cfg.webm || cfg.videoWebm || `assets/videos/${finalPage}-hq.webm`,
+        poster: cfg.poster || cfg.videoPoster || `assets/videos/${finalPage}-hq-poster.jpg`
       };
     }
 
@@ -440,9 +441,9 @@
       createOrUpdateVideo(layer);
     }
 
-    console.log('[AimAze V24] page video loaded:', finalPage, getVideoConfig().mp4);
+    console.log('[AimAze V25] page video loaded:', finalPage, getVideoConfig().webm || getVideoConfig().mp4);
   }
-  aimazeForceCorrectPageVideoV24();
-  setTimeout(aimazeForceCorrectPageVideoV24, 500);
+  aimazeForceCorrectPageVideoV25();
+  setTimeout(aimazeForceCorrectPageVideoV25, 500);
 
 })();

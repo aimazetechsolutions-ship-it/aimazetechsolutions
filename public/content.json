@@ -41,8 +41,8 @@
     "secondaryCtaLink": "odoo.html",
     "videoUrl": "assets/videos/home.mp4",
     "videoMp4": "assets/videos/home.mp4",
-    "videoWebm": "",
-    "videoPoster": "assets/videos/home-poster.jpg",
+    "videoWebm": "assets/videos/home-hq.webm",
+    "videoPoster": "assets/videos/home-hq-poster.jpg",
     "showVideo": true
   },
   "stats": [
@@ -185,46 +185,46 @@
     "Finance & Operations"
   ],
   "pageVideos": {
-    "note": "MP4 video paths for each page hero. Upload files to assets/videos/ in GitHub.",
+    "note": "Hero video paths for each page. WebM is the HD preferred file, MP4 is the fallback.",
     "about": {
       "mp4": "assets/videos/about.mp4",
-      "webm": "",
-      "poster": "assets/videos/about-poster.jpg"
+      "webm": "assets/videos/about-hq.webm",
+      "poster": "assets/videos/about-hq-poster.jpg"
     },
     "services": {
       "mp4": "assets/videos/services.mp4",
-      "webm": "",
-      "poster": "assets/videos/services-poster.jpg"
+      "webm": "assets/videos/services-hq.webm",
+      "poster": "assets/videos/services-hq-poster.jpg"
     },
     "odoo": {
       "mp4": "assets/videos/odoo.mp4",
-      "webm": "",
-      "poster": "assets/videos/odoo-poster.jpg"
+      "webm": "assets/videos/odoo-hq.webm",
+      "poster": "assets/videos/odoo-hq-poster.jpg"
     },
     "industries": {
       "mp4": "assets/videos/industries.mp4",
-      "webm": "",
-      "poster": "assets/videos/industries-poster.jpg"
+      "webm": "assets/videos/industries-hq.webm",
+      "poster": "assets/videos/industries-hq-poster.jpg"
     },
     "portfolio": {
       "mp4": "assets/videos/portfolio.mp4",
-      "webm": "",
-      "poster": "assets/videos/portfolio-poster.jpg"
+      "webm": "assets/videos/portfolio-hq.webm",
+      "poster": "assets/videos/portfolio-hq-poster.jpg"
     },
     "blog": {
       "mp4": "assets/videos/blog.mp4",
-      "webm": "",
-      "poster": "assets/videos/blog-poster.jpg"
+      "webm": "assets/videos/blog-hq.webm",
+      "poster": "assets/videos/blog-hq-poster.jpg"
     },
     "contact": {
       "mp4": "assets/videos/contact.mp4",
-      "webm": "",
-      "poster": "assets/videos/contact-poster.jpg"
+      "webm": "assets/videos/contact-hq.webm",
+      "poster": "assets/videos/contact-hq-poster.jpg"
     },
     "home": {
       "mp4": "assets/videos/home.mp4",
-      "webm": "",
-      "poster": "assets/videos/home-poster.jpg"
+      "webm": "assets/videos/home-hq.webm",
+      "poster": "assets/videos/home-hq-poster.jpg"
     }
   },
   "nav": {
