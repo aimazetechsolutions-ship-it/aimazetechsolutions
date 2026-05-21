@@ -233,14 +233,14 @@
       <div class="footer-col footer-contact">
         <h4>Contact</h4>
         <p><strong>Email</strong><br>${site.email||'info@aimazetechsolutions.com'}</p>
-        <p><strong>Location</strong><br>${site.address||'Dubai, UAE'}</p>
+        <p><strong>Location</strong><br>${site.address||'Dubai, UAE • Lahore, Pakistan'}</p>
         ${site.phone?`<p><strong>Phone</strong><br>${site.phone}</p>`:''}
         <p style="margin-top:16px"><a class="btn btn-primary" href="contact.html" style="font-size:13px;padding:11px 20px;display:inline-flex">Book Consultation</a></p>
       </div>
     </div>
     <div class="footer-bottom">
       <span>© 2026 ${site.name||'AimAze Tech Solutions LLC'}. All rights reserved.</span>
-      <span style="color:rgba(255,255,255,.3)">Built with ❤️ in Dubai</span>
+      <span style="color:rgba(255,255,255,.3)">Serving UAE and Pakistan</span>
     </div>`;
   }
 
